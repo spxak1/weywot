@@ -4,6 +4,7 @@ Aps to install
 
 CLI apps
 --------
+-progress
+-pandoc
 
-+progress
-+pandoc
+*Randrom Text*
