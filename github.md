@@ -5,7 +5,9 @@
 You need to perform a couple of steps:
 
 First add the file to make it part of the git (test):
-	git add filename
+
+    git add filename
+
 Then commit to it with a comment:
 	git commit -m "This is my comment"
 Then push the file to git:
