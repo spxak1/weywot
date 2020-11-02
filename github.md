@@ -4,11 +4,11 @@
 
 You need to perform a couple of steps:
 
-* First add the file to make it part of the git (test):
+First add the file to make it part of the git (test):
 	git add filename
-* Then commit to it with a comment:
+Then commit to it with a comment:
 	git commit -m "This is my comment"
-* Then push the file to git:
+Then push the file to git:
 	git push
 
 At this point you will be asked for your username and password.
