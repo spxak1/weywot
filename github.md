@@ -10,11 +10,11 @@ You need to perform a couple of steps:
 
 + Then commit to it with a comment:
 
-    git commit -m "This is my comment"
+	    git commit -m "This is my comment"
 
 + Then push the file to git:
 
-    git push
+	    git push
 
 At this point you will be asked for your username and password.
 
