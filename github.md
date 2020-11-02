@@ -6,15 +6,15 @@ You need to perform a couple of steps:
 
 * first add the file to make it part of the git
 
-    git add filename
+	git add filename
 
 * Then commit to it with a comment
 
-    git commit -m "This is my comment"
+	git commit -m "This is my comment"
 
 * Then push the file to git
 
-    git push
+	git push
 
 At this point you will be asked for your username and password.
 
@@ -45,7 +45,7 @@ Or you can dit the **.gitconfig** file in your **$HOME** directory (that implies
 
 Add:
 
-      [alias]
+	[alias]
 	co = checkout
 	ci = commit
 	st = status
