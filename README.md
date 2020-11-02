@@ -22,7 +22,7 @@ CLI apps test
 > convert test.png -resize 1024 test1.png
 
 
-![Random, Screenshot](test1.png)
+![Random, Screenshot](assets/test1.png)
 
 ## Output to htlm
 
