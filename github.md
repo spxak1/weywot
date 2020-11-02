@@ -6,7 +6,9 @@ You need to perform a couple of steps:
 
 * first add the file to make it part of the git
 
+
 	git add filename
+
 
 * Then commit to it with a comment
 
