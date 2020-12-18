@@ -19,4 +19,8 @@ You can flush all your local cashes using
 
 ```sudo systemd-resolve --flush-caches```.
 
+You can test the DNS now:
+
+```dig www.ibm.com```
+
 Done.
