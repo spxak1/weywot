@@ -1,12 +1,12 @@
 # Dual Boot Pop!_OS with Windows using systemd-boot
 ### The ultimate guide for any combination
 
-**TL:DR**: Dual boot from the same drive with Windows and Pop!_OS already installed: See end!
+**TL:DR**: Dual boot from the same drive with Windows and Pop!_OS already installed: See **4. TL:DR** at the end of this document.
 
-## Introduction
+## 1. Introduction
 Pop!_OS uses **systemd-boot** as its boot manager. Most new users don't know how **systemd-boot** works and the fact that it is mostly transparent to the user (as a boot-manager should be), makes it hard for some users to understand. As such a common advice when new users want to dual boot with Windows is to install **grub**. Grub is better known as it is commonly used by other distributions, namely **Ubuntu** and has a visible menu at boot, which new users grow to expect. As such it is common *advice* between new users to install **grub** in order to dual boot Pop!_OS with Windows. This, is **totally unecessary** as not only it removes the ease and simplicity of **systemd-boot** and replaces it with the rather complex configuration of **grub**, but also **grub** has the tedency to break with **Windows updates**, while **systemd-boot** does not. 
 
-### Purpose
+### 1.1 Purpose
 The purpose of this guide is to make it easy to install Pop!_OS and Windows in a system and easily select the OS to boot at start up. It covers:
 
 1. Dual boot using a single drive
@@ -14,10 +14,10 @@ The purpose of this guide is to make it easy to install Pop!_OS and Windows in a
 3. Installing Pop!_OS first, then Windows
 4. Installing Windows first, then Pop!_OS
 
-### Disclaimer
+### 1.2 Disclaimer
 While this is a guide tested many times, the procedures followed include creating/deleting/changing partitions, and as such your data, if you get something wrong, can be lost. Make sure you **backup your data** before you start, and you understand **you do this at your own risk**.
 
-### Prerequisites
+### 1.3 Prerequisites
 
 Some basic skills are required before you move on. You need to be apt enough in **linux** to complete the followin tasks:
 
@@ -33,14 +33,14 @@ Some basic skills are required before you move on. You need to be apt enough in 
 
 While these will all be used in this guide, they will be handy when setting up and/or troubleshooting your installation. 
 
-### Not covered
+### 1.4 Not covered
 This guide does not cover how to install Pop!_OS, Windows, how to create partitions on either OS, how to resize partitions. 
 **This guid does not cover installation on Legacy/Bios systems. This is for UEFI only**.
 
-### Basic concept
+### 1.5 Basic concept
 **Systemd-boot** is simple. It will boot any OS that has an EFI entry (with the boot file) in ```/boot/efi```. All this guide does is describe the process of copying such files. 
 
-### Basic use of systemd-boot menu
+### 1.6 Basic use of systemd-boot menu
 Here are all the options you have at the **menu** of **systemd-boot** at start-up. To bring the menu up at boot, you need to **spam** or **hold** the **spacebar** during **POST** (that's when your PC's logo appears on the screen. Once the menu appears you can press:
 
 * **d**: this changes the **default** boot option. A ```=>``` sign appears in front of the selection to show it's default.
@@ -54,16 +54,16 @@ Finally you can supersede the boot order and choose to boot Windows or Pop!_OS b
 * **w**: this will boot Windows
 * **l**: this will boot Linux (Pop!_OS)
 
-## Dual booting with separate drives
+## 2. Dual booting with separate drives
 This is the simplest case. Each operating system is installed separately on its own drive. This requires a minimum of two drives (obviously) and the order of installation does not matter. It is *advisable* to only have one drive installed at a time of installing each OS, so that you avoid confusion. However with Pop!_OS not using **sstemd-boot** rather than **grub**, there is no danger of misplacing the boot loader, so both drives can be connected while installing Pop!_OS, just make sure you select only the drive you want Pop!_OS installed before you install Pop!_OS.
 
-### Installation
+### 2.1 OS installation
 Install each OS to its onwn drive. At this point you can boot each OS by selectig the boot device from your BIOS.
 At this point Pop!_OS may **or** many **not** provide you with a **menu**. But there is one:
 
 With Pop!_OS selected to boot, when your system shows the manufacturers logo (i.e. during POST), you **spam** or **hold** the **spacebar**. This will bring up the **menu**. This menu does **not** include an option for Windows (yet).
 
-#### How to add an option for Windows in Pop!_OS boot menu
+### 2.2 How to add an option for Windows in Pop!_OS boot menu
 
 This is the easiest case. All you need to do is to copy the EFI files of Windows to Pop!_OS's EFI partition.
 
@@ -116,9 +116,9 @@ Note: You can only see the contents of this folder as *root* as such ```sudo``` 
 
 **Note**: Your bios may re-read the EFI options offered in the boot manager and may place the new EFI entry for Windows first. If your system boots straight to Windows after restart, reboot to Bios and select **Pop!_OS** as the first choice to boot.
 
-## Dual booting from the same drive
+## 3. Dual booting from the same drive
 
-### Install Pop!_OS first, Windows second (easiest)
+### 3.1 Install Pop!_OS first, Windows second (easiest)
 
 If you're installing on a fresh drive, installing Pop!_OS first is the easiest option. Follow these steps to get a **dual boot menu**.
 
@@ -130,13 +130,13 @@ If you're installing on a fresh drive, installing Pop!_OS first is the easiest o
 6. If you already have Pop!_OS as your only OS and want to install Windows, you will need to **boot from USB** and start at **step 3** above.
 7. Once the Windows installation is complete, adjust your boot order in the bios to Pop!_OS, and use the **menu** as required.
 
-### Install Pop!_OS second, Windows installed first
+### 3.2 Install Pop!_OS second, Windows installed first
 This is the most common case for new users, and as such I will spend some time explaining with more detail. 
 
-#### Starting without OS
+#### 3.2.1 Starting without OS
 If you start with a clean drive, I would strongly suggest installing Pop!_OS first and follow the according steps. If you **have** to install Windows first, you have two options.
 
-##### 1. Install Windows with **planning** for Pop!_OS (hard)
+##### 3.2.1.1. Install Windows with **planning** for Pop!_OS (hard)
 
 All the **planning** is, is to install Windows with a **larger** EFI partition so that you can use it also for Pop!_OS. Windows's EFI partition is by default only 100MB and it is as a result too small for more than OS to store its EFI files. If you make this larger, say 512MB (I would advise 1GB for extra space), you can then use this partition for all your OS's. You can do that following [this guide here](https://www.ctrl.blog/entry/how-to-esp-windows-setup.html). 
 
@@ -149,7 +149,7 @@ Once you have Windows installed with a large EFI partition you can install Pop!_
 6. Complete and reboot, you should have a menu with **Windows** as an option.
 7. Adjust your Bios to set Pop!_OS as the first boot option.
 
-##### 2. Install Windows without planning for Pop!_OS (easier)
+##### 3.2.2.2. Install Windows without planning for Pop!_OS (easier)
 
 Here you will end up with two separate EFI partitions and as such the procedure is similar to having two separate drives. 
 
@@ -162,7 +162,7 @@ Here you will end up with two separate EFI partitions and as such the procedure 
 7. Follow the process used for dual booting from two drives to make your menu include **Windows**.
 
 
-## TL:DR Dual boot from the same drive with Windows and Pop!_OS already installed
+## 4. TL:DR Dual boot from the same drive with Windows and Pop!_OS already installed
 
 If you have managed to install Windows and Pop!_OS, read the introduction before you procede. 
 
