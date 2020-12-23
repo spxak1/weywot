@@ -19,6 +19,60 @@ While this is a guide tested many times, the procedures followed include creatin
 
 Some basic skills are required before you move on. You need to be apt enough in **linux** to complete the followin tasks:
 
+1. Use ```lsblk``` 
+2. Mount a partition
+3. Copy files **and** folders from the terminal
+4. Create Live USB sticks from Windows and Linux
+5. Install Pop!_OS and Windows from USB
+6. Understand the difference between **mbr** and **gpt** and how to use ```fdisk``` to change disks from on type to the other
+7. Understand the difference between **UEFI** and **legacy** modes in BIOS and use your system's bios to check/modify
+8. Use your system's bios to change the boot order
+9. Use your system's bios to disable **secure boot** and enable AHCI for storage
+
+While these will all be used in this guide, they will be handy when setting up and/or troubleshooting your installation. 
+
+### Not covered
+This guide does not cover how to install Pop!_OS, Windows, how to create partitions on either OS, how to resize partitions. 
+**This guid does not cover installation on Legacy/Bios systems. This is for UEFI only**.
+
+## Dual booting with separate drives
+This is the simplest case. Each operating system is installed separately on its own drive. This requires a minimum of two drives (obviously) and the order of installation does not matter. It is *advisable* to only have one drive installed at a time of installing each OS, so that you avoid confusion. However with Pop!_OS not using **sstemd-boot** rather than **grub**, there is no danger of misplacing the boot loader, so both drives can be connected while installing Pop!_OS, just make sure you select only the drive you want Pop!_OS installed before you install Pop!_OS.
+
+### Installation
+Install each OS to its onwn drive. At this point you can boot each OS by selectig the boot device from your BIOS.
+At this point Pop!_OS may **or** many **not** provide you with a **menu**. But there is one:
+
+With Pop!_OS selected to boot, when your system shows the manufacturers logo (i.e. during POST), you **spam** or **hold** the **spacebar**. This will bring up the **menu**. This menu does **not** include an option for Windows (yet).
+
+#### How to add an option for Windows in Pop!_OS boot menu
+
+This is the easiest case.
+
+Steps:
+
+1. Boot Pop!_OS
+2. Start a terminal
+3. Run ```lsblk``` and identify the drive with Pop!_OS and the drive with Windows. Sample output of two fresh installations looks like this:
+
+~~~
+otheos@pop-os:~$ lsblk
+NAME          MAJ:MIN RM   SIZE RO TYPE  MOUNTPOINT
+sda             8:0    0 119.2G  0 disk  
+├─sda1          8:1    0   498M  0 part  /boot/efi
+├─sda2          8:2    0     4G  0 part  /recovery
+├─sda3          8:3    0 110.8G  0 part  /
+└─sda4          8:4    0     4G  0 part  
+  └─cryptswap 253:0    0     4G  0 crypt [SWAP]
+sdb             8:16   0 111.8G  0 disk  
+├─sdb1          8:17   0   100M  0 part  
+├─sdb2          8:18   0    16M  0 part  
+├─sdb3          8:19   0 111.2G  0 part  
+└─sdb4          8:20   0   505M  0 part 
+~~~
+
+In the example above, ```/dev/sda``` is the drive with Pop!_OS and ```/dev/sdb``` is the drive with Windows. You can tell from the mounted partitions of Pop!_OS on ```/dev/sda```. 
+
+
 
 
 
