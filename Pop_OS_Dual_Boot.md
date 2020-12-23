@@ -114,6 +114,55 @@ Note: You can only see the contents of this folder as *root* as such ```sudo``` 
 
 **Note**: Your bios may re-read the EFI options offered in the boot manager and may place the new EFI entry for Windows first. If your system boots straight to Windows after restart, reboot to Bios and select **Pop!_OS** as the first choice to boot.
 
+## Dual booting from the same drive
+
+### Install Pop!_OS first, Windows second (easiest)
+
+If you're installing on a fresh drive, installing Pop!_OS first is the easiest option. Follow these steps to get a **dual boot menu**.
+
+1. Install Pop!_OS as per normal. You can partition the drive before installation and do a custom installation. This will have the space for Windows alocated at this point and you do not need to move and resize partitions after. But you may end up without a recovery partition. Practice, see what workds for you. 
+2. If you installed the default way, **do not reboot**.
+3. Start ```gparted``` and resize/move as required to make space for Windows. The Windows installer will have to find empty space to install to. 
+4. Start the Windows installation, and select the empty space to install to. Windows will **by default** install its EFI folder in the pre-existing EFI partition that Pop!_OS uses. This means that all EFI files will now be in the same place as required for systemd-boot to show Windwos in the **menu**. 
+5. Uppon reboot (Windows requires several) you will need to manually select Windows. Either fire up the menu and make Windows default (see introduction), or hold **w** on every reboot, or make Windows the default in your bios at this stage.
+6. If you already have Pop!_OS as your only OS and want to install Windows, you will need to **boot from USB** and start at **step 3** above.
+7. Once the Windows installation is complete, adjust your boot order in the bios to Pop!_OS, and use the **menu** as required.
+
+### Install Pop!_OS second, Windows installed first
+This is the most common case for new users, and as such I will spend some time explaining with more detail. 
+
+#### Starting without OS
+If you start with a clean drive, I would strongly suggest installing Pop!_OS first and follow the according steps. If you **have** to install Windows first, you have two options.
+
+##### 1. Install Windows with **planning** for Pop!_OS (hard)
+
+All the **planning** is, is to install Windows with a **larger** EFI partition so that you can use it also for Pop!_OS. Windows's EFI partition is by default only 100MB and it is as a result too small for more than OS to store its EFI files. If you make this larger, say 512MB (I would advise 1GB for extra space), you can then use this partition for all your OS's. You can do that following [this guide here](https://www.ctrl.blog/entry/how-to-esp-windows-setup.html). 
+
+Once you have Windows installed with a large EFI partition you can install Pop!_OS. Simple steps include:
+1. Boot from Live USB.
+2. Go through the step by step screens.
+3. Select custom and resize/move partitions to make as much room as needed for Pop!_OS. 
+4. Go back to the installer and select partitions. Select **the EFI partition of Windows** and set it to ```/boot/efi``` but **DO NOT FORMAT**. 
+5. Select your ```/``` partition and install. 
+6. Complete and reboot, you should have a menu with **Windows** as an option.
+7. Adjust your Bios to set Pop!_OS as the first boot option.
+
+##### 2. Install Windows without planning for Pop!_OS (easier)
+
+Here you will end up with two separate EFI partitions and as such the procedure is similar to having two separate drives. 
+
+1. Install Windows as normal
+2. Boot from Live USB
+3. Make space for Pop!_OS. You will need two partition, a 512MB FAT32 partition and the rest as ext4 (or use as many partitions as you want for your custom installation)
+4. Select the 512MB FAT32 partition as ```/boot/efi``` partition and the rest as your ```/``` partition (or any other layout you want, but this is the minimum).
+5. Install.
+6. Now you have two installations each with its own EFI partition. 
+7. Follow the process used for dual booting from two drives to make your menu include **Windows**.
+
+
+
+
+I will however go in detail for users who have 
 
 
 
