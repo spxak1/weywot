@@ -1,4 +1,29 @@
-Disclaimer: You do this at your own risk.
+# Dual Boot Pop!_OS with Windows using systemd-boot
+### The ultimate guide for any combination
+
+## Introduction
+Pop!_OS uses **systemd-boot** as its boot manager. Most new users don't know how **systemd-boot** works and the fact that it is mostly transparent to the user (as a boot-manager should be), makes it hard for some users to understand. As such a common advice when new users want to dual boot with Windows is to install **grub**. Grub is better known as it is commonly used by other distributions, namely **Ubuntu** and has a visible menu at boot, which new users grow to expect. As such it is common *advice* between new users to install **grub** in order to dual boot Pop!_OS with Windows. This, is **totally unecessary** as not only it removes the ease and simplicity of **systemd-boot** and replaces it with the rather complex configuration of **grub**, but also **grub** has the tedency to break with **Windows updates**, while **systemd-boot** does not. 
+
+### Purpose
+The purpose of this guide is to make it easy to install Pop!_OS and Windows in a system and easily select the OS to boot at start up. It covers:
+
+1. Dual boot using a single drive
+2. Dual boot using two drives with each OS on its own storage device
+3. Installing Pop!_OS first, then Windows
+4. Installing Windows first, then Pop!_OS
+
+### Disclaimer
+While this is a guide tested many times, the procedures followed include creating/deleting/changing partitions, and as such your data, if you get something wrong, can be lost. Make sure you **backup your data** before you start, and you understand **you do this at your own risk**.
+
+### Prerequisites
+
+Some basic skills are required before you move on. You need to be apt enough in **linux** to complete the followin tasks:
+
+
+
+
+
+
 
 **What you want to achieve:**
 
