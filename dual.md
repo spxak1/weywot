@@ -35,6 +35,23 @@ While these will all be used in this guide, they will be handy when setting up a
 This guide does not cover how to install Pop!_OS, Windows, how to create partitions on either OS, how to resize partitions. 
 **This guid does not cover installation on Legacy/Bios systems. This is for UEFI only**.
 
+### Basic concept
+**Systemd-boot** is simple. It will boot any OS that has an EFI entry (with the boot file) in ```/boot/efi```. All this guide does is describe the process of copying such files. 
+
+### Basic use of systemd-boot menu
+Here are all the options you have at the **menu** of **systemd-boot** at start-up. To bring the menu up at boot, you need to **spam** or **hold** the **spacebar** during **POST** (that's when your PC's logo appears on the screen. Once the menu appears you can press:
+
+* **d**: this changes the **default** boot option. A ```=>``` sign appears in front of the selection to show it's default.
+* **e**: edit the boot parameters (if you want to add kernel parameters) and see the boot instruction.
+* **t**: increase the menu **timeout**.
+* **T**: decrease the menu **timeout** (Shift+T).
+* **v**: shows the version of systemd-boot
+
+Finally you can supersede the boot order and choose to boot Windows or Pop!_OS by holding or spamming at POST:
+
+* **w**: this will boot Windows
+* **l**: this will boot Linux (Pop!_OS)
+
 ## Dual booting with separate drives
 This is the simplest case. Each operating system is installed separately on its own drive. This requires a minimum of two drives (obviously) and the order of installation does not matter. It is *advisable* to only have one drive installed at a time of installing each OS, so that you avoid confusion. However with Pop!_OS not using **sstemd-boot** rather than **grub**, there is no danger of misplacing the boot loader, so both drives can be connected while installing Pop!_OS, just make sure you select only the drive you want Pop!_OS installed before you install Pop!_OS.
 
@@ -46,7 +63,7 @@ With Pop!_OS selected to boot, when your system shows the manufacturers logo (i.
 
 #### How to add an option for Windows in Pop!_OS boot menu
 
-This is the easiest case.
+This is the easiest case. All you need to do is to copy the EFI files of Windows to Pop!_OS's EFI partition.
 
 Steps:
 
@@ -70,8 +87,32 @@ sdb             8:16   0 111.8G  0 disk
 └─sdb4          8:20   0   505M  0 part 
 ~~~
 
-In the example above, ```/dev/sda``` is the drive with Pop!_OS and ```/dev/sdb``` is the drive with Windows. You can tell from the mounted partitions of Pop!_OS on ```/dev/sda```. 
+In the example above, ```/dev/sda``` is the drive with Pop!_OS and ```/dev/sdb``` is the drive with Windows. You can tell from the mounted partitions of Pop!_OS on ```/dev/sda```. You can also see here that Pop!_OS's EFI partition is mounted at ```/boot/efi``` and its EFI files are located in ```/boot/efi/EFI```. 
 
+4. Identify the EFI partition of Windows. This is typically around 100MB for starnard installations and is typically the first partition in the drive. In the example above, this is partition ```/dev/sdb1```.
+5. Mount the EFI partition of Windows. Typically you can type ```sudo mount /dev/sdb1 /mnt```. 
+6. Copy the EFI files of Windows to Pop!_OS's EFI partition. The EFI files of Windows are in the folder ```/mnt/EFI/Microsoft```. You will need the **complete** ```Microsoft``` folder. So:
+~~~
+otheos@pop-os:~$ sudo mount /dev/sdb1 /mnt
+otheos@pop-os:~$ cd /mnt
+otheos@pop-os:/mnt$ ls
+EFI
+otheos@pop-os:/mnt$ cd EFI
+otheos@pop-os:/mnt/EFI$ ls
+Boot  Microsoft
+otheos@pop-os:/mnt/EFI$ sudo cp -ax Microsoft /boot/efi/EFI
+~~~
+At this point you are done. You can check the folder is where it should be:
+~~~
+otheos@pop-os:/mnt/EFI$ sudo ls /boot/efi/EFI
+BOOT   Microsoft				    Recovery-8138-A6FE
+Linux  Pop_OS-eeacf7ce-54c4-47ac-a595-2c701aa28e2c  systemd
+~~~
+Note: You can only see the contents of this folder as *root* as such ```sudo``` is required. You can see the ```Microsoft``` folder is now present. 
+
+7. You are done. You can now reboot your system and check in the **menu** that there is an option named **Windows Boot Manager**. Select it and you can boot to Windows.
+
+**Note**: Your bios may re-read the EFI options offered in the boot manager and may place the new EFI entry for Windows first. If your system boots straight to Windows after restart, reboot to Bios and select **Pop!_OS** as the first choice to boot.
 
 
 
