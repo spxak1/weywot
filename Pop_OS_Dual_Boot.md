@@ -3,6 +3,9 @@
 
 **TL:DR**: Dual boot from the same drive with Windows and Pop!_OS already installed: See **4. TL:DR** at the end of this document.
 
+## Abstract
+To dual boot Windows and Pop!_OS with a menu, both operating systems' EFI files need to be in the same FAT32 partition. This guide elaborates on how to either install OS's using the same EFI partition or **copy Windows's EFI files onto Pop!_OS's ```/boot/efi/EFI```. 
+
 ## 1. Introduction
 Pop!_OS uses **systemd-boot** as its boot manager. Most new users don't know how **systemd-boot** works and the fact that it is mostly transparent to the user (as a boot-manager should be), makes it hard for some users to understand. As such a common advice when new users want to dual boot with Windows is to install **grub**. Grub is better known as it is commonly used by other distributions, namely **Ubuntu** and has a visible menu at boot, which new users grow to expect. As such it is common *advice* between new users to install **grub** in order to dual boot Pop!_OS with Windows. This, is **totally unecessary** as not only it removes the ease and simplicity of **systemd-boot** and replaces it with the rather complex configuration of **grub**, but also **grub** has the tedency to break with **Windows updates**, while **systemd-boot** does not. 
 
