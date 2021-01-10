@@ -16,7 +16,8 @@ This quide requires the ability to perform tasks using the terminal. It also exp
 
 1. What is a filesystem
 2. What is a partitions
-3. A boot manager and a boot loade
+3. A boot manager and a bootloader
+4. What chroot does
 
 and ability to:
 
@@ -364,6 +365,89 @@ UUID=78c9787f-1d36-42e8-89bd-7b94b501afaf       /swap           btrfs   defaults
 </pre>
 
 Note that the **UUID** is the same for all system mounts except for the ```/boot/efi``` and the ```/recovery``` that use their **PARTUUID**, and you **do not change these**.
+
+### 2.3.4 Configure the bootloader
+
+The bootloader **does not** expect the root ```/``` to be on a subvolume. We need to tell it where to find it. 
+*Pop!_OS* uses **systemd_boot** and this makes things very simple. 
+
+First, mount the new ```/boot/efi``` to edit the configuration files. We need to mount this in its proper location, so:
+
+~~~
+mount /dev/sdc1 /mnt/@/boot/efi
+~~~
+
+Now, the main change is in the **entry** file that boots *Pop!_OS*
+That file is ```/mnt/@/boot/efi/loader/entries/Pop_OS-current.conf```
+
+Edit it with ```nano``` and at the end of the last line (that starts with **options**) add: ```rootflags=subvol=@```
+
+The complete file should look like this:
+
+<pre>
+title Pop!_OS
+linux /EFI/Pop_OS-78c9787f-1d36-42e8-89bd-7b94b501afaf/vmlinuz.efi
+initrd /EFI/Pop_OS-78c9787f-1d36-42e8-89bd-7b94b501afaf/initrd.img
+options root=UUID=78c9787f-1d36-42e8-89bd-7b94b501afaf ro quiet loglevel=0 systemd.show_status=false splash rootflags=subvol=@ 
+</pre>
+
+Look at the very last item of the last line (scroll right to see it).
+
+Now that the bootloader knows where to find ```/```, we need to make sure that when an update re-writes the bootloader, it doesn't remove that option.
+
+For that we need to make that option the **default** everytime the bootloader is configured by the system **or** wen we run ```kernestub``` (the bootmanager manager -word manager appears twice here).
+
+For that we need to edit the configuration of ```kernelstub``` that is found in the system's ```/etc/kernelstub/configuration``` file.
+
+So edit this file with ```nano /mnt/@/etc/kernelstub/configuration```.
+
+We need to find the **user** section, that ends with ```"splash"```. We need to add ```"rootflags=subvol=@"``` after it.
+
+Be careful, since we add one more entry to this section, the previous entry, ```"splash"``` now needs to end with a **comma**.
+
+So the complete file will look like this:
+
+<pre>
+{
+  "default": {
+    "kernel_options": [
+      "quiet",
+      "splash"
+    ],
+    "esp_path": "/boot/efi",
+    "setup_loader": false,
+    "manage_mode": false,
+    "force_update": false,
+    "live_mode": false,
+    "config_rev": 3
+  },
+  "user": {
+    "kernel_options": [
+      "quiet",
+      "loglevel=0",
+      "systemd.show_status=false",
+      "splash", <b>← here is the comma added</b>
+      "rootflags=subvol=@" <b>← here is the new option added</b>
+    ],
+    "esp_path": "/boot/efi",
+    "setup_loader": true,
+    "manage_mode": true,
+    "force_update": false,
+    "live_mode": false,
+    "config_rev": 3
+  }
+ </pre>
+ 
+ The configuration is done. Now we need to rebuild the bootloader for the new configuration.
+ 
+ ### 2.3.5 Rebuild the bootloader
+ 
+ For this we need to ```chroot```.
+ 
+ 
+ 
+
+
 
 
 
