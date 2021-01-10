@@ -259,13 +259,34 @@ These options are suggested for better performance with **btrfs** (taken from Wi
 5. **compress=zstd**: allows to specify the compression algorithm which we want to use. btrfs provides lzo, zstd and zlib compression algorithms. Based on some Phoronix test cases, zstd seems to be the better performing candidate.
 
 Now you have your newly installed system mounted on ```/mnt```.
+We are going to make 3 subvolumes:
 
+1. **@** for root ```/```
+2. **@home** for home ```/home```
+3. **@swap** for, well, swap ```/swap```
 
+<pre>
+root@pluto:/# btrfs subvolume create /mnt/@
+# Create subvolume '/mnt/@'
+</pre>
 
+With the **@** subvolume created, we need to move all the data from the old ```/``` to the new ```/``` in the subvolume.
 
+<pre>
+root@pluto:/# cd /mnt
+root@pluto:/# ls | grep -v @ | xargs mv -t @ #move all files and folders to /mnt/@
+</pre>
 
+So if we check now in ```/mnt``` there is nothing but the subvolume **@** and if you check inside of it you will find all installation data.
 
-~~~
+<pre>
+root@pluto:/# ls /mnt/
+@
+root@pluto:/# cd @
+root@pluto:/# ls
+bin   dev  home  lib32  libx32  mnt  proc      root  sbin  swap  tmp  var
+boot  etc  lib   lib64  media   opt  recovery  run   srv   sys   usr
+</pre>
 
 
 
