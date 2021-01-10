@@ -224,7 +224,48 @@ Expert command (m for help): <b>r</b>
 
 You can now **write** the new partition layout by typing **w**. This will exit fdisk.
 
+## 2.2 Installing the system
 
+You can now start the installer from the dash favourite menu. You will select **Custom (Advanced)**. Then you will select the partitions and proceed as follows:
+
+1. Select the first partition, **Use partition**, **Format**, and set for **/boot/efi** and filesystem **fat32**.
+2. Select the second partition, **Use partition**, **Format**, and set for **Custom** and type: ```/recovery``` and filesystem **fat32**.
+3. Select the third partition, **Use partition**, **Format**, and set for **/** and filesystem **btrfs**  **← this is the main change!**
+
+You do not need a **swap partition**, we will install a swapfile!
+
+Now press **Erase and Install** and wait for it to finish. When done **DO NOT REBOOT**. Instead go back to your terminal.
+
+Let me retype this **DO NOT REBOOT**
+
+**Note**: At this point you could reboot and use your system as it is, but you would have **no subvolumes** and as such no access to **btrfs** main benefits.
+
+## 2.3 Setting up subvolumes and finishing the installation
+
+### 2.3.1 Create subvolumes
+
+You're using the terminal, still in root interactive mode (```sudo -i```).
+
+First mount the **ROOT** partition to ```/mnt```
+
+```mount -o subvolid=5,ssd,noatime,space_cache,commit=120,compress=zstd /dev/sdc3 /mnt```
+
+These options are suggested for better performance with **btrfs** (taken from Willi Mutschler site as they appear):
+
+1. **ssd**: use SSD specific options for optimal use on SSD and NVME
+2. **noatime**: prevent frequent disk writes by instructing the Linux kernel not to store the last access time of files and folders
+3. **space_cache**: allows btrfs to store free space cache on the disk to make caching of a block group much quicker
+4. **commit=120**: time interval in which data is written to the filesystem (value of 120 is taken from Manjaro’s minimal iso)
+5. **compress=zstd**: allows to specify the compression algorithm which we want to use. btrfs provides lzo, zstd and zlib compression algorithms. Based on some Phoronix test cases, zstd seems to be the better performing candidate.
+
+Now you have your newly installed system mounted on ```/mnt```.
+
+
+
+
+
+
+~~~
 
 
 
