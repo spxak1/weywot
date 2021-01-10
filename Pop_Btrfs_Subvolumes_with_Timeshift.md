@@ -135,7 +135,7 @@ Create the other two in the same way.
 Command (m for help): <b>n</b>
 Partition number (2-128, default 2): <b>← press enter</b>
 First sector (1050624-976773134, default 1050624): <b>← press enter</b>
-Last sector, +/-sectors or +/-size{K,M,G,T,P} (1050624-976773134, default 976773134): +4096M <b>*← type 4096M for the size required</b>
+Last sector, +/-sectors or +/-size{K,M,G,T,P} (1050624-976773134, default 976773134): +4096M <b>← type 4096M for the size required</b>
 
 Created a new partition 2 of type 'Linux filesystem' and of size 4 GiB.
 
@@ -267,10 +267,10 @@ We are going to make 3 subvolumes:
 
 <pre>
 root@pluto:/# btrfs subvolume create /mnt/@
-# Create subvolume '/mnt/@'
+ Create subvolume '/mnt/@'
 </pre>
 
-With the **@** subvolume created, we need to move all the data from the old ```/``` to the new ```/``` in the subvolume.
+With the ```@``` subvolume created, we need to move all the data from the old ```/``` to the new ```/``` in the ```@``` subvolume.
 
 <pre>
 root@pluto:/# cd /mnt
@@ -281,13 +281,89 @@ So if we check now in ```/mnt``` there is nothing but the subvolume **@** and if
 
 <pre>
 root@pluto:/# ls /mnt/
-@
+ @
 root@pluto:/# cd @
 root@pluto:/# ls
-bin   dev  home  lib32  libx32  mnt  proc      root  sbin  swap  tmp  var
-boot  etc  lib   lib64  media   opt  recovery  run   srv   sys   usr
+ bin   dev  home  lib32  libx32  mnt  proc      root  sbin  swap  tmp  var
+ boot  etc  lib   lib64  media   opt  recovery  run   srv   sys   usr
 </pre>
 
+Now for the other two subvolumes.
+
+<pre>
+root@pluto:/# btrfs subvolume create /mnt/@home
+ Create subvolume '/mnt/@home'
+root@pluto:/# btrfs subvolume create /mnt/@swap
+ Create subvolume '/mnt/@swap'
+root@pluto:/# btrfs subvolume list /mnt
+ ID 264 gen 66 top level 5 path @
+ ID 267 gen 64 top level 5 path @home
+ ID 268 gen 66 top level 5 path @swap
+</pre>
+
+Your ID numbers may differ.
+
+We're almost done, except for the swap.
+
+### 2.3.2 Create swap on btrfs subvolume
+
+The ```@swap``` subvolume appears as a folder inside of the ```/mnt``` mount. In there we're creating the **swapfile**. For this example I'm using a 9GB swapfile (to allow for suspend-to-disk, aka hibernate -not covered in this guide).
+
+Follow the series of commands:
+
+<pre>
+root@pluto:/# truncate -s 0 /mnt/@swap/swapfile
+root@pluto:/# chattr +C /mnt/@swap/swapfile
+root@pluto:/# btrfs property set /mnt/@swap/swapfile compression none
+root@pluto:/# fallocate -l 9G /mnt/@swap/swapfile <b>← here you deside the size of the swapfile, 9G used for 9GB</b>
+root@pluto:/# chmod 600 /mnt/@swap/swapfile
+root@pluto:/# mkswap /mnt/@swap/swapfile
+ Setting up swapspace version 1, size = 9 GiB (9663676416 bytes) 
+ no label, UUID=a0fee436-e38a-4d60-bb40-680c221db376
+mkdir /mnt/@/swap
+</pre>
+
+The last command has created a ```swap``` folder inside the ```/``` root. We will mount the ```@swap``` subvolume to that folder to make it a appear as a swap partition to the filesystem.
+
+### 2.3.3 Editing mount points
+
+For that we need to edit ```/etc/fstab```. The new one, not the one on the system we currently use (which is the live environement. 
+
+To edit the **new** fstab file do ```nano /mnt/@/etc/fstab```
+
+Remember: The installation is now found in the ```@``` subvolume which is accessible from the ```/mnt/@``` point. As such the ```/etc``` folder of the new installation is there ```/mnt/@/etc```.
+
+It is helpful to have the ***UUID*** of the partition your **btrfs** system lives. For that do ```lsblk -f```.
+
+<pre>
+NAME   FSTYPE FSVER LABEL                 UUID                                
+sdb                                                                                           
+├─sdc1 vfat   FAT32                       0BAC-7FA8                               
+├─sdc2 vfat   FAT32                       7827-FA9E                               
+├─sdc3 btrfs                              78c9787f-1d36-42e8-89bd-7b94b501afaf 
+</pre>
+
+In the case above the **UUID** is **78c9787f-1d36-42e8-89bd-7b94b501afaf**. Normally this should already be in your **fstab**, but have it handy in case you need it.
+
+Now make your ```/mnt/@/etc/fstab``` look like this:
+
+<pre>
+# /etc/fstab: static file system information.
+#
+# Use 'blkid' to print the universally unique identifier for a
+# device; this may be used with UUID= as a more robust way to name devices
+# that works even if disks are added and removed. See fstab(5).
+#
+# <file system>  <mount point>  <type>  <options>  <dump>  <pass>
+PARTUUID=697685f3-e003-4cd4-a7be-b07bbcf4497e   /boot/efi       vfat    umask=0077      0  0
+PARTUUID=a9fbe686-9f08-487c-9bc9-db094845b8c2   /recovery       vfat    umask=0077      0  0
+UUID=78c9787f-1d36-42e8-89bd-7b94b501afaf       /               btrfs   defaults,subvol=@,ssd,noatime,space_cache,commit=120,compress=zstd      0  0
+UUID=78c9787f-1d36-42e8-89bd-7b94b501afaf       /home           btrfs   defaults,subvol=@home,ssd,noatime,space_cache,commit=120,compress=zstd  0  0
+UUID=78c9787f-1d36-42e8-89bd-7b94b501afaf       /swap           btrfs   defaults,subvol=@swap,compress=no 0 0
+/swap/swapfile                                  none            swap    defaults        0  0
+</pre>
+
+Note that the **UUID** is the same for all system mounts except for the ```/boot/efi``` and the ```/recovery``` that use their **PARTUUID**, and you **do not change these**.
 
 
 
