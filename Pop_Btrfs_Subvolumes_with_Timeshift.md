@@ -147,7 +147,7 @@ Last sector, +/-sectors or +/-size{K,M,G,T,P} (9439232-976773134, default 976773
 
 Created a new partition 3 of type 'Linux filesystem' and of size 461.3 GiB.
 
-Command (m for help): <b>p</b> <b>← pto show the new partition layoutr</b>
+Command (m for help): <b>p</b> <b>← to show the new partition layout</b>
 Disk /dev/sdc: 465.76 GiB, 500107862016 bytes, 976773168 sectors
 Disk model: MobileDataStar  
 Units: sectors of 1 * 512 = 512 bytes
@@ -316,7 +316,7 @@ Follow the series of commands:
 root@pluto:/# truncate -s 0 /mnt/@swap/swapfile
 root@pluto:/# chattr +C /mnt/@swap/swapfile
 root@pluto:/# btrfs property set /mnt/@swap/swapfile compression none
-root@pluto:/# fallocate -l 9G /mnt/@swap/swapfile <b>← here you deside the size of the swapfile, 9G used for 9GB</b>
+root@pluto:/# fallocate -l 9G /mnt/@swap/swapfile <b>← here you decide the size of the swapfile, 9G used for 9GB</b>
 root@pluto:/# chmod 600 /mnt/@swap/swapfile
 root@pluto:/# mkswap /mnt/@swap/swapfile
  Setting up swapspace version 1, size = 9 GiB (9663676416 bytes) 
