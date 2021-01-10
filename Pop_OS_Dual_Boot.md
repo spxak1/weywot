@@ -9,6 +9,8 @@ To dual boot Windows and Pop!_OS with a menu, both operating systems' EFI files 
 ## 1. Introduction
 Pop!_OS uses **systemd-boot** as its boot manager. Most new users don't know how **systemd-boot** works and the fact that it is mostly transparent to the user (as a boot-manager should be), makes it hard for some users to understand. As such a common advice when new users want to dual boot with Windows is to install **grub**. Grub is better known as it is commonly used by other distributions, namely **Ubuntu** and has a visible menu at boot, which new users grow to expect. As such it is common *advice* between new users to install **grub** in order to dual boot Pop!_OS with Windows. This, is **totally unecessary** as not only it removes the ease and simplicity of **systemd-boot** and replaces it with the rather complex configuration of **grub**, but also **grub** has the tedency to break with **Windows updates**, while **systemd-boot** does not. 
 
+Check your system is in UEFI mode with ```mount | grep efivars``` and expect an ouput of ```efivarfs on /sys/firmware/efi/efivars type efivarfs (rw,nosuid,nodev,noexec,relatime)```. 
+
 ### 1.1 Purpose
 The purpose of this guide is to make it easy to install Pop!_OS and Windows in a system and easily select the OS to boot at start up. It covers:
 
