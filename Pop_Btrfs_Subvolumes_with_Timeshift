@@ -1,2 +1,33 @@
 # Install Pop!_OS with **btrfs* and subvolumes
 
+This is a guide to install Pop!_OS (version 20.10 at the time of writing this) with **btrfs** instead of **ext4** to allow the use of **subvolumes** and **timeshift** for continuous backup. 
+
+## 1. Introduction
+
+This guide has been adapted from **Willi Mutschler**'s excellnt guide found [here](https://mutschler.eu/linux/install-guides/pop-os-btrfs/) that **also includes Luks encryption** using **LVM**. My version **does not** use encryption (as I use hardware encryption for my SSD), so if you need encryption, please follow his guide. All credit for this work belongs to [**Willi Mutschler**](https://mutschler.eu/).
+
+### 1.1 Purpose
+
+The use of **btrfs** allows snapshot backups of the file system with **timeshift**. These take minimal space and make it easy to restore to a previous state if needed. **Btrfs** appears to be mature enough for mainstream use, with minimal performance hit, and is offered by default during *Pop!_OS* installation.
+
+### 1.2 Prerequisites
+
+This quide requires the ability to perform tasks using the terminal. It also expects the user to have basic understaning of:
+
+1. BWhat is a filesystem
+2. What is a partitions
+3. A boot manager and a boot loade
+
+and ability to:
+
+1. Boot a PC from USB
+2. Create and edit partitions using various tools (parted, gparted or fdisk)
+3. Install Pop!_OS in advance mode
+4. Edit files using **nano** or other editors (**vim** or graphically **gedit**)
+
+
+## 2. Installation
+
+The installation is done in **three parts**. Preparing the system, installing the system, configuring the system. All are done **from within the USB Live environment**. As such the first step is to **boot the system from USB to *Pop!_OS* Live Environment**. Once the system is up, go through the stages to select keyboard and languange, and then **exit the installer** by selecting **Try Demo Mode**.
+
+### 2.1 Prepare the partitions
