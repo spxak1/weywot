@@ -297,9 +297,9 @@ root@pluto:/# btrfs subvolume create /mnt/@home
 root@pluto:/# btrfs subvolume create /mnt/@swap
  Create subvolume '/mnt/@swap'
 root@pluto:/# btrfs subvolume list /mnt
- ID 264 gen 66 top level 5 path @
- ID 267 gen 64 top level 5 path @home
- ID 268 gen 66 top level 5 path @swap
+ ID 263 gen 66 top level 5 path @
+ ID 264 gen 64 top level 5 path @home
+ ID 265 gen 66 top level 5 path @swap
 </pre>
 
 Your ID numbers may differ.
@@ -442,10 +442,139 @@ So the complete file will look like this:
  
  ### 2.3.5 Rebuild the bootloader
  
- For this we need to ```chroot```.
+ For this we need to ```chroot```. This is taken from System76 website [here](https://support.system76.com/articles/bootloader/) for UEFI systems.
  
+ We will first umount everything from ```/mnt``` with ```cd /``` to move out of the mounted folder and then ```umount -l /mnt```.
  
+ Now we will remount the new system (in its subvolumes) to ```/mnt``` again.
  
+```mount -o defaults,subvol=@,ssd,noatime,space_cache,commit=120,compress=zstd /dev/sdc3 /mnt```
+
+Note the above mounts the ```subvol=@```, that is the root, to ```/mnt```. It's a different command to the one we used earlier.
+
+Now mount the required system partitions:
+
+~~~
+for i in /dev /dev/pts /proc /sys /run; do sudo mount -B $i /mnt$i; done
+sudo cp /etc/resolv.conf /mnt/etc/
+sudo chroot /mnt
+~~~
+
+If ```/etc/resolv.conf``` complains they're identical, it's fine. You need this line to have access to the internet after ```chroot```.
+
+Check everything is mounted as they should with:
+
+~~~
+root@pluto:/# mount -av
+ /boot/efi                : successfully mounted
+ /recovery                : successfully mounted
+ /                        : ignored
+ /home                    : successfully mounted
+ /swap                    : successfully mounted
+~~~
+
+(Don't worry about the *ignored* statement, that's what it should be).
+
+First install ```btrfs-progs``` to the new installation (most probably already installed) with ```apt install -y btrfs-progs```.
+
+If not and they install, you will see that this simple apt command had the bootloader updated and had we not changed the default configuration of ```kernelstub``` our kernel option would be gone.
+
+Now lets update once more manually with ```update-initramfs -c -k all```.
+
+We're done. Type ```exit``` to leave **chroot** and then ```reboot now``` to restart to the new installation.
+
+
+## 3. Checks and Timeshift configuration
+
+Once in the new installation, do a quick check with:
+
+<pre>
+otheos@pluto:~$ sudo mount -av
+ /boot/efi                : already mounted
+ /recovery                : already mounted
+ /                        : ignored
+ /home                    : already mounted
+ /swap                    : already mounted
+ none                     : ignored
+</pre>
+
+then,
+
+<pre>
+otheos@pluto:~$ sudo cat /etc/fstab 
+# /etc/fstab: static file system information.
+#
+# Use 'blkid' to print the universally unique identifier for a
+# device; this may be used with UUID= as a more robust way to name devices
+# that works even if disks are added and removed. See fstab(5).
+#
+# <file system>  <mount point>  <type>  <options>  <dump>  <pass>
+PARTUUID=697685f3-e003-4cd4-a7be-b07bbcf4497e	/boot/efi	vfat	umask=0077	0  0
+PARTUUID=a9fbe686-9f08-487c-9bc9-db094845b8c2	/recovery	vfat	umask=0077	0  0
+UUID=78c9787f-1d36-42e8-89bd-7b94b501afaf	/		btrfs	defaults,subvol=@,ssd,noatime,space_cache,commit=120,compress=zstd	0  0
+UUID=78c9787f-1d36-42e8-89bd-7b94b501afaf	/home		btrfs	defaults,subvol=@home,ssd,noatime,space_cache,commit=120,compress=zstd	0  0
+UUID=78c9787f-1d36-42e8-89bd-7b94b501afaf	/swap		btrfs	defaults,subvol=@swap,compress=no 0 0
+/swap/swapfile					none		swap	defaults	0  0
+</pre>
+
+then,
+
+<pre>
+otheos@pluto:~$ sudo swapon
+ NAME           TYPE SIZE USED PRIO
+ /swap/swapfile file   9G   0B   -2
+</pre>
+
+then,
+
+<pre>
+otheos@pluto:~$ sudo btrfs filesystem show /
+ Label: none  uuid: 78c9787f-1d36-42e8-89bd-7b94b501afaf
+	Total devices 1 FS bytes used 13.82GiB
+	devid    1 size 88.75GiB used 18.02GiB path /dev/sdb3
+</pre>
+
+and 
+
+<pre>
+otheos@pluto:~$ sudo btrfs subvolume list /
+ ID 263 gen 230 top level 5 path @
+ ID 264 gen 230 top level 5 path @home
+ ID 265 gen 72 top level 5 path @swap
+</pre>
+
+
+Then update your system as you would a new installation:
+
+~~~
+sudo apt update
+sudo apt upgrade
+sudo apt dist-upgrade
+sudo apt autoremove
+sudo apt autoclean
+~~~
+ 
+Finally install ```timeshift``` with ```sudo apt install -y timeshift```
+
+The following is taken from Willi Mutschler's website,
+    
+1. Select “BTRFS” as the “Snapshot Type”; continue with “Next”
+2. Choose your BTRFS system partition as “Snapshot Location”; continue with “Next” (even if timeshift does not see a btrfs system in the GUI it will still work, so continue (I already filed a bug report with timeshift))
+3. “Select Snapshot Levels” (type and number of snapshots that will be automatically created and managed/deleted by Timeshift), my recommendations:
+    *    Activate “Monthly” and set it to 1
+    *    Activate “Weekly” and set it to 3
+    *    Activate “Daily” and set it to 5
+    *   Deactivate “Hourly”
+    *    Activate “Boot” and set it to 3
+    *    Activate “Stop cron emails for scheduled tasks”
+        continue with “Next”
+    *    I also include the @home subvolume (which is not selected by default). Note that when you restore a snapshot Timeshift you get the choise whether you want to restore it as well (which in most cases you don’t want to).
+    *    Click “Finish”
+ 4. “Create” a manual first snapshot & exit Timeshift
+ 
+ You can find your backups in ```/run/timeshift/backup```.
+ 
+ * To be added:  timeshift-autosnap-apt to backup before every apt udate.
 
 
 
