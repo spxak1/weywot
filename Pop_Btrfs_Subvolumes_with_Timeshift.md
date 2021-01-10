@@ -106,7 +106,7 @@ Time to start partitioning.
 
 First partition is the **ESP** partition (**E**FI **S**ystem **P**artition), as stated above. Type **n** to create **new** partition.
 
-~~~
+<pre>
 Command (m for help): **n**
 Partition number (1-128, default 1): **← press enter**
 First sector (34-976773134, default 2048): **← press enter**
@@ -127,7 +127,7 @@ Device     Start     End Sectors  Size Type
 /dev/sdc1   2048 1050623 1048576  512M Linux filesystem **← the new partitino is here**
 
 Command (m for help): 
-~~~
+</pre>
 
 
 
