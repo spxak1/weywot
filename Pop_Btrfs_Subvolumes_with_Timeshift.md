@@ -107,14 +107,14 @@ Time to start partitioning.
 First partition is the **ESP** partition (**E**FI **S**ystem **P**artition), as stated above. Type **n** to create **new** partition.
 
 <pre>
-Command (m for help): **n**
-Partition number (1-128, default 1): **← press enter**
-First sector (34-976773134, default 2048): **← press enter**
-Last sector, +/-sectors or +/-size{K,M,G,T,P} (2048-976773134, default 976773134): +512M **← type 512M for the size required**       
+Command (m for help): <b>n</b>
+Partition number (1-128, default 1): <b>← press enter</b>
+First sector (34-976773134, default 2048): <b>← press enter</b>
+Last sector, +/-sectors or +/-size{K,M,G,T,P} (2048-976773134, default 976773134): +512M <b>*← type 512M for the size required</b>       
 
 Created a new partition 1 of type 'Linux filesystem' and of size 512 MiB.
 
-Command (m for help): p **← type p to show partitions**
+Command (m for help): p <b>← type p to show partitions</b>
 Disk /dev/sdc: 465.76 GiB, 500107862016 bytes, 976773168 sectors
 Disk model: MobileDataStar  
 Units: sectors of 1 * 512 = 512 bytes
@@ -124,7 +124,7 @@ Disklabel type: gpt
 Disk identifier: 7539C5AF-685B-42F6-BC85-27E26461002E
 
 Device     Start     End Sectors  Size Type
-/dev/sdc1   2048 1050623 1048576  512M Linux filesystem **← the new partitino is here**
+/dev/sdc1   2048 1050623 1048576  512M Linux filesystem <b>← the new partitino is here</b>
 
 Command (m for help): 
 </pre>
