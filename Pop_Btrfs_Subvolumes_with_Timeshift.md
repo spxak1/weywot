@@ -4,7 +4,7 @@ This is a guide to install Pop!_OS (version 20.10 at the time of writing this) w
 
 ## 1. Introduction
 
-This guide has been adapted from **Willi Mutschler**'s excellnt guide found [here](https://mutschler.eu/linux/install-guides/pop-os-btrfs/) that **also includes Luks encryption** using **LVM**. My version **does not** use encryption (as I use hardware encryption for my SSD), so if you need encryption, please follow his guide. All credit for this work belongs to [**Willi Mutschler**](https://mutschler.eu/).
+This guide has been adapted from **Willi Mutschler**'s excellent guide found [here](https://mutschler.eu/linux/install-guides/pop-os-btrfs/) that **also includes Luks encryption** using **LVM**. My version **does not** use encryption (as I use hardware encryption for my SSD), so if you need encryption, please follow his guide. All credit for this work belongs to [**Willi Mutschler**](https://mutschler.eu/).
 
 ### 1.1 Purpose
 
