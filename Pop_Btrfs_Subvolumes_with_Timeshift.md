@@ -1,4 +1,4 @@
-# Install Pop!_OS with **btrfs* and subvolumes
+# Install Pop!_OS with **btrfs** and subvolumes
 
 This is a guide to install Pop!_OS (version 20.10 at the time of writing this) with **btrfs** instead of **ext4** to allow the use of **subvolumes** and **timeshift** for continuous backup. 
 
