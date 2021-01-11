@@ -1,3 +1,5 @@
+# Xanmod installation/removal guide
+
 Proceed with caution as this may ruin your system.
 
 Disclaimer: I take no responsibility for this, try it at your own risk.
