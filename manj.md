@@ -1,3 +1,5 @@
+# Dual Boot Pop with Manjaro
+
 I wanted to be able to keep my distro hoping without changing my productivity system. This is how I installed Manjaro next to Pop.
 
 # Disclaimer
