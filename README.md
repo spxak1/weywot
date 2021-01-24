@@ -9,3 +9,4 @@
 * [Kernel 5.9 and undervolting (with MSR)](https://github.com/spxak1/weywot/blob/main/kernel5.9_MSR.md)
 * [Dual Boot Pop with Manjaro](https://github.com/spxak1/weywot/blob/main/manj.md)
 * [Xanmod installation/removal guide](https://github.com/spxak1/weywot/blob/main/xanmod.md)
+* [Choose OS to reboot to from within Pop!_OS](https://github.com/spxak1/weywot/blob/main/systemd-multiboot.md)
