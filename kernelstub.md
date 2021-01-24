@@ -1,4 +1,4 @@
-# Understand how kernelstub works to pass options to the kernel at boot
+# How kernelstub works to pass options to the kernel at boot
 
 Kernel options are passed during boot from the loader entry file, e.g ```/boot/efi/loader/entries/Pop_OS-current.conf```
 
