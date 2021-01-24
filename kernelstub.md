@@ -55,7 +55,7 @@ You can see they're identical after the ```ro``` point.
 
 It would appear that either editing the loader file ```Pop_OS-current.conf``` has the same effect, and indeed it does, but only until an upgrade (or other call) runs kernelstub internally, in which case the loader file is overwritten, with whatever kernelstub has stored.
 
-You can verify this, simply by addint an kernel option to the loader file, and then using ```kernelstub -p``` to verify it's not there. 
+You can verify this, simply by adding a kernel option to the loader file, and then using ```kernelstub -p``` to verify it's not there. 
 
 When ```kernelstub``` is run, it interfaces with its configuration file in ```/etc/kernelstub/configuration```. 
 
