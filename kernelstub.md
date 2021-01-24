@@ -10,7 +10,7 @@ The three options you need to know for it are:
 
 * ```kernelstub -a "option"``` inserts the option between the quotes (quotes required).
 * ```kernelstbu -d "option"``` removes the option between the quotes (quotes required).
-* ```kernelstub -p```` prints the current setup.
+* ```kernelstub -p``` prints the current setup.
 
 Here's mine for example:
 
