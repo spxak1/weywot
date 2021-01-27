@@ -11,3 +11,4 @@
 * [Xanmod installation/removal guide](https://github.com/spxak1/weywot/blob/main/xanmod.md)
 * [Choose OS to reboot to from within Pop!_OS](https://github.com/spxak1/weywot/blob/main/systemd-multiboot.md)
 * [How kernelstub works to pass options to the kernel at boot](https://github.com/spxak1/weywot/blob/main/kernelstub.md)
+* [How to configure a Huion tablet on Pop!_OS](https://github.com/spxak1/weywot/blob/main/guides/digimend_tablets.md)
