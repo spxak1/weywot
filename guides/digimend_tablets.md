@@ -99,4 +99,185 @@ Section "InputClass"
 EndSection
 ~~~
 
-The first entry is the one that supports the Huion tablets.
+The first entry is the one that supports the Huion tablets. 
+
+Here's another similar file for the Huion Q11 v2:
+
+~~~
+# Huion tablets  
+Section "InputClass"  
+    Identifier "Huion class"  
+    MatchProduct "HUION"  
+    MatchIsTablet "on"  
+    MatchDevicePath "/dev/input/event*"  
+    Driver "wacom"  
+EndSection  
+
+Section "InputClass"  
+    Identifier "Huion buttons"  
+    MatchProduct "HUION"  
+    MatchIsKeyboard "on"  
+    MatchDevicePath "/dev/input/event*"  
+    Driver "evdev"  
+EndSection  
+
+Section "InputClass"  
+    Identifier "Huion scroll"  
+    MatchProduct "HUION"  
+    MatchIsPointer "off"  
+    MatchIsKeyboard "off"  
+    MatchIsTouchpad "off"  
+    MatchIsTablet "off"  
+    MatchIsTouchscreen "off"  
+    MatchDevicePath "/dev/input/event*"  
+    Driver "evdev"  
+EndSection
+~~~
+
+*Note*: My understanding of the syntax of these files is not yet great, I will improve and get back to explain the point of all these entries.
+
+At this point a **reboot** will get X to see the input device.
+
+## Configure the Tablet's buttons for use
+
+All configuration is done with the ```xsetwacom``` command. Before the digimend driver was installed, the ```xsetwacom list``` command should come out empty.
+Once the driver works, ```xsetwacom list``` should show all detected devices:
+
+In my case: 
+
+~~~
+otheos@weywot:~$ xsetwacom list
+HID 256c:006e Pen stylus        	id: 12	type: STYLUS    
+HID 256c:006e Pad pad           	id: 13	type: PAD       
+~~~
+
+Each button needs each own command, so a script with all of them is apporpriate. 
+
+Depending on the software used, the buttons can be mapped to keys and/or shortcuts. 
+
+This is mine for my set of shortcuts for [kami](www.kamiapp.com]
+
+~~~
+
+xsetwacom set "HID 256c:006e Pen stylus" Button 2 "key 1" #pen to down stylus button
+xsetwacom set "HID 256c:006e Pen stylus" Button 3 "key 2" #erase to up stylus button
+
+xsetwacom set "HID 256c:006e Pad pad" Button 1 "key shift" #shift - draw straight
+xsetwacom set "HID 256c:006e Pad pad" Button 2 "key ctrl z" #undo
+
+xsetwacom set "HID 256c:006e Pad pad" Button 3 "key 3" #add shape
+xsetwacom set "HID 256c:006e Pad pad" Button 8 "key 6" #hand tool
+
+xsetwacom set "HID 256c:006e Pad pad" Button 9 "key 4" #box highlight
+xsetwacom set "HID 256c:006e Pad pad" Button 10 "key 5" #select annotations
+
+
+xsetwacom set "HID 256c:006e Pad pad" Button 11 "key ctrl +" #zoom in
+xsetwacom set "HID 256c:006e Pad pad" Button 12 "key ctrl -" #zoom out
+
+xsetwacom set "HID 256c:006e Pad pad" Button 13 "key +up" #up
+xsetwacom set "HID 256c:006e Pad pad" Button 14 "key +pgup" #pgup
+
+xsetwacom set "HID 256c:006e Pad pad" Button 15 "key +down" #down
+xsetwacom set "HID 256c:006e Pad pad" Button 16 "key +pgdn" #pgdown
+
+#keys on pad
+# 1	2
+# 3	8
+# 9	10
+# 11	12
+# 13	14
+# 15	16
+#
+~~~
+
+The script can be turned executable with ```chmod +x``` and then (if desired) set to autostart using one of the usual ways, but it needs to start *after* X is up, so ideally from GDM, rather than cron.
+
+Here's another such script with more features configured (this one for the Q11 v2)
+
+~~~
+#! /bin/bash  
+# Setup HUION Q11 v2, after bridged to wacom driver with Digimend Kernel module.  
+# License: CC-0/Public-Domain license  
+# author: deevad  
+
+# Tablet definition  
+tabletstylus="HUION Huion Tablet stylus"  
+tabletpad="HUION Huion Tablet Pad pad"  
+
+# Reset  
+xsetwacom --set "$tabletstylus" ResetArea  
+xsetwacom --set "$tabletstylus" RawSample 4  
+
+# Mapping  
+# get maximum size geometry with:  
+# xsetwacom --get "$tabletstylus" Area  
+# 0 0 55880 34925  
+tabletX=55880  
+tabletY=34925  
+# screen size:  
+screenX=1920  
+screenY=1080  
+# map to good screen (dual nvidia)  
+# xsetwacom --set "$tabletstylus" MapToOutput "HEAD-0"  
+# setup ratio :  
+newtabletY=$(( $screenY * $tabletX / $screenX ))  
+xsetwacom --set "$tabletstylus" Area 0 0 "$tabletX" "$newtabletY"  
+
+
+# Buttons  
+# =======  
+xsetwacom --set "$tabletstylus" Button 2 2   
+xsetwacom --set "$tabletstylus" Button 3 3  
+# ---------  
+# | 12 |
+# | -- |
+# | 11 |
+# | -- |
+# | 10 |
+# | -- |
+# |  9 |
+# |=======|  
+# |  8 |
+# | -- |
+# |  3 |
+# | -- |
+# |  2 |
+# | -- |
+# |  1 |
+# |=======| 
+
+
+xsetwacom --set "$tabletpad" Button 12 "key +ctrl a" # Select all
+xsetwacom --set "$tabletpad" Button 11 "key +ctrl shift a" # Deselect
+xsetwacom --set "$tabletpad" Button 10 "key +ctrl r" # Selection tool
+xsetwacom --set "$tabletpad" Button 9 "key t" # Transform tool
+xsetwacom --set "$tabletpad" Button 8 "key b"  # Brush
+xsetwacom --set "$tabletpad" Button 3 "key Shift_L" # Resize brush
+xsetwacom --set "$tabletpad" Button 2 "key m" # Mirror 
+xsetwacom --set "$tabletpad" Button 1 "key +ctrl z" # Undo 
+
+
+# Xinput option  
+# =============  
+# for the list:  
+# xinput --list  zz
+
+# xinput list-props 'HUION Huion Tablet Pen Mouse' 
+xinput list-props 'HUION Huion Tablet Touch Strip pad' "Evdev Middle Button Emulation" 0 
+# xinput set-prop 'HUION Huion Tablet Pen' "Evdev Middle Button Emulation" 0  
+# alternate way to map to a single screen  
+# execute "xrander" in a terminal to get the screen name ( DVI-D-0 in this example )  
+# xinput set-prop 'HUION' DVI-D-0
+~~~
+
+Many features can be configured, so check with ```xsetwacom```. 
+
+Also check status with ```xinput list-props 'HID 256c:006e Pad pad'``` ```and xinput list-props 'HID 256c:006e Pen stylus'```
+
+The name between the quotes is that which appears in the output of ```xsetwacom list```.
+
+Plenty of resources, Arch Wiki, as always, great: https://wiki.archlinux.org/index.php/Wacom_tablet
+
+
+
