@@ -279,5 +279,7 @@ The name between the quotes is that which appears in the output of ```xsetwacom 
 
 Plenty of resources, Arch Wiki, as always, great: https://wiki.archlinux.org/index.php/Wacom_tablet
 
+This guide use material from [here](https://github.com/DIGImend/digimend-kernel-drivers/issues/510#issue-793499371)
+
 
 
