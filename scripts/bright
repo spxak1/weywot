@@ -1,1 +1,0 @@
-xrandr --output `xrandr -q | grep " connected" | grep "primary" | awk '{print $1}'` --brightness $1

@@ -1,3 +1,0 @@
-#pactl set-card-profile 1 output:analog-stereo
-#pactl set-card-profile 1 output:hdmi-stereo-extra2
-pactl set-card-profile 1 off

@@ -1,1 +1,0 @@
-qrencode -v 8 -s 20 -d 300 https://www.bbc.co.uk/news/world-asia-china-55226099 -o qr1.png
