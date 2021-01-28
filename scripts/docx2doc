@@ -1,0 +1,1 @@
+lowriter --convert-to doc *.docx

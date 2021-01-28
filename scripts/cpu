@@ -1,0 +1,1 @@
+watch -n 1 "ps axch -o cmd:25,%cpu --sort=-%cpu | head"

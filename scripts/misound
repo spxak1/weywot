@@ -1,0 +1,2 @@
+#pactl set-default-sink bluez_sink.1C_91_9D_A4_5F_C0.a2dp_sink
+pactl set-card-profile 1 off
