@@ -7,6 +7,12 @@ This guide is for the Gaomon M106K, which is a rebranded Huion with **USB Device
 
 ## Install digimend driver
 
+On Ubuntu based systems you can install from apt:
+
+```sudo apt install digimend-dkms```
+
+Otherwise, from source.
+
 We need some dependencies: 
 
 ```sudo apt install dkms git-core```
@@ -19,7 +25,7 @@ sudo dkms build digimend/6
 sudo dkms install digimend/6
 ~~~
 
-*Note: Not sure what the *-6* and the */6* point to, as the latest version should be **9**. Will correct later if needed.
+*Note*: Not sure what the *-6* and the */6* point to, as the latest version should be **9**. Will correct later if needed.
 
 Once the driver is installed, a reboot is required, then
 
