@@ -23,7 +23,7 @@ as this OS has the key stored in the device.
 The solution to this problem is to make both operating systems **use the same key**. For this the device is **paired to linux first, then paired to Windows**.
 At this point the device can connect to Windows, but not linux. We need to **copy the key from Windows to Linux**, as it is easier to edit that in linux than in Windows.
 
-## 4.0 Obtain the key from the Windows pairing
+## 4.0 View the Windows registry from Linux
 
 From linux, mount your Windows partition to a known path, then navigate to ```/path/to/Windows/Windows/System32/config```
 
@@ -114,6 +114,169 @@ Value <104fa875c82e> of type REG_BINARY (3), data length 16 [0x10]
 ~~~
  
 We have just read the key, the long string starting with **54** and endint with **54** (by coincidence). 
+
+## 6.0 Replacing the Linux key with the one from Windows. Example: BT Headphones
+
+In a new terminal gain root access with ```sudo su```. **Be careful, you are root, you can damage your system**
+
+Then, navigate tot the config files for your BT adapter, enter the adapter's folder, then enter's the device's folder
+
+~~~
+root@weywot:/home/otheos# cd /var/lib/bluetooth/
+root@weywot:/var/lib/bluetooth# ls
+total 8.0K
+4.0K 5C:80:B6:8E:78:ED  4.0K 64:5D:86:92:E2:D9
+root@weywot:/var/lib/bluetooth# cd 5C\:80\:B6\:8E\:78\:ED/
+root@weywot:/var/lib/bluetooth/5C:80:B6:8E:78:ED# ls
+total 32K
+4.0K 00:02:72:CC:0B:6B  4.0K 44:16:22:A4:FC:30  4.0K DA:5B:4A:88:50:8C
+4.0K 10:4F:A8:75:C8:2E  4.0K 88:C6:26:D4:9A:70  4.0K settings
+4.0K 1C:91:9D:A4:5F:C0  4.0K cache
+root@weywot:/var/lib/bluetooth/5C:80:B6:8E:78:ED# cd 10\:4F\:A8\:75\:C8\:2E/
+root@weywot:/var/lib/bluetooth/5C:80:B6:8E:78:ED/10:4F:A8:75:C8:2E# ls
+total 4.0K
+4.0K info
+~~~
+We have found that config file, it's the **info** file we need to edit. Use ```nano```.
+Find the section with:
+
+~~~
+[LinkKey]
+Key=32E5D212A8D5E2E35512E1348E25D431
+Type=4
+PINLength=0
+~~~
+
+Now replace the ```Key``` line with a line with the new key. This needs to be **in capital, no spaces**.
+
+Your final product should look like this:
+
+~~~
+[LinkKey]
+Key=5480E3E301493AE3E48C5A7418E82554
+Type=4
+147
+PINLength=0
+~~~
+
+Save and exit with **ctrl+x**. 
+
+That's it. The headphones should work on both Operating systems.
+
+
+## 7.0 Finding the Windows Key and connecting a BT mouse (Logitech MX Anywhere 3)
+
+With mice, the pairing involves a couple more steps. First find the mouse's BT MAC address.
+
+~~~
+otheos@weywot:~$ bluetoothctl devices
+Device 77:52:36:05:2E:03 77-52-36-05-2E-03
+Device DA:5B:4A:88:50:8C MX Anywhere 3
+Device 00:02:72:CC:0B:6B Belkin SongStream BT HD
+Device 44:16:22:A4:FC:30 Xbox Wireless Controller
+Device 1C:91:9D:A4:5F:C0 Mi True Wireless EBs Basic_L
+Device 88:C6:26:D4:9A:70 H800 Logitech Headset
+Device 10:4F:A8:75:C8:2E h.ear (MDR-100ABN)
+~~~
+
+The mouse has a MAC address starting with DA:5B (second device on that list).
+
+Back to the terminal with the Window's registry we find that MAC address when we look inside the adapter's MAC address:
+
+~~~
+(...)\BTHPORT\Parameters\Keys\5c80b68e78ed> ls
+Node has 3 subkeys and 5 values
+  key name
+  <4c4feede0f16>
+  <58cb5283e253>
+  <da5b4a88508b>
+  size     type              value name             [value if type DWORD]
+    16  3 REG_BINARY         <58cb5283e253>
+    16  3 REG_BINARY         <88c626d49a70>
+    16  3 REG_BINARY         <MasterIRK>
+    16  3 REG_BINARY         <4c4feede0f16>
+    16  3 REG_BINARY         <104fa875c82e>
+~~~
+
+It's the third one down. There is no **REG_BINARY** here, like for the headphones, because the mouse involves more data in its pairing. 
+
+So, move onto the mouse's MAC address to see what other data is there:
+
+~~~
+(...)\BTHPORT\Parameters\Keys\5c80b68e78ed> cd da5b4a88508b
+
+(...)\Parameters\Keys\5c80b68e78ed\da5b4a88508b> ls
+Node has 0 subkeys and 9 values
+  size     type              value name             [value if type DWORD]
+    16  3 REG_BINARY         <LTK>
+     4  4 REG_DWORD          <KeyLength>                0 [0x0]
+     8  b REG_QWORD          <ERand>
+     4  4 REG_DWORD          <EDIV>                     0 [0x0]
+    16  3 REG_BINARY         <IRK>
+     8  b REG_QWORD          <Address>
+     4  4 REG_DWORD          <AddressType>              1 [0x1]
+     4  4 REG_DWORD          <MasterIRKStatus>          1 [0x1]
+     4  4 REG_DWORD          <AuthReq>                 45 [0x2d]
+~~~
+
+With an ```ls``` in that folder you can see there are quite a few data, some are **REG_BINARY** others are different. We only care about the former. But which?
+
+On your **root** terminal, go to the mouse's folder:
+
+~~~
+root@weywot:/var/lib/bluetooth/5C:80:B6:8E:78:ED# cd DA\:5B\:4A\:88\:50\:8C/
+root@weywot:/var/lib/bluetooth/5C:80:B6:8E:78:ED/DA:5B:4A:88:50:8C# ls
+total 8.0K
+4.0K attributes  4.0K info
+~~~
+
+Here there are two files, we're still interested in the **info** file. Open it with nano and now you can see, among other things there are **two keys**:
+
+~~~
+[IdentityResolvingKey]
+Key=667912001ECEBA977D807D259A9FBD70
+
+[SlaveLongTermKey]
+Key=2BC324CDC98F3308526610C36A28E5C4
+Authenticated=2
+EncSize=16
+EDiv=0
+~~~
+
+The keys are identified as: **IdentityResolvingKey**, or (acronym) **IRK** and **SlaveLongTermKey** or (acronym) **LTK**.
+
+Now look back at your **REG_BINARY** entries in the registry terminal. There is an **LTK** at the top, and an **IRK**, fourth one down. These are the ***only*** **REG_BINARY** entries, so they're easy to spot. 
+
+Now read their content in hexadecimal:
+
+~~~
+...)\Parameters\Keys\5c80b68e78ed\da5b4a88508b> hex IRK
+Value <IRK> of type REG_BINARY (3), data length 16 [0x10]
+:00000  53 78 9B 41 FE 80 DA D0 C9 F1 8C E2 E4 0D 9D 94 Sx.A............
+
+
+(...)\Parameters\Keys\5c80b68e78ed\da5b4a88508b> hex LTK
+Value <LTK> of type REG_BINARY (3), data length 16 [0x10]
+:00000  AA 7A 73 A6 BF A1 FE 7E 24 70 31 C1 31 E3 38 0B .zs....~$p1.1.8.
+~~~
+
+These are you two keys. Back to that **info** file to replace the old ones, and the final product should look like:
+
+~~~
+[IdentityResolvingKey]
+Key=53789B41FE80DAD0C9F18CE2E40D9D94
+
+[SlaveLongTermKey]
+Key=AA7A73A6BFA1FE7E247031C131E3380B
+Authenticated=2
+EncSize=16
+EDiv=0
+~~~
+
+Save and exit with **ctrl+x** (if using nano). 
+
+As soon as the file is saved your mouse becomes available. Enjoy using the same device on both your operating systems without repairing.
+
 
 
 
