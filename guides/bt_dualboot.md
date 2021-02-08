@@ -166,7 +166,12 @@ That's it. The headphones should work on both Operating systems.
 
 ## 7.0 Finding the Windows Key and connecting a BT mouse (Logitech MX Anywhere 3)
 
-With mice, the pairing involves a couple more steps. First find the mouse's BT MAC address.
+With mice, the pairing involves a couple more steps. Pair the mice to Linux first, then reboot to Windows, pair it again with Windows.
+
+Note for MX users: Use the same device number (button at the bottom of mouse). If you use different numbers, you don't need this guide (but you have to change from one device to the other using the button in different operating systems). 
+
+
+First find the mouse's BT MAC address.
 
 ~~~
 otheos@weywot:~$ bluetoothctl devices
@@ -206,6 +211,10 @@ So what has happened is, we paired the mouse to linux, and it used the **8B** en
 
 Clearly this means that Linux not only has the **wrong keys** but aslo the **wrong MAC address**. We need to fix the MAC address first.
 
+If your MAC address is the same, you don't need this step. Jump straight to section **7.2**. 
+
+### 7.1 Make both OS's use the same MAC address, the current used by the mouse
+
 For that you go onto your local (root) terminal and you rename it as follows:
 
 ~~~
@@ -237,6 +246,8 @@ total 32K
 ~~~
 
 Changed!
+
+### 7.2 Changing the key
 
 Back to the registry editor terminal, to get the keys.
 
