@@ -1,6 +1,6 @@
 # How to pair the same device on Windows and Linux without the need to repair when you switch OS
 
-This is adapted from [the ArchWiki](https://wiki.archlinux.org/index.php/Bluetooth#Dual_boot_pairing)
+This is adapted from [the ArchWiki](https://wiki.archlinux.org/index.php/Bluetooth#Dual_boot_pairing), so all credit goes to the Arch community.
 
 ## 1.0 Prerequisites
 
