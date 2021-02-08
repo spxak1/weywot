@@ -171,7 +171,7 @@ With mice, the pairing involves a couple more steps. First find the mouse's BT M
 ~~~
 otheos@weywot:~$ bluetoothctl devices
 Device 77:52:36:05:2E:03 77-52-36-05-2E-03
-Device DA:5B:4A:88:50:8C MX Anywhere 3
+Device DA:5B:4A:88:50:8B MX Anywhere 3
 Device 00:02:72:CC:0B:6B Belkin SongStream BT HD
 Device 44:16:22:A4:FC:30 Xbox Wireless Controller
 Device 1C:91:9D:A4:5F:C0 Mi True Wireless EBs Basic_L
@@ -179,7 +179,7 @@ Device 88:C6:26:D4:9A:70 H800 Logitech Headset
 Device 10:4F:A8:75:C8:2E h.ear (MDR-100ABN)
 ~~~
 
-The mouse has a MAC address starting with DA:5B (second device on that list).
+The mouse has a MAC address starting with DA:5B:4A:88:50:8C (second device on that list). Note it ends with **8B**.
 
 Back to the terminal with the Window's registry we find that MAC address when we look inside the adapter's MAC address:
 
@@ -189,7 +189,7 @@ Node has 3 subkeys and 5 values
   key name
   <4c4feede0f16>
   <58cb5283e253>
-  <da5b4a88508b>
+  <da5b4a88508c>
   size     type              value name             [value if type DWORD]
     16  3 REG_BINARY         <58cb5283e253>
     16  3 REG_BINARY         <88c626d49a70>
@@ -200,12 +200,52 @@ Node has 3 subkeys and 5 values
 
 It's the third one down. There is no **REG_BINARY** here, like for the headphones, because the mouse involves more data in its pairing. 
 
+Also note, the MAC address ends up with **8c**. This is because some mice have a rolling (changing) MAC address, and everytime you pair them anew, the MAC addres changes (the last bit anyway). 
+
+So what has happened is, we paired the mouse to linux, and it used the **8B** ending MAC. Then we paired it with Windows and it changed its MAC to the one ending with **8C**. So currently the mouse is using the **8C** MAC address, the last one used.
+
+Clearly this means that Linux not only has the **wrong keys** but aslo the **wrong MAC address**. We need to fix the MAC address first.
+
+For that you go onto your local (root) terminal and you rename it as follows:
+
+~~~
+root@weywot:/home/otheos# cd /var/lib/bluetooth/5C\:80\:B6\:8E\:78\:ED/
+root@weywot:/var/lib/bluetooth/5C:80:B6:8E:78:ED# ls
+total 32K
+4.0K 00:02:72:CC:0B:6B  4.0K 44:16:22:A4:FC:30  4.0K DA:5B:4A:88:50:8B
+4.0K 10:4F:A8:75:C8:2E  4.0K 88:C6:26:D4:9A:70  4.0K settings
+4.0K 1C:91:9D:A4:5F:C0  4.0K cache
+root@weywot:/var/lib/bluetooth/5C:80:B6:8E:78:ED# 
+~~~
+
+So you just do:
+
+~~~
+root@weywot:/var/lib/bluetooth/5C:80:B6:8E:78:ED# mv DA\:5B\:4A\:88\:50\:8B/ DA\:5B\:4A\:88\:50\:8C
+~~~
+
+and now the name of the folder (which corresponds to the MAC address of the mouse) has changed to the correct (current) one.
+
+See,
+
+~~~
+root@weywot:/var/lib/bluetooth/5C:80:B6:8E:78:ED# ls
+total 32K
+4.0K 00:02:72:CC:0B:6B  4.0K 44:16:22:A4:FC:30  4.0K DA:5B:4A:88:50:8C
+4.0K 10:4F:A8:75:C8:2E  4.0K 88:C6:26:D4:9A:70  4.0K settings
+4.0K 1C:91:9D:A4:5F:C0  4.0K cache
+~~~
+
+Changed!
+
+Back to the registry editor terminal, to get the keys.
+
 So, move onto the mouse's MAC address to see what other data is there:
 
 ~~~
-(...)\BTHPORT\Parameters\Keys\5c80b68e78ed> cd da5b4a88508b
+(...)\BTHPORT\Parameters\Keys\5c80b68e78ed> cd da5b4a88508c
 
-(...)\Parameters\Keys\5c80b68e78ed\da5b4a88508b> ls
+(...)\Parameters\Keys\5c80b68e78ed\da5b4a88508c> ls
 Node has 0 subkeys and 9 values
   size     type              value name             [value if type DWORD]
     16  3 REG_BINARY         <LTK>
@@ -250,12 +290,12 @@ Now look back at your **REG_BINARY** entries in the registry terminal. There is 
 Now read their content in hexadecimal:
 
 ~~~
-...)\Parameters\Keys\5c80b68e78ed\da5b4a88508b> hex IRK
+...)\Parameters\Keys\5c80b68e78ed\da5b4a88508c> hex IRK
 Value <IRK> of type REG_BINARY (3), data length 16 [0x10]
 :00000  53 78 9B 41 FE 80 DA D0 C9 F1 8C E2 E4 0D 9D 94 Sx.A............
 
 
-(...)\Parameters\Keys\5c80b68e78ed\da5b4a88508b> hex LTK
+(...)\Parameters\Keys\5c80b68e78ed\da5b4a88508c> hex LTK
 Value <LTK> of type REG_BINARY (3), data length 16 [0x10]
 :00000  AA 7A 73 A6 BF A1 FE 7E 24 70 31 C1 31 E3 38 0B .zs....~$p1.1.8.
 ~~~
