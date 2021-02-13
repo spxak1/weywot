@@ -4,9 +4,7 @@
 
 The MX Keys has a layout for Windows/Linux and Mac. Notable the left hand side of the keys show the Windows/Linux functions and the right hand side the Mac functions.
 
-![Win/Mac](../assets/PC_layout.jpg)  ![Win/Mac](../assets/PC_layout_1.jpg)
-
-## Keys reported by showkey
+![Win/Mac](../assets/PC_layout.jpg) 
 
 ### Function keys
 
