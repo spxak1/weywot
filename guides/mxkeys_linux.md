@@ -103,7 +103,7 @@ Notably the **Fn** key has been **moved to the right side** of the spacebar. Thi
 
 Solaar is the driver that currently supports (most) of Logitech's proprietary HID extension and offers (most) of the features available in Windows.
 
-You will need the **latest version of solaar** from github to have full access to this keyboard's abilities.
+You will need the **latest version of solaar** from [github](https://github.com/pwr-Solaar/Solaar) to have full access to this keyboard's abilities.
 
 ![Solaar](../assets/solaar0.png)
 
