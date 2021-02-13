@@ -10,7 +10,7 @@
 
 #### In F-key mode
 
-From left to right:
+Keycodes from left to right:
 
 | F1 | F2 | F3 | F4 | F5 | F6 | F7 | F8 | F9 | F10 | F11 | F12 | Sound Up |
 |----|----|----|----|----|----|----|----|----|----|-----|-----|-----|
@@ -52,10 +52,39 @@ These keys cannot be changed with xinput, all that can be done is to use them an
 
 However **solaar** is here to save the day (see Solaar section later).
 
+### Device switching keys
 
 ![Device Switch Keys](../assets/dekeys.png)
 
+These are hardware keys and do not appear as keystrokes to the system. They are used to switch to different connected devices, as this keyboard can control three computers/tablets/phones via its **Unifying** USB dongle and/or **Bluetooth**.
+
+These keys, may be used for other functions, however, using **solaar**.
+
+### Numeric Keypad Top Row keys
+
 ![NumPad Top Row Keys](../assets/cornerkeys.png)
+
+The proper names of these keys, from left to right are:
+
+~~~
+Calculator, Screen Capture/Print Screen, App Contextual Menu/Right Click, Lock PC
+~~~
+
+| Calculator | Screenshot | Context | Lock | 
+|----|----|----|----|
+| 140 | 99 | 127 | 125+38 |
+
+Only  the **Context** key changes with **Fn** as follows:
+
+| Fn+Context |
+|----|
+| 70 |
+
+
+
+
+
+
 
 ![Control, Super, Alt](../assets/leftkeys.png)
 
