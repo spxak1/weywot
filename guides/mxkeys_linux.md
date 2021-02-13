@@ -58,7 +58,7 @@ These keys cannot be changed with xinput, all that can be done is to use them an
 
 However **solaar** is can make this keys perform other functions (see solaar section).
 
-### Device switching keys
+### Easy Switching keys
 
 ![Device Switch Keys](../assets/dekeys.png)
 
@@ -104,6 +104,32 @@ Solaar is the driver that currently supports (most) of Logitech's proprietary HI
 You will need the **latest version of solaar** from github to have full access to this keyboard's abilities.
 
 ![Solaar](../assets/solaar0.png)
+
+Solaar offers Control for:
+
+* Backlight on/off
+* F-Keys swap 
+* Key diversion (full customisation)
+* Disable specific keys
+* Select OS operation (Windows/Linux or Mac, iOS or Android)
+* Change of host (same function as the three Easy Switch keys)
+
+### Disable Keys
+
+![Solaar](../assets/solaar1.png)
+
+The **scroll lock** key is accessed with **Fn+Context** and has keycode **70**. 
+
+### Key Diversion
+
+Key diversion is the complete key customisation feature. In Windows this is done typically from the **Options** software by clicking on a key and selecting its use from a drop down menu. 
+Solaar offers the same (if not better) level of customisation, using **rules**, accessed by the **Rule Editor** at the bottom right corner of the window. It is not as easy as clicking a key and setting its function, but it is very simple to use, and much simpler than **Options** if you edit the config file directly. 
+
+These are the keys available to customise.
+
+![Solaar](../assets/solaar2.png)
+
+
 
 
 
