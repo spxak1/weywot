@@ -18,8 +18,11 @@ Keycodes from left to right:
 
 #### In Media-key mode 
 
-You can modify to Media-key/Navigation mode by holding the **Fn** key ![Function Key](../assets/fn.png) while pressing the **F-keys**.
-Alternatively, you can **switch** to that mode with **Fn+Escape** as noted on the escape key bottom right corner ![Escape Key](../assets/esc.png).
+You can modify to Media-key/Navigation mode by holding the **Fn** key while pressing the **F-keys**. 
+![Function Key](../assets/fn.png)
+
+Alternatively, you can **switch** to that mode with **Fn+Escape** as noted on the escape key bottom right corner.
+![Escape Key](../assets/esc.png)
 
 From left to right:
 
@@ -27,15 +30,15 @@ From left to right:
 |----|----|----|----|----|----|----|----|----|----|-----|-----|-----|
 |   |   | 125+15 | 125+30 | 125+32 |  |  | 165 | 164 | 163 | 113 | 114 | 115 |
 
-The following keys have no keycodes, and only perform specific functions.
+The following keys have **no keycodes**, and only perform specific functions.
 
 | Key | ![Screen brightness down](../assets/scrdn.png) | ![Screen brightness up](../assets/scrup.png) | ![Keyboard brightness down](../assets/kbdn.png) | ![Keyboard brightness up](../assets/kbup.png) | 
 |---|----|----|----|----|
 | Function | Screen Brigthness Down | Screen Brigthness Up | Keyboard Brigthness Down | Keyboard Brigthness Up | 
 
-The **Sound Volume Up** key (![Sound Volume Up](../assets/sndup.png)) is not affected by the **Fn** key, and has the same keycode in either mode, **115**.
+The **Sound Volume Up** key is not affected by the **Fn** key, and has the same keycode in either mode, **115**.
+(![Sound Volume Up](../assets/sndup.png))
 
-The navigation keys (F3, F4, F5) are labeled as follows:
 Rather **disappointingly** all three keys are hardware coded to (apparently) Windows specific shortcuts.
 
 | Key | ![Task View](../assets/task.png) | ![Action](../assets/action.png) | ![Desktop View](../assets/desktop.png) | 
@@ -44,10 +47,10 @@ Rather **disappointingly** all three keys are hardware coded to (apparently) Win
 | Keycode | 125+15 | 125+30 | 125+32 |
 | Shortcut | Super + Tab | Super + A | Super + D |
 
-In standard gnome, these will actually work, but in Pop!_OS, *Super+d* is used only in tiling mode and as such that key doesn't do anything. 
+In standard gnome, these will actually work, but in Pop!_OS, *Super+d* is used **only in tiling mode** and as such that key doesn't do anything in normal mode. 
 These keys cannot be changed with xinput, all that can be done is to use them and reshuffle the shortcuts from *gnome-settings*. 
 
-However **solaar** is here to save the day (see Solaar section later).
+However **solaar** is can make this keys perform other functions (see solaar section).
 
 ### Device switching keys
 
@@ -55,7 +58,7 @@ However **solaar** is here to save the day (see Solaar section later).
 
 These are hardware keys and do not appear as keystrokes to the system. They are used to switch to different connected devices, as this keyboard can control three computers/tablets/phones via its **Unifying** USB dongle and/or **Bluetooth**.
 
-These keys, may be used for other functions, however, using **solaar**.
+These keys, may be used for other functions, however, using **solaar** (see solaar section).
 
 ### Numeric Keypad Top Row keys
 
@@ -69,19 +72,23 @@ The proper names of these keys, from left to right are:
 | Keycode | 140 | 99 | 127 | 125+38 |
 | Shortcut|  |  | Super + L |  
 
+Again, disappointingly he **lock** key is hardware coded to a Windows shortcut. This may work in standard gnome, but in Pop!_OS, lock has been moved to *Super+Esc*, so a new shortcut should be added in gnome-settings to make it work. 
+
 Only  the **Context** key changes with **Fn** as follows:
 
 | Fn+Context |
 |----|
 | 70 |
 
+Again, **solaar** can change the functions of all these keys (see sollar section).
 
-
-
-
-
+### Left and Right Control Keys
 
 ![Control, Super, Alt](../assets/leftkeys.png)
 
 ![Alt, Fn, Control](../assets/rightkeys.png)
+
+Notable the **Fn** key has been moved to the right side. This is a pain for those who want to use this keyboard with a laptop that normally has the **Fn** on the left side and as such now they have to break muscle memory. Personally, this is a big problem.
+
+
 
