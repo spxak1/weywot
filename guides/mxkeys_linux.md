@@ -1,10 +1,14 @@
-## Review and configure the Logitech MX Keys for linux (Pop!_OS)
+# Review and configure the Logitech MX Keys for linux (Pop!_OS)
 
 ![The Logitech MX Keys - US ANSI Layout](../assets/logiMXKeys-us-ansi.png)
 
 The MX Keys has a layout for Windows/Linux and Mac. Notable the left hand side of the keys show the Windows/Linux functions and the right hand side the Mac functions.
 
 ![Win/Mac](../assets/PC_layout.jpg) 
+
+## Standard use
+
+These are the keycodes of the keys. 
 
 ### Function keys
 
@@ -90,7 +94,17 @@ Again, **solaar** can change the functions of all these keys (see sollar section
 
 ![Alt, Fn, Control](../assets/rightkeys.png)
 
-Notable the **Fn** key has been moved to the right side. This is a pain for those who want to use this keyboard with a laptop that normally has the **Fn** on the left side and as such now they have to break muscle memory. Personally, this is a big problem.
+Notably the **Fn** key has been **moved to the right side** of the spacebar. This can be a **big issue** for those who want to use this keyboard with a laptop that normally has the **Fn** on the left side and as such now they have to break muscle memory. Personally, this is a big problem.
+
+
+## Solaar
+
+Solaar is the driver that currently supports (most) of Logitech's proprietary HID extension and offers (most) of the features available in Windows.
+
+You will need the **latest version of solaar** from github to have full access to this keyboard's abilities.
+
+![Solaar](../assets/solaar0.png)
+
 
 
 
