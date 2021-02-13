@@ -48,6 +48,9 @@ Rather **disappointingly** all three keys are hardware coded to (apparently) Win
 | F5 | 125+32 | Super + d |
 
 In standard gnome, these will actually work, but in Pop!_OS, *Super+d* is used only in tiling mode and as such that key doesn't do anything. 
+These keys cannot be changed with xinput, all that can be done is to use them and reshuffle the shortcuts from *gnome-settings*. 
+
+However **solaar** is here to save the day (see Solaar section later).
 
 
 ![Device Switch Keys](../assets/dekeys.png)
