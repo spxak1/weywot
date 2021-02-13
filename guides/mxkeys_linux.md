@@ -2,6 +2,10 @@
 
 ![The Logitech MX Keys - US ANSI Layout](../assets/logiMXKeys-us-ansi.png)
 
+The MX Keys has a layout for Windows/Linux and Mac. Notable the left hand side of the keys show the Windows/Linux functions and the right hand side the Mac functions.
+
+![Win/Mac](../assets/PC_layout.png)  ![Win/Mac](../assets/PC_layout1.png)
+
 ## Keys reported by showkey
 
 ### Function keys
