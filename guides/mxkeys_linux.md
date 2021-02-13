@@ -72,7 +72,7 @@ The proper names of these keys, from left to right are:
 |---|----|----|----|----|
 | Name | Calculator | Screen Capture/Print Screen | App Contextual Menu/Right Click | Lock PC | 
 | Keycode | 140 | 99 | 127 | 125+38 |
-| Shortcut|  | | | | Super + L |  
+| Shortcut |   |   |   | Super + L |  
 
 Again, disappointingly he **lock** key is hardware coded to a Windows shortcut. This may work in standard gnome, but in Pop!_OS, lock has been moved to *Super+Esc*, so a new shortcut should be added in gnome-settings to make it work. 
 
