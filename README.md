@@ -14,3 +14,5 @@
 * [How to configure a Huion tablet on Pop!_OS](https://github.com/spxak1/weywot/blob/main/guides/digimend_tablets.md)
 * [How to pair the same device on Windows and Linux without the need to repair when you switch OS](
 https://github.com/spxak1/weywot/blob/main/guides/bt_dualboot.md)
+* [Review and configure the Logitech MX Keys for linux (Pop!_OS)
+](https://github.com/spxak1/weywot/blob/main/guides/mxkeys_linux.md)
