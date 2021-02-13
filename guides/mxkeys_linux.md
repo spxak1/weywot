@@ -16,7 +16,10 @@ Keycodes from left to right:
 |----|----|----|----|----|----|----|----|----|----|-----|-----|-----|
 | 59 | 60 | 61 | 62 | 63 | 64 | 65 | 66 | 67 | 68 | 87 | 88 | 115 |
 
-#### In Media-key mode
+#### In Media-key mode 
+
+You can modify to Media-key/Navigation mode by holding the **Fn** key ![Function Key](../assets/fn.png) while pressing the **F-keys**.
+Alternatively, you can **switch** to that mode with **Fn+Escape** as noted on the escape key bottom right corner ![Escape Key](../assets/esc.png).
 
 From left to right:
 
@@ -24,30 +27,18 @@ From left to right:
 |----|----|----|----|----|----|----|----|----|----|-----|-----|-----|
 |   |   | 125+15 | 125+30 | 125+32 |  |  | 165 | 164 | 163 | 113 | 114 | 115 |
 
-F1, F2, F6 and F7 are hardware keys only. Their purpose is as follows:
+The following keys have no keycodes, and only perform specific functions.
 
-F1, F2: Adjust screen brightness (on laptops/supported monitors) To be tested.
+| Key | ![Screen brightness down](../assets/scrdn.png) | ![Screen brightness up](../assets/scrup.png) | ![Keyboard brightness down](../assets/kbdn.png) | ![Keyboard brightness up](../assets/kbup.png) | 
+|---|----|----|----|----|
+| Function | Screen Brigthness Down | Screen Brigthness Up | Keyboard Brigthness Down | Keyboard Brigthness Up | 
 
-F6, F7: Adjust the keyboards brightness (eight levels).
-
-The **Sound Up** (last key in that row) is not affected by the **Fn** key, and has the same keycode in either mode.
+The **Sound Volume Up** key (![Sound Volume Up](../assets/sndup.png)) is not affected by the **Fn** key, and has the same keycode in either mode, **115**.
 
 The navigation keys (F3, F4, F5) are labeled as follows:
-~~~
-F3: Mission Control/Task View
-F4: Dashboard Launchapd/Action Centre
-F5: Show Desktop
-~~~
-
 Rather **disappointingly** all three keys are hardware coded to (apparently) Windows specific shortcuts.
 
-| Key | Keycode | Shortcut |
-|---|---|---|
-| F3 | 125+15 | Super + Tab |
-| F4 | 125+30 | Super + a |
-| F5 | 125+32 | Super + d |
-
-| Key | ![Task View](../assets/task.png) | ![Action](../assets/action.png) | ![Sesktop View](../assets/dekstop.png) | 
+| Key | ![Task View](../assets/task.png) | ![Action](../assets/action.png) | ![Desktop View](../assets/desktop.png) | 
 |----|----|----|----|
 | Name | Mission Control/Task View| Dashboard Launchapd/Action Centre | Show Desktop |  
 | Keycode | 125+15 | 125+30 | 125+32 |
