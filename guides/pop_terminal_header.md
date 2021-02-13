@@ -1,4 +1,4 @@
-# How to decrease the header of the gnome-terminal in Pop!_OS
+# How to reduce the header of the gnome-terminal in Pop!_OS
 
 1. Fire up ```dconf-editor```
 2. Navigate to ```org/gnome/terminal/legacy/headerbar```
