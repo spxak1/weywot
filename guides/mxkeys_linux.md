@@ -38,9 +38,9 @@ From left to right:
 
 The following keys have **no keycodes**, and only perform specific functions.
 
-| Key | ![Screen brightness down](../assets/scrdn.png) | ![Screen brightness up](../assets/scrup.png) | ![Keyboard brightness down](../assets/kbdn.png) | ![Keyboard brightness up](../assets/kbup.png) | 
+| Key | ![Brightness down](../assets/scrdn.png) | ![Brightness up](../assets/scrup.png) | ![Keyboard backlight down](../assets/kbdn.png) | ![Keyboard backlight up](../assets/kbup.png) | 
 |---|----|----|----|----|
-| Function | Screen Brigthness Down | Screen Brigthness Up | Keyboard Brigthness Down | Keyboard Brigthness Up | 
+| Name | Brigthness Down | Brigthness Up |  Backlight Down | Backlight Up | 
 
 The **Sound Volume Up** key is not affected by the **Fn** key, and has the same keycode in either mode, **115**.
 (![Sound Volume Up](../assets/sndup.png))
@@ -61,6 +61,8 @@ However **solaar** is can make this keys perform other functions (see solaar sec
 ### Easy Switching keys
 
 ![Device Switch Keys](../assets/dekeys.png)
+
+These keys are named **Host Switch Channel 1**, **2** and **3**.
 
 These are hardware keys and do not appear as keystrokes to the system. They are used to switch to different connected devices, as this keyboard can control three computers/tablets/phones via its **Unifying** USB dongle and/or **Bluetooth**.
 
@@ -128,6 +130,108 @@ Solaar offers the same (if not better) level of customisation, using **rules**, 
 These are the keys available to customise.
 
 ![Solaar](../assets/solaar2.png)
+
+Interestingly, the **Left/Right** arrow keys are also customisable. 
+
+Solaar comes with a set of preconfigured rules.
+
+![Solaar Rules](../assets/rules1.png)
+
+
+As seen above, the first rule with its two subrules make the **Brightness** keys work (for supported monitors and laptop screens). 
+All other default rules are for mice and the Craft keyboard not covered here.
+
+#### Custom rules
+
+Once a key is diverted (set drop down to diverted from regular), it **disappears** from the system. It will **no** longer produce a keycode and it becomes a hardware key, handled by the driver. The keyboard does not have a programmable eprom, so all customisations are OS/Driver specific. 
+
+##### Example customisations
+
+Since my monitor does not support software brightness control (actually it does, but I never bothered to set it up), and my laptop is always docked when I use the MX Keys, I have no need of the screen brightness control keys.
+
+Instead, I want them to behave as F1 and F2 keys at all times, regardless of the setting of the top row of keys.
+
+As such I have diverted both these keys, and created the following rule.
+
+![Solaar Rules](../assets/rules3.png)
+
+This simply means that when the key named Brightnesss Down (00C7) is pressed, the F1 key is presented to the OS.
+Similarly for the Brightness Up key for F2.
+
+This rule can also be directly made by editing ```.config/solaar/rules.yaml```
+
+~~~
+---
+- Rule:
+  - Key: Brightness Down
+  - KeyPress: F1
+- Rule:
+  - Key: Brightness Up
+  - KeyPress: F2
+...
+~~~
+
+This makes things so much easier. 
+
+**Note:** Both these keys are already customised in the default rules to control the screen brightness. **Custom rules** overule the default ones (which cannot be edited/changed).
+
+Further customisations include these:
+
+![Solaar Rules](../assets/rules4.png)
+
+In **cyan** I have set the **Screen Capture** key to access the same **gnome** shortcut I use to open **flameshot**. 
+I also have the **Calculator** key opening **qualculate** rather than the stock program. 
+You can see here, I could set the **Screen Capture** to directly run **flameshot**, but I did not.
+Finally I remap the **Lock key** to **Super+Esc** to lock on press (Pop!_OS specific). 
+
+In **red** I have changed the **Context** key to open a **terminal**, again, not by running a command, but simply issueing the same shortcut gnome uses **Super+T**.
+And finally, the **Show Desktop** key is mapped to toggle the **tiling** mode (Pop!_OS specific).
+
+A look into ```.config/solaar/rules.yaml``` looks like this:
+
+~~~
+%YAML 1.3
+---
+- Key: App Contextual Menu/Right Click
+- KeyPress: [Super_L, t]
+...
+---
+- Key: Show Desktop
+- KeyPress: [Super_L, y]
+...
+---
+- Rule:
+  - Key: Brightness Down
+  - KeyPress: F1
+- Rule:
+  - Key: Brightness Up
+  - KeyPress: F2
+...
+---
+- Key: Screen Capture/Print Screen
+- KeyPress: [Control_L, Shift_L, f]
+...
+---
+- Key: Calculator
+- Execute: qalculate
+...
+---
+- Rule:
+  - Key: Lock PC
+  - KeyPress: [Super_L, Escape]
+...
+~~~
+
+The main (and only) advantage of creating rules using the GUI is that it offers you the names of the keys. 
+
+![Solaar Rules](../assets/rules5.png)
+
+**Note** Creating rules is rather easy, but it takes a few tries to understand the concept of cause effect. For basic customisations, the cause (what you do) is called a **condition** and the effect (what you want to happen) is called the **action**. More complicated customisasations are possible here, but describing how to do them is not the scope of this guide.
+
+
+
+
+
 
 
 
