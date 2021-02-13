@@ -56,7 +56,7 @@ Rather **disappointingly** all three keys are hardware coded to (apparently) Win
 In standard gnome, these will actually work, but in Pop!_OS, *Super+d* is used **only in tiling mode** and as such that key doesn't do anything in normal mode. 
 These keys cannot be changed with xinput, all that can be done is to use them and reshuffle the shortcuts from *gnome-settings*. 
 
-However **solaar** is can make this keys perform other functions (see solaar section).
+However **solaar** is can make this keys perform other functions (see [solaar section](/mxkeys_linux.md#solaar)).
 
 ### Easy Switching keys
 
