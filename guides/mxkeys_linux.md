@@ -39,8 +39,15 @@ F4: Dashboard Launchapd/Action Centre
 F5: Show Desktop
 ~~~
 
+Rather disappointingly all three keys are hardware coded to (apparently) Windows specific shortcuts.
 
-
+| Key | Keycode | Shortcut |
+|---|---|---|----|
+| F3 | 125+15 | Super + Tab |
+|---|---|---|----|
+| F4 | 125+30 | Super + a |
+|---|---|---|----|
+| F% | 125+32 | Super + d |
 
 
 ![Device Switch Keys](../assets/dekeys.png)
