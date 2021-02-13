@@ -2,9 +2,11 @@
 
 ![The Logitech MX Keys - US ANSI Layout](../assets/logiMXKeys-us-ansi.png)
 
-The MX Keys has a layout for Windows/Linux and Mac. Notable the left hand side of the keys show the Windows/Linux functions and the right hand side the Mac functions.
+The MX Keys has a layout for Windows/Linux and Mac. Notably the left hand side of the keys show the Windows/Linux functions and the right hand side the Mac functions.
 
 ![Win/Mac](../assets/PC_layout.jpg) 
+
+This guide is focussed on using the MX Keys keyboard in **Gnome** and more specifically in **Pop!_OS** but the information applies further.
 
 ## Standard use
 
