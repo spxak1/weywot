@@ -47,6 +47,12 @@ Rather **disappointingly** all three keys are hardware coded to (apparently) Win
 | F4 | 125+30 | Super + a |
 | F5 | 125+32 | Super + d |
 
+| Key | ![Task View](../assets/task.png) | ![Action](../assets/action.png) | ![Sesktop View](../assets/dekstop.png) | 
+|----|----|----|----|
+| Name | Mission Control/Task View| Dashboard Launchapd/Action Centre | Show Desktop |  
+| Keycode | 125+15 | 125+30 | 125+32 |
+| Shortcut | Super + Tab | Super + A | Super + D |
+
 In standard gnome, these will actually work, but in Pop!_OS, *Super+d* is used only in tiling mode and as such that key doesn't do anything. 
 These keys cannot be changed with xinput, all that can be done is to use them and reshuffle the shortcuts from *gnome-settings*. 
 
@@ -66,10 +72,11 @@ These keys, may be used for other functions, however, using **solaar**.
 
 The proper names of these keys, from left to right are:
 
-| ![Calculator](../assets/calc.png) | ![Screenshot](../assets/screenshot.png) | ![Context](../assets/context.png) | ![Lock](../assets/lock.png) |
-|----|----|----|----|
-| Calculator | Screen Capture/Print Screen | App Contextual Menu/Right Click | Lock PC | 
-| 140 | 99 | 127 | 125+38 |
+| Key | ![Calculator](../assets/calc.png) | ![Screenshot](../assets/screenshot.png) | ![Context](../assets/context.png) | ![Lock](../assets/lock.png) |
+|---|----|----|----|----|
+| Name | Calculator | Screen Capture/Print Screen | App Contextual Menu/Right Click | Lock PC | 
+| Keycode | 140 | 99 | 127 | 125+38 |
+| Shortcut|  |  | Super + L |  
 
 Only  the **Context** key changes with **Fn** as follows:
 
