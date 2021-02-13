@@ -7,7 +7,12 @@
 
 Restart the terminal.
 
+Before:
+
 ![Edit headerbar](../assets/term_header.png)
 
+
+After:
+![Terminal After](../assets/term_after.png)
 
  
