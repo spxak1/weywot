@@ -24,6 +24,21 @@ From left to right:
 |----|----|----|----|----|----|----|----|----|----|-----|-----|-----|
 |   |   | 125+15 | 125+30 | 125+32 |  |  | 165 | 164 | 163 | 113 | 114 | 115 |
 
+F1, F2, F6 and F7 are hardware keys only. Their purpose is as follows:
+
+F1, F2: Adjust screen brightness (on laptops/supported monitors) To be tested.
+
+F6, F7: Adjust the keyboards brightness (eight levels).
+
+The **Sound Up** (last key in that row) is not affected by the **Fn** key, and has the same keycode in either mode.
+
+The navigation keys (F3, F4, F5) are labeled as follows:
+
+F3: Mission Control/Task View
+F4: Dashboard Launchapd/Action Centre
+F5: Show Desktop
+
+
 
 
 
