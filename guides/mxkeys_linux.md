@@ -69,7 +69,6 @@ The proper names of these keys, from left to right are:
 | ![Calculator](../assets/calc.png) | ![Screenshot](../assets/screenshot.png) | ![Context](../assets/context.png) | ![Lock](../assets/lock.png) |
 |----|----|----|----|
 | Calculator | Screen Capture/Print Screen | App Contextual Menu/Right Click | Lock PC | 
-
 | 140 | 99 | 127 | 125+38 |
 
 Only  the **Context** key changes with **Fn** as follows:
