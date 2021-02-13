@@ -39,13 +39,15 @@ F4: Dashboard Launchapd/Action Centre
 F5: Show Desktop
 ~~~
 
-Rather disappointingly all three keys are hardware coded to (apparently) Windows specific shortcuts.
+Rather **disappointingly** all three keys are hardware coded to (apparently) Windows specific shortcuts.
 
 | Key | Keycode | Shortcut |
 |---|---|---|
 | F3 | 125+15 | Super + Tab |
 | F4 | 125+30 | Super + a |
 | F5 | 125+32 | Super + d |
+
+In standard gnome, these will actually work, but in Pop!_OS, *Super+d* is used only in tiling mode and as such that key doesn't do anything. 
 
 
 ![Device Switch Keys](../assets/dekeys.png)
