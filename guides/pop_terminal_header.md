@@ -6,6 +6,8 @@
 4. Set ```Custome value``` to ```False```
 
 Restart the terminal.
+ 
+**Note:** Right click gives you access to the **Menu** and **New Tab**.
 
 Before:
 ![Edit headerbar](../assets/term_header.png)
@@ -14,4 +16,3 @@ Before:
 After:
 ![Terminal After](../assets/term_after.png)
 
- 
