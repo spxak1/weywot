@@ -33,11 +33,11 @@ F6, F7: Adjust the keyboards brightness (eight levels).
 The **Sound Up** (last key in that row) is not affected by the **Fn** key, and has the same keycode in either mode.
 
 The navigation keys (F3, F4, F5) are labeled as follows:
-
+~~~
 F3: Mission Control/Task View
 F4: Dashboard Launchapd/Action Centre
 F5: Show Desktop
-
+~~~
 
 
 
