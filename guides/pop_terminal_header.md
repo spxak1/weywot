@@ -8,7 +8,6 @@
 Restart the terminal.
 
 Before:
-
 ![Edit headerbar](../assets/term_header.png)
 
 
