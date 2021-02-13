@@ -66,7 +66,7 @@ These keys are named **Host Switch Channel 1**, **2** and **3**.
 
 These are hardware keys and do not appear as keystrokes to the system. They are used to switch to different connected devices, as this keyboard can control three computers/tablets/phones via its **Unifying** USB dongle and/or **Bluetooth**.
 
-These keys, may be used for other functions, however, using **solaar** (see solaar section).
+These keys, may be used for other functions, however, using **solaar** (see [solaar section](/guides/mxkeys_linux.md#solaar)).
 
 ### Numeric Keypad Top Row keys
 
@@ -88,7 +88,7 @@ Only  the **Context** key changes with **Fn** as follows:
 |----|
 | 70 |
 
-Again, **solaar** can change the functions of all these keys (see sollar section).
+Again, **solaar** can change the functions of all these keys (see [solaar section](/guides/mxkeys_linux.md#solaar)).
 
 ### Left and Right Control Keys
 
