@@ -1,6 +1,6 @@
 # My notes on Linux
 
-*[How to reduce* the header of the gnome-terminal in Pop!_OS](https://github.com/spxak1/weywot/blob/main/guides/pop_terminal_header.md)
+* [How to reduce* the header of the gnome-terminal in Pop!_OS](https://github.com/spxak1/weywot/blob/main/guides/pop_terminal_header.md)
 * [Review and configure the Logitech MX Keys for linux (Pop!_OS)
 ](https://github.com/spxak1/weywot/blob/main/guides/mxkeys_linux.md)
 * [How to pair the same device on Windows and Linux without the need to repair when you switch OS](
