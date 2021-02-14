@@ -9,10 +9,7 @@ Restart the terminal.
  
 **Note:** Right click gives you access to the **Menu** and **New Tab**.
 
-Before:
-![Edit headerbar](../assets/term_header.png)
-
-
-After:
-![Terminal After](../assets/term_after.png)
+|Before|After|
+|----|----|
+|![Edit headerbar](../assets/term01.png)|![Terminal After](../assets/term02.png)|
 
