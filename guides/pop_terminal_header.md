@@ -1,6 +1,6 @@
 # How to reduce* the header of the gnome-terminal in Pop!_OS
 
-\*This only shaves of 10-15 pixels and removes Menu and Tabs buttons from the header. 
+\*This only shaves off 10-15 pixels and removes Menu and Tabs buttons from the header. 
 
 Right click anywhere in the terminal still gives you access to the **Menu** and **New Tab**.
 
