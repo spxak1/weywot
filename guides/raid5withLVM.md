@@ -119,6 +119,46 @@ vgremove old320s
 ~~~
 
 
+### 6. Mounting at boot
+
+You can mount at boot by including the raid device in ```/etc/fstab```.
+
+It is wise, to list the device with its **UUID** rather than the raw ```/dev/old320s/raid5``` device.
+
+To find the UUID (that would be of the final formatted partitioned device. **Not** the vg, **nor** the lv.
+
+Because RAID in LVM actually runs based on **mdadm**, as soon as the logical volume is created as a RAID array, the **real** device created is a **dm** device.
+
+To find the **UUID** you neeed to find the **true** device name.
+
+~~~
+[root@ceres ~]# ls -l /dev/old320s/raid5 
+lrwxrwxrwx. 1 root root 8 Apr  6 17:44 /dev/old320s/raid5 -> ../dm-10
+~~~
+
+So we're looking for the UUID of ```/dev/dm-10```.
+
+~~~
+root@ceres ~]# ls -l /dev/disk/by-uuid
+total 0
+lrwxrwxrwx. 1 root root 15 Apr  6 17:47 1354-ACB9 -> ../../nvme0n1p1
+lrwxrwxrwx. 1 root root 10 Apr  3 08:51 1d3dd9d5-0452-4775-a8c6-5520e6fdb2d3 -> ../../sdh1
+lrwxrwxrwx. 1 root root 10 Apr  6 17:28 379b46a0-bf93-432d-b103-c38f5919734f -> ../../dm-0
+lrwxrwxrwx. 1 root root 15 Apr  6 17:47 37af34bb-475f-4fd2-8452-94973b34e1c3 -> ../../nvme0n1p2
+lrwxrwxrwx. 1 root root 10 Apr  3 08:51 64624e0c-b6db-47db-bed5-ee1db00109e7 -> ../../sdg1
+lrwxrwxrwx. 1 root root 11 Apr  6 17:44 648abd62-153b-4aa6-b451-7da97244831a -> ../../dm-10
+~~~
+
+You can see **648abd62-153b-4aa6-b451-7da97244831a -> ../../dm-10** is what you're after.
+
+So in ```/etc/fstab``` you enter at the end:
+
+~~~
+UUID=648abd62-153b-4aa6-b451-7da97244831a /raid auto defaults 0 0
+~~~
+
+to mount at boot at ```/raid```.
+
 
 
 
