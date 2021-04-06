@@ -160,6 +160,8 @@ UUID=648abd62-153b-4aa6-b451-7da97244831a /raid auto defaults 0 0
 to mount at boot at ```/raid```.
 
 
+Source: https://blog.programster.org/create-raid-with-lvm
+
 
 
 
