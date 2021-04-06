@@ -163,6 +163,31 @@ to mount at boot at ```/raid```.
 Source: https://blog.programster.org/create-raid-with-lvm
 
 
+### 7. Scrubbing
+
+This is the process of checking the array is synced. See [here](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/logical_volume_manager_administration/raid-scrub).
+
+Check the status first with:
+
+~~~
+[root@ceres raid]# lvs -o +raid_sync_action,raid_mismatch_count old320s/raid5
+  LV    VG      Attr       LSize    Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert SyncAction Mismatches
+  raid5 old320s rwi-aor--- <894.25g                                    55.51            resync              0
+~~~
+
+In the above case, the array is still resyncing (55% status), and reporst 0 mismaches.
+
+So the command to start scrubbing won't currently start:
+
+~~~
+[root@ceres raid]# lvchange --syncaction repair old320s/raid5
+  old320s/raid5 state is currently "resync".  Unable to switch to "repair".
+~~~
+
+Once the resync is done (this is still running as the aray is still being constructed).
+
+
+
 
 
 
