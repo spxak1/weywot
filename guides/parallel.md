@@ -3,8 +3,9 @@
 ## 1.0 Install Fedora
 
 Change host name to ```brahe```
+```hostnamectl set-hostname brahe```
 
-### 1.1 Install sshd
+### Install sshd
 
 ```sudo dnf install openssh-server```
 ```sudo systemctl enable sshd```
