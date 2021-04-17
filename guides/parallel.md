@@ -22,6 +22,9 @@ sudo dnf install lm_sensors htop glances cockpit boinc-* neofetch
 sudo dnf update -y
 ~~~
 
-### Set Timezone
+### Set Timezone and ntp
 
-```sudo timedatectl set-timezone Europe/London```
+~~~
+sudo timedatectl set-timezone Europe/London
+sudo timedatectl set-ntp yes
+~~~
