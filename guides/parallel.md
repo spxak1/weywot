@@ -8,10 +8,12 @@ Change host name to ```brahe```
 
 ### Install sshd
 
-```sudo dnf install openssh-server```
-```sudo systemctl enable sshd```
-```sudo systemctl start sshd```
-```sudo systemctl disable gdm```
+~~~
+sudo dnf install openssh-server
+sudo systemctl enable sshd
+sudo systemctl start sshd
+sudo systemctl disable gdm
+~~~
 
 Restart
 
