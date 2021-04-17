@@ -19,3 +19,8 @@ sudo dnf update -y
 sudo dnf install boinc-*
 
 sudo dnf install lm_sensors htop glances cockpit
+~~~
+
+### Set Timezone
+
+```sudo timedatectl set-timezone Europe/London```
