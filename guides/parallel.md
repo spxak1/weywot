@@ -19,6 +19,9 @@ Restart
 
 ~~~
 sudo dnf install lm_sensors htop glances cockpit boinc-* neofetch
+sudo systemctl enable cockpit.socket 
+sudo systemctl start cockpit
+
 sudo dnf update -y
 ~~~
 
