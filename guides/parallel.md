@@ -54,6 +54,7 @@ sudo rpm -i *
 ~~~
 sudo FAHClient --configure
 ~~~
+
 user: spxak1
 team: 1061031
 pass: newcar
