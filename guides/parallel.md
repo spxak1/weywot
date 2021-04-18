@@ -56,5 +56,36 @@ sudo FAHClient --configure
 ~~~
 
 user: spxak1
+
 team: 1061031
+
 pass: newcar
+
+Edit /etc/fahclient/config.xml:
+
+~~~
+<config>
+  <!-- Folding Slot Configuration -->
+  <gpu v='true'/>
+
+  <!-- Slot Control -->
+  <power v='full'/>
+
+  <!-- User Information -->
+  <passkey v='HASH'/>
+  <team v='1061031'/>
+  <user v='spxak1'/>
+
+
+  <!-- Folding Slots -->
+  <slot id='0' type='CPU'/>
+    <cpus v='2'/>
+
+<!-- HTTP Server -->
+  <allow v='127.0.0.1 10.20.30.9'/>
+
+ <!-- Remote Command Server -->
+  <command-allow-no-pass v='127.0.0.1 10.20.30.9'/>
+</config>
+~~~
+
