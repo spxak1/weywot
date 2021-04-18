@@ -72,7 +72,7 @@ Edit /etc/fahclient/config.xml:
   <power v='full'/>
 
   <!-- User Information -->
-  <passkey v='HASH'/>
+  <passkey v='9ac6c9c2ff7b95cd9ac6c9c2ff7b95cd'/>
   <team v='1061031'/>
   <user v='spxak1'/>
 
