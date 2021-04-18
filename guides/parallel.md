@@ -31,3 +31,29 @@ sudo dnf update -y
 sudo timedatectl set-timezone Europe/London
 sudo timedatectl set-ntp yes
 ~~~
+
+
+### Install folding@home
+
+~~~
+sudo dnf install pygtk2 python2
+~~~
+
+Go to: https://foldingathome.org/start-folding/ 
+and download the three packages:
+
+~~~
+mkdir folding && cd folding
+wget https://download.foldingathome.org/releases/public/release/fahclient/centos-6.7-64bit/v7.6/fahclient-7.6.21-1.x86_64.rpm
+wget https://download.foldingathome.org/releases/public/release/fahcontrol/centos-6.7-64bit/v7.6/fahcontrol-7.6.21-1.noarch.rpm
+wget https://download.foldingathome.org/releases/public/release/fahviewer/centos-6.7-64bit/v7.6/fahviewer-7.6.21-1.x86_64.rpm
+sudo rpm -i *
+~~~
+
+### Enrol
+~~~
+sudo FAHClient --configure
+~~~
+user: spxak1
+team: 1061031
+pass: newcar
