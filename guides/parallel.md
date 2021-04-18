@@ -65,10 +65,24 @@ Edit /etc/fahclient/config.xml:
 
 ~~~
 <config>
+  <!-- Folding Core -->
+  <core-priority v='low'/>
+
   <!-- Folding Slot Configuration -->
-  <gpu v='true'/>
+  <cause v='ALZHEIMERS'/>
+  <cpus v='2'/>
+
+  <!-- HTTP Server -->
+  <allow v='127.0.0.1 10.20.30.0/24'/>
+
+  <!-- Network -->
+  <proxy v=':8080'/>
+
+  <!-- Remote Command Server -->
+  <command-allow-no-pass v='127.0.0.1 10.20.30.0/24'/>
 
   <!-- Slot Control -->
+  <pause-on-battery v='false'/>
   <power v='full'/>
 
   <!-- User Information -->
@@ -76,16 +90,9 @@ Edit /etc/fahclient/config.xml:
   <team v='1061031'/>
   <user v='spxak1'/>
 
-
   <!-- Folding Slots -->
   <slot id='0' type='CPU'/>
-    <cpus v='2'/>
-
-<!-- HTTP Server -->
-  <allow v='127.0.0.1 10.20.30.9'/>
-
- <!-- Remote Command Server -->
-  <command-allow-no-pass v='127.0.0.1 10.20.30.9'/>
 </config>
+
 ~~~
 
