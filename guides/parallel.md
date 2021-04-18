@@ -100,3 +100,9 @@ For Fedora, edit ```/usr/bin/FAHControl``` and add a ```2``` at the end of the s
 
 For Ubuntu, download the python 3 version [from here](https://github.com/cdberkstresser/fah-control/releases/download/Python3_Testing-Linux/python3-fahcontrol_7.7.0-1_all.deb) and install.
 
+Running it locally gets you this:
+
+![FAHControl](assets/2021-04-18_21-23.png)
+
+
+
