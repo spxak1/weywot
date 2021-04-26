@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=/home/linuxscoop/.conky/start_conky.sh
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=conky
+Name=conky
+Comment[en_US]=conky
+Comment=conky

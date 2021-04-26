@@ -1,0 +1,54 @@
+conky.config = {
+-- By Khiky_Merveilles
+	background = true,
+	use_xft = true,
+	font = 'Product Sans Regular:size=9',
+	xftalpha = 0.8,
+	update_interval = 1,
+	total_run_times = 0,
+	own_window = true,
+	own_window_type = 'desktop',
+	own_window_transparent = true,
+	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+	double_buffer = true,
+	draw_shades = false,
+	draw_outline = false,
+	draw_borders = false,
+	draw_graph_borders = false,
+	stippled_borders = 0,
+	border_margin = '5',
+	border_width = 1,
+	default_color = '#000000',
+	default_shade_color = '#000000',
+	default_outline_color = '#000000',
+	minimum_width = 500, minimum_height = 300,
+	maximum_width = 500,
+	gap_x = 0,
+	gap_y = 0,
+	alignment = 'bottom_left',
+	no_buffers = true,
+	uppercase = false,
+	cpu_avg_samples = 2,
+	net_avg_samples = 2,
+	short_units = true,
+	text_buffer_size = 2048,
+	use_spacer = 'none',
+	override_utf8_locale = true,
+
+-- Color scheme #
+	default_color = 'white',
+	color1 = 'white',
+	color2 = '#FD7F00',
+	color3 = '#F5F24C',
+
+	own_window_argb_value = 0,
+	own_window_argb_visual = true,
+	own_window_colour = '#000000',
+};
+
+conky.text = [[
+${offset 50}${voffset 70}${color1}${font Product Sans Medium:size=70}${time %H:%M}
+${offset 50}${voffset -65}${color1}${font Product Sans Light:size=35}${time %A %d %B}
+${execi 300 ~/.conky/Antares/scripts/weather.sh}${offset 50}${voffset -10}${execi 100 ~/.conky/Antares/scripts/weather-icon.sh white $(cat ~/.cache/eleg-weather.json | jq -r '.weather[0].icon')}${image ~/.cache/eleg-weather-icon.png -p 70,210 -s 64x64}
+${offset 140}${voffset -64}${color1}${font Product Sans Medium:size=20}${execi 100 cat ~/.cache/eleg-weather.json | jq -r '.weather[0].main'} ${execi 100 ~/.conky/Antares/scripts/kelvin2celsius.sh $(cat ~/.cache/eleg-weather.json | jq '.main.temp')} °C
+]];

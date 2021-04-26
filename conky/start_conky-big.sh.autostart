@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=/home/otheos/.conky/start_conky-big.sh
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=conky
+Name=conky
+Comment[en_US]=conky
+Comment=conky
