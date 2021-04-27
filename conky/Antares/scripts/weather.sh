@@ -1,6 +1,6 @@
 #!/bin/bash
 
-api_key=df3e37ffc1cef2409e75a27d9bc9cd80
+api_key=#########################################
 city_id=2640496
 #city_id=2063523
 #city_id=2220957
