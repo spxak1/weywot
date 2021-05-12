@@ -1,5 +1,6 @@
 # My notes on Linux
 
+* [Control system LED's/Light from the terminal](https://github.com/spxak1/weywot/blob/main/guides/light.md)
 * [A brief discussion about Pop's system76-power profiles in non System76 computers](https://github.com/spxak1/weywot/blob/main/guides/pop_power.md)
 * [How to reduce* the header of the gnome-terminal in Pop!_OS](https://github.com/spxak1/weywot/blob/main/guides/pop_terminal_header.md)
 * [Review and configure the Logitech MX Keys for linux (Pop!_OS)
