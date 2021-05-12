@@ -8,7 +8,7 @@ import urllib.parse
 
 url = 'https://wifi.ccoex.com:442/clogin'
 #url = 'https://wifi.ccoex.com:6300/clogin'
-values = {'USERNAME': 'Alex.Kampas', 'PASSWORD' : 'Qak34049' }
+values = {'USERNAME': 'XXXXXXXX', 'PASSWORD' : 'XXXX' }
 
 data = urllib.parse.urlencode(values)
 data = data.encode('ascii')
