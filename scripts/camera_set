@@ -1,0 +1,17 @@
+v4l2-ctl -d /dev/video2 --all
+v4l2-ctl -d /dev/video2 --list-formats-ext
+v4l2-ctl --list-devices
+v4l2-ctl -d /dev/video2 -L
+v4l2-ctl -d /dev/video2 -c led1_mode=2
+v4l2-ctl -d /dev/video2 -c led1_frequency=50
+
+
+gst-device-monitor-1.0
+ffmpeg -f video4linux2 -list_formats all -i /dev/video2
+
+v4l2-ctl --set-fmt-video=width=1920,height=1080,pixelformat=YUYV
+
+
+guvcview
+
+

@@ -1,0 +1,7 @@
+#!/bin/bash
+csfcssid="CSFC Staff WiFi"
+ssid=`iwlist wlp3s0 scanning | grep ESSID | cut -d "\"" -f 2`
+echo $ssid
+if [ "$ssid" = "$csfcssid" ]; then echo OK && /home/otheos/scripts/ccoex.py
+else echo NOT
+fi

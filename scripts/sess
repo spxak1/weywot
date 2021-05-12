@@ -1,0 +1,14 @@
+cat /sys/devices/virtual/thermal/thermal_zone0/hwmon1/temp1_input #acpitz-acpi-0
+cat /sys/devices/virtual/thermal/thermal_zone3/hwmon6/temp1_input #iwlwifi-virtual-0
+cat /sys/devices/virtual/thermal/thermal_zone1/hwmon3/temp1_input #pch_skylake-virtual-0
+cat /sys/devices/platform/thinkpad_hwmon/hwmon/hwmon5/temp1_input #thinkpad-isa-0000 Temp1
+echo "-------------------"
+cat /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_input #coretemp-isa-0000 Package and cores
+echo ""
+echo "Cores"
+echo ""
+cat /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp2_input
+cat /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp3_input
+cat /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp4_input
+cat /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp5_input
+

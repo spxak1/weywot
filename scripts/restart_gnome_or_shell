@@ -1,0 +1,6 @@
+#restarts gnome
+busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("Restarting…")'
+
+#restarts shell -same as alt+f2+r
+busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("Restarting…")'
+

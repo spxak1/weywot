@@ -1,0 +1,11 @@
+env GDK_DPI_SCALE=0.5 firefox &
+
+env GDK_SCALE=2 /opt/sublime_text/sublime_text
+
+env QT_SCALE_FACTOR=1.5 krita &
+
+xrandr --output DP-3-1 --auto --scale 1x1
+
+
+xrandr --output DP-3-1 --auto --scale 1.25x1.25
+xrandr --output DP-3-1 --panning 3840x2160

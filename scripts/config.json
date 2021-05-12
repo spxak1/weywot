@@ -1,0 +1,81 @@
+[
+    {
+        "name": "bluetooth",
+        "start_cmds": [
+            "rfkill unblock bluetooth"
+        ],
+        "stop_cmds": [
+            "rfkill block bluetooth"
+        ],
+        "status_cmds": [
+            "rfkill --json|jq '.[]|.[]|select(.type==\"bluetooth\")' | grep -q '\"unblocked\"'"
+        ]
+    },
+    {
+        "name": "pulse",
+        "start_cmds": [
+            "systemctl --user start pulseaudio.service",
+            "systemctl --user start pulseaudio.socket"
+        ],
+        "stop_cmds": [
+            "systemctl --user stop pulseaudio.socket",
+            "systemctl --user stop pulseaudio.service"
+        ],
+        "status_cmds": [
+            "pgrep -u $USER pulseaudio >/dev/null"
+        ]
+    },
+    {
+        "name": "wifi (wlp3s0)",
+        "start_cmds": [
+            "sudo ip link set wlp3s0 up"
+        ],
+        "stop_cmds": [
+            "sudo ip link set wlp3s0 down"
+        ],
+        "status_cmds": [
+            "ip --json link show wlp3s0 | jq \".[] | .flags\" | grep -q '\"UP\"'"
+        ]
+    },
+    {
+        "name": "ether (enp6s0)",
+        "start_cmds": [
+            "sudo ip link set enp6s0 up"
+        ],
+        "stop_cmds": [
+            "sudo ip link set enp6s0 down"
+        ],
+        "status_cmds": [
+            "ip --json link show enp6s0 | jq \".[] | .flags\" | grep -q '\"UP\"'"
+        ]
+    },
+    {
+        "name": "vmnet",
+        "start_cmds": [
+            "sudo ip link set vmnet1 up"
+        ],
+        "stop_cmds": [
+            "sudo ip link set vmnet1 down"
+        ],
+        "status_cmds": [
+            "ip --json link show vmnet1 | jq \".[] | .flags\" | grep -q '\"UP\"' "
+        ]
+    },
+    {
+        "name": "Network Services",
+        "status_cmds": [
+            "systemctl status nfs-utils.service > /dev/null"
+        ],
+        "stop_cmds": [
+            "vpn stop",
+            "sudo systemctl stop nordvpn.service",
+            "sudo systemctl stop autofs.service",
+            "sudo systemctl stop nfs-utils.service"
+        ],
+        "start_cmds": [
+            "sudo systemctl restart nfs-utils.service",
+            "sudo systemctl restart autofs.service",
+            "vpn start"
+        ]
+    }
+]

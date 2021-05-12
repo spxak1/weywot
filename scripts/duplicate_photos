@@ -1,0 +1,12 @@
+findimagedupes * | awk '{print $2}' | xargs exiftool | grep -w 'File\ Name\|Image\ Width\|Image\ Height\|File\ Size' 
+
+also | args rm (deletes them)
+
+also look at this for spaces in names
+
+findimagedupes * | cut -f 7-18 -d "/" | sed 's/^/\//' | sed  's/\ /\\\ /g' | \ls -l
+
+cut cuts with / and sorts for some / after,
+
+first sed puts back the leading /
+second sed replaces all space with \space (recuring, g at the end)

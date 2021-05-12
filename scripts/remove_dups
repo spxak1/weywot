@@ -1,0 +1,11 @@
+rdfind .
+
+Then
+
+ cat results.txt | grep 0A | cut -d / -f 2 > delist
+
+sed -e 's/^/rm\ /' delist > delall
+
+chmod +x delall
+
+and run

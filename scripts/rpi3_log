@@ -1,0 +1,20 @@
+ mkdir -p /var/log/journal
+ systemd-tmpfiles --create --prefix /var/log/journal
+
+Some examples how to get log "files": get last boot log
+
+rpi3 ~$ journalctl -b
+Get kernel logging (was dmesg)
+
+rpi3 ~$ journalctl -k
+Get continous showing log (as taken with tail -f on old style logs)
+
+rpi3 ~$ journalctl -f
+Get log from the end with many details
+
+rpi3 ~$ journalctl -xe
+Or get details from services, e.g. network
+
+rpi3 ~$ systemctl status systemd-networkd
+# or
+rpi3 ~$ systemctl status networking

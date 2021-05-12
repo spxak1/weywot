@@ -1,0 +1,2 @@
+efibootmgr" "--create" "--disk" "/dev/sda" "--part" "1" "--write-signature" "--label" "Pop!_OS 20.10" "--loader" "\\EFI\\systemd\\systemd-bootx64.efi"
+

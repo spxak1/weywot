@@ -1,0 +1,8 @@
+[Unit]
+After=network.service
+
+[Service]
+ExecStart=/etc/custom/switch_profile.sh
+
+[Install]
+WantedBy=default.target

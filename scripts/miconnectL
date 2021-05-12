@@ -1,0 +1,3 @@
+bluetoothctl connect 1C:91:9D:A4:5F:C0
+sleep 3
+/home/otheos/scripts/miconnectL

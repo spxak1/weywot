@@ -1,0 +1,1 @@
+sudo systemctl stop thinkfan

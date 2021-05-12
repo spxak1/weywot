@@ -1,0 +1,14 @@
+#!/bin/bash -x
+#v4l2-ctl --list-devices
+#v4l2-ctl -L
+#ffmpeg -f v4l2 -list_formats all -i /dev/video0
+
+
+INRES="2560x1440"
+OUTRES="1280x720"
+FPS="30"
+
+ffmpeg -f v4l2 -framerate "$FPS" -video_size "$OUTRES" -i /dev/video0 -f alsa -ac 2 \
+-i default -vcodec libx264 -acodec libmp3lame -ab 128k -ar 44100 -threads 4 -f flv $1
+
+

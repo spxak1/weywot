@@ -1,0 +1,13 @@
+[Unit]
+Description=Undervolt cpu
+After=sleep.target suspend.target hibernate.target
+Requires=systemd-modules-load.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/iuvolt
+ExecStop=/usr/bin/iuvolt
+
+[Install]
+WantedBy=multi-user.target
+WantedBy=sleep.target

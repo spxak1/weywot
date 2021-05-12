@@ -1,0 +1,2 @@
+xsetwacom --set "10" MapToOutput DP-3-1
+xsetwacom --set "11" MapToOutput DP-3-1

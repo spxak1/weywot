@@ -1,0 +1,8 @@
+#!/bin/bash
+designF=`cat /sys/class/power_supply/BAT0/energy_full_design`
+design=$(expr $designF / 1000)
+leftF=`cat /sys/class/power_supply/BAT0/energy_full`
+left=$(expr $leftF / 1000)
+batt=$(expr $leftF / $design)
+echo `date +%Y.%m.%d` $design $left $batt >> /home/otheos/Documents/Battery_tracker
+
