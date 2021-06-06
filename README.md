@@ -1,5 +1,9 @@
 # My notes on Linux
 
+This is a collection of notes that worked for my system at the time of writing. 
+
+Feel free to use them, share them, modify them. I don't claim credit for them, so I don't ask for it either. Just be happy.
+
 * [Control system LED's/Light from the terminal](https://github.com/spxak1/weywot/blob/main/guides/light.md)
 * [A brief discussion about Pop's system76-power profiles in non System76 computers](https://github.com/spxak1/weywot/blob/main/guides/pop_power.md)
 * [How to reduce* the header of the gnome-terminal in Pop!_OS](https://github.com/spxak1/weywot/blob/main/guides/pop_terminal_header.md)
