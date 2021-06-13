@@ -401,6 +401,18 @@ done
 
 It expects a text file named ```Youtube``` in the ```Rpi_Youtube``` folder on ```Google Drive``` with youtube links, on separate lines.
 
+### Show IP address on the screen
+
+You need this for networks where you don't have a static IP and no control over the DHCP server.
+
+Make a script file ```disp_ip.sh```
+
+~~~
+#!/bin/bash
+ifconfig | grep inet | grep 212 | awk '{print $2}' | DISPLAY=:0 osd_cat --font -*-*-*-*-*-*-28-*-*-*-*-*-*-* --delay 20
+~~~
+
+
 
 
 
