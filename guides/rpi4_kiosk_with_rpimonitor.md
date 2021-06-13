@@ -257,7 +257,7 @@ Access it from here: ```https://raspberry-ip:10000```
 
 ### Play local videos with mpv
 
-Loval videos are stored in ```/home/pi/Videos```.
+Local videos are stored in ```/home/pi/Videos```.
 
 We need to fetch them from ```Google Drive```. 
 
@@ -370,7 +370,7 @@ Name this ```localvideo.sh``` in your root folder.
 
 ~~~
 #!/bin/bash
-rclone copy CSFC:Rpi_Videos /home/pi/Kiosk/Videos
+rclone sync CSFC:Rpi_Videos /home/pi/Kiosk/Videos
 vids=( `ls /home/pi/Kiosk/Videos` )
 for v in "${vids[@]}"
 do
@@ -388,7 +388,7 @@ Name this ```youtue.sh```.
 
 ~~~
 #!/bin/bash
-rclone copy CSFC:Rpi_Youtube /home/pi/Kiosk/Youtube
+rclone sync CSFC:Rpi_Youtube /home/pi/Kiosk/Youtube
 tubes=( `cat /home/pi/Kiosk/Youtube/Youtube` )
 #echo ${tubes[0]}
 for u in "${tubes[@]}"
