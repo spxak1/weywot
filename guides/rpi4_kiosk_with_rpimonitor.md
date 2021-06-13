@@ -384,6 +384,10 @@ Create a cron job for it with Webmin to run every 20 minutes (adjust according t
 
 #### Script to clone Youtube addresses and play them
 
+Note: Requires youtube-dl, not the version that comes with the distro, but a fresh one (using pip).
+Remove the old before installing the new.
+Also check that the youtube-dl execucable is (or has a link) in ```/usr/bin``` (for cron to work). 
+
 Name this ```youtue.sh```.
 
 ~~~
