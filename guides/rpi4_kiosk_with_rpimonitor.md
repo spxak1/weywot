@@ -403,6 +403,8 @@ It expects a text file named ```Youtube``` in the ```Rpi_Youtube``` folder on ``
 
 ### Show IP address on the screen
 
+All information from [here](https://linuxhint.com/osd_overlay_fullscreen_linux_apps/)
+
 You need this for networks where you don't have a static IP and no control over the DHCP server.
 
 Make a script file ```disp_ip.sh```
