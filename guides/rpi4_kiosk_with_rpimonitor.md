@@ -398,7 +398,7 @@ tubes=( `cat /home/pi/Kiosk/Youtube/Youtube` )
 for u in "${tubes[@]}"
 do
 echo $u
-DISPLAY=:0 mpv $u --slang=en --fs --ytdl-raw-options=ignore-config=,sub-lang=en,write-auto-sub=,format='bestvideo[height<=720]'--input-media-keys=yes
+DISPLAY=:0 mpv $u --slang=en --fs --ytdl-raw-options=ignore-config=,sub-lang=en,write-auto-sub=,format='bestvideo[height<=720]+bestaudio'--input-media-keys=yes
 sleep 20
 done
 ~~~
