@@ -356,7 +356,7 @@ Or look for files with:
 
 Finally you can copy folders from ```Google Drive``` with:
 
-```rclone copy CSFC:foldername ./Videos````
+```rclone copy CSFC:foldername /home/pi/Kiosk/Videos````
 
 Now what you place in the ```Rpi_Videos```, is cloned to ```~/Videos``` for local use.
 
@@ -370,12 +370,12 @@ Name this ```localvideo.sh``` in your root folder.
 
 ~~~
 #!/bin/bash
-rclone copy CSFC:Rpi_Videos ./Videos
-vids=( `ls ./Videos` )
+rclone copy CSFC:Rpi_Videos /home/pi/Kiosk/Videos
+vids=( `ls /home/pi/Kiosk/Videos` )
 for v in "${vids[@]}"
 do
 echo $v
-DISPLAY=:0 mpv ./Videos/$v -fs --input-media-keys=yes
+DISPLAY=:0 mpv /home/pi/Kiosk/Videos/$v -fs --input-media-keys=yes
 sleep 20
 done
 ~~~
@@ -388,8 +388,8 @@ Name this ```youtue.sh```.
 
 ~~~
 #!/bin/bash
-rclone copy CSFC:Rpi_Youtube ./Youtube
-tubes=( `cat ./Youtube/Youtube` )
+rclone copy CSFC:Rpi_Youtube /home/pi/Kiosk/Youtube
+tubes=( `cat /home/pi/Kiosk/Youtube/Youtube` )
 #echo ${tubes[0]}
 for u in "${tubes[@]}"
 do
