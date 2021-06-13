@@ -375,8 +375,8 @@ vids=( `ls ./Videos` )
 for v in "${vids[@]}"
 do
 echo $v
-DISPLAY=:0 mpv ./Videos/$v -fs
-sleep 60
+DISPLAY=:0 mpv ./Videos/$v -fs --input-media-keys=yes
+sleep 20
 done
 ~~~
 
