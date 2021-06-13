@@ -415,9 +415,15 @@ Make a script file ```disp_ip.sh```
 
 ~~~
 #!/bin/bash
-ifconfig | grep inet | grep 212 | awk '{print $2}' | DISPLAY=:0 osd_cat --font -*-*-*-*-*-*-28-*-*-*-*-*-*-* --delay 20
+ip addr show  wlan0 | grep "inet " | awk '{print $2}' | DISPLAY=:0 osd_cat --font -*-*-*-*-*-*-28-*-*-*-*-*-*-* --delay 20
+ip addr show  wlan0 | grep "inet " | awk '{print $2}' > curr_ip
+rclone copy curr_ip  CSFC:PhysicsBoard
+
 ~~~
 
+This aslo puts a txt file on Google Drive for the record.
+
+The Cron jobs for some reason won't run unless all binaries are given with full path (i.e ```/usr/sbin/ip```)
 
 
 
