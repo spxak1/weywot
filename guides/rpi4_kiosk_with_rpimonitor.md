@@ -382,6 +382,25 @@ done
 
 Create a cron job for it with Webmin to run every 20 minutes (adjust according to expected number of videos and their length.
 
+#### Script to clone Youtube addresses and play them
+
+Name this ```youtue.sh```.
+
+~~~
+#!/bin/bash
+rclone copy CSFC:Rpi_Youtube ./Youtube
+tubes=( `cat ./Youtube/Youtube` )
+#echo ${tubes[0]}
+for u in "${tubes[@]}"
+do
+echo $u
+DISPLAY=:0 mpv $u --slang=en --fs --ytdl-raw-options=ignore-config=,sub-lang=en,write-auto-sub= --input-media-keys=yes
+sleep 20
+done
+~~~
+
+It expects a text file named ```Youtube``` in the ```Rpi_Youtube``` folder on ```Google Drive``` with youtube links, on separate lines.
+
 
 
 
