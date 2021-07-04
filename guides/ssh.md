@@ -158,5 +158,94 @@ sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 sudo pico /etc/fail2ban/jail.local 
 ~~~
 
+We’ll look for two sections in the file: [DEFAULT] and [sshd]. Take care to find the actual sections, though. Those labels also appear near the top in a section that describes them, but that’s not what we want.
+
 Find these lines: 
+
 ![F2B 1](../assets/f2b_1.png)
+
+You’ll find the [DEFAULT] section somewhere around line 40. It’s a long section with a lot of comments and explanations.
+
+![F2B 2](../assets/f2b_2.png)
+
+Scroll down to around line 90, and you’ll find the following four settings you need to know about:
+
+* ignoreip: A whitelist of IP addresses that will never be banned. They have a permanent Get Out of Jail Free card. The localhost IP address (127.0.0.1) is in the list by default, along with its IPv6 equivalent (::1). If there are other IP addresses you know should never be banned, add them to this list and leave a space between each one.
+* bantime: The duration for which an IP address is banned (the “m” stands for minutes). If you type a value without an “m” or “h” (for hours) it will be treated as seconds. A value of -1 will permanently ban an IP address. Be very careful not to permanently lock yourself out.
+* findtime: The amount of time within which too many failed connection attempts will result in an IP address being banned.
+* maxretry: The value for “too many failed attempts.”
+
+If a connection from the same IP address makes maxretry failed connection attempts within the findtime period, they’re banned for the duration of the bantime. The only exceptions are the IP addresses in the ignoreip list.
+
+fail2ban puts the IP addresses in jail for a set period of time. fail2ban supports many different jails, and each one represents holds the settings apply to a single connection type. This allows you to have different settings for various connection types. Or you can have fail2ban monitor only a chosen set of connection types.
+
+You might have guessed it from the [DEFAULT] section name, but the settings we’ve looked at are the defaults. Now, let’s look at the settings for the SSH jail.
+
+#### Configure a jail
+
+Jails let you move connection types in and out of fail2ban's monitoring. If the default settings don’t match those you want applied to the jail, you can set specific values for ```bantime```, ```findtime```, and ```maxretry```.
+
+Scroll down to about line 280, and you’ll see the [sshd] section.
+
+![F2B 3](../assets/f2b_3.png)
+
+This is where you can set values for the SSH connection jail. To include this jail in the monitoring and banning, we have to type the following line:
+
+```enabled = true```
+
+We also type this line:
+
+```maxretry = 3```
+
+The default setting was five, but we want to be more cautious with SSH connections. We dropped it to three, and then saved and closed the file.
+
+We added this jail to fail2ban's monitoring, and overrode one of the default settings. A jail can use a combination of default and jail-specific settings.
+
+### Enable and test
+
+~~~
+sudo systemctl enable fail2ban.service
+sudo systemctl start fail2ban.service
+sudo systemctl status fail2ban.service
+~~~
+
+Then test:
+
+~~~
+[otheos@ceres ~]$ sudo fail2ban-client status
+Status
+|- Number of jail:	1
+`- Jail list:	sshd
+~~~
+
+Now test the jail:
+
+~~~
+[otheos@ceres ~]$ sudo fail2ban-client status sshd
+Status for the jail: sshd
+|- Filter
+|  |- Currently failed:	1
+|  |- Total failed:	1
+|  `- Journal matches:	_SYSTEMD_UNIT=sshd.service + _COMM=sshd
+`- Actions
+   |- Currently banned:	0
+   |- Total banned:	0
+   `- Banned IP list:
+   ~~~
+   
+   Any banned IP's will appear above, but also here:
+   
+   ~~~
+   sudo iptables -L
+   ~~~
+   
+   You can un-ban them with:
+  
+  ~~~
+  sudo fail2ban-client set sshd unbanip 192.168.5.25
+  ~~~
+  
+  
+  
+   
+   
