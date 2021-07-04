@@ -132,5 +132,26 @@ Now try logging into the machine, with:   "ssh 'otheos@ceres'"
 and check to make sure that only the key(s) you wanted were added.
 ~~~
 
+Now you can disable password logins. Test you can connect.
 
+## Secure the connection with fail2ban
 
+Install it:
+
+~~~
+sudo apt-get install fail2ban
+
+or
+
+sudo dnf install fail2ban
+~~~
+
+Create the config file by copying the template (```.config```) to the ```.local``` (actual config) file.
+
+~~~
+sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+~~~
+
+Now edit:
+
+~~~
