@@ -152,6 +152,11 @@ Create the config file by copying the template (```.config```) to the ```.local`
 sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 ~~~
 
-Now edit:
+### Configure fail2ban
 
 ~~~
+sudo pico /etc/fail2ban/jail.local 
+~~~
+
+Find these lines: 
+![F2B 1](../assets/f2b_1.png)
