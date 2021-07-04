@@ -170,10 +170,10 @@ You’ll find the [DEFAULT] section somewhere around line 40. It’s a long sect
 
 Scroll down to around line 90, and you’ll find the following four settings you need to know about:
 
-* ignoreip: A whitelist of IP addresses that will never be banned. They have a permanent Get Out of Jail Free card. The localhost IP address (127.0.0.1) is in the list by default, along with its IPv6 equivalent (::1). If there are other IP addresses you know should never be banned, add them to this list and leave a space between each one.
-* bantime: The duration for which an IP address is banned (the “m” stands for minutes). If you type a value without an “m” or “h” (for hours) it will be treated as seconds. A value of -1 will permanently ban an IP address. Be very careful not to permanently lock yourself out.
-* findtime: The amount of time within which too many failed connection attempts will result in an IP address being banned.
-* maxretry: The value for “too many failed attempts.”
+* ```ignoreip```: A whitelist of IP addresses that will never be banned. They have a permanent Get Out of Jail Free card. The localhost IP address (127.0.0.1) is in the list by default, along with its IPv6 equivalent (::1). If there are other IP addresses you know should never be banned, add them to this list and leave a space between each one.
+* ```bantime```: The duration for which an IP address is banned (the “m” stands for minutes). If you type a value without an “m” or “h” (for hours) it will be treated as seconds. A value of -1 will permanently ban an IP address. Be very careful not to permanently lock yourself out.
+* ```findtime```: The amount of time within which too many failed connection attempts will result in an IP address being banned.
+* ```maxretry```: The value for “too many failed attempts.”
 
 If a connection from the same IP address makes maxretry failed connection attempts within the findtime period, they’re banned for the duration of the bantime. The only exceptions are the IP addresses in the ignoreip list.
 
