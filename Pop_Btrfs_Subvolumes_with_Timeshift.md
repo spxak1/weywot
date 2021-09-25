@@ -271,11 +271,11 @@ root@pluto:/# btrfs subvolume create /mnt/@
  Create subvolume '/mnt/@'
 </pre>
 
-With the ```@``` subvolume created, we need to move all the data from the old ```/``` to the new ```/``` in the ```@``` subvolume.
+With the ```@``` subvolume created, we need to move all the data except for `/home` from the old ```/``` to the new ```/``` in the ```@``` subvolume. We are not moving `/home` right now to copy it later into the proper subvolume.
 
 <pre>
 root@pluto:/# cd /mnt
-root@pluto:/# ls | grep -v @ | xargs mv -t @ #move all files and folders to /mnt/@
+root@pluto:/# ls | grep -v '@\|home' | xargs mv -t @ # move all files and folders except the home directory to /mnt/@
 </pre>
 
 So if we check now in ```/mnt``` there is nothing but the subvolume **@** and if you check inside of it you will find all installation data.
@@ -294,6 +294,7 @@ Now for the other two subvolumes.
 <pre>
 root@pluto:/# btrfs subvolume create /mnt/@home
  Create subvolume '/mnt/@home'
+root@pluto:/# mv ./home ./@home # so that all data from /home are written into ./@home 
 root@pluto:/# btrfs subvolume create /mnt/@swap
  Create subvolume '/mnt/@swap'
 root@pluto:/# btrfs subvolume list /mnt
