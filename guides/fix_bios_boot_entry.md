@@ -1,4 +1,4 @@
-# How to add a boot option in your bios menu (UEFI).
+# How to add a boot option in your bios menu (UEFI) for any OS.
 
 It is frequent for some motherboards bios to lose entries to boot operatiing systems. This may happen on disconnection and reconnection of drive that contains the operating system (and the EFI partition. It may also happen when a new operating system is added along side an existing one.
 
@@ -43,7 +43,8 @@ Things to note:
 
 1. This boots the systemd-boot stub (i.e the default Pop_OS boot menu)
 2. The location of the stub file needs **double** ``\\```.
-3. The location of the stub is absolute in terms of the partition, but relative when the partition is mounted in ```/boot/efi```.
+3. The EFI partition is vfat, so capitals/small letters don't matter, you can type locations with either, mix, whatever.
+4. The location of the stub is absolute in terms of the partition, but relative when the partition is mounted in ```/boot/efi```.
 
 ## Other distributions (with grub)
 
@@ -79,11 +80,10 @@ Replace the location of the file with ```\\EFI\\FEDORA\\shimx64.efi```
 
 Replace the location of the file with ```\\EFI\manjaro\\grubx64.efi```
 
-## Windows
+### Windows
 
 Replace the location of the file with ```\\EFI\\Microsoft\\Boot\\bootmgfw.efi```
 
-**Note** The EFI partition is vfat, so capitals/small letters don't matter, you can type locations with either, mix, whatever.
 
 ## Troubleshooting
 
