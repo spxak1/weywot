@@ -529,7 +529,7 @@ Example:
 
 This will generate a new ```/boot/grub2/grub.cfg``` with only that menuentry you left in ```40_custom```.
 
-## Conlcution
+## Conclusion
 
 Grub is horrible. But it's ubiquitous. So it's a good skill to be able to do the basics. This is more like a workaround rather than a proper way of doing it, but I've yet to find another way.
 
