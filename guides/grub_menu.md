@@ -1,6 +1,6 @@
 # How to edit the entries of grub menu
 
-This only covers the entries, not the options of these entries.
+This only covers the entries, not the options of these entries. Adapted from [this](https://github.com/spxak1/weywot/blob/main/guides/fix_bios_boot_entry.md) guide.
 
 **Note**: I use Fedora for the examples bellow, but look for a variation to make it work in **Ubuntu** at the very end
 
