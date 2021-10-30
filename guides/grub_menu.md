@@ -506,7 +506,7 @@ Example:
   
   **Delete** all entries that are not required, from the ```menuentry``` start all the way (and including) the ```}```.
   
-  Your ```40_custom file is ready to be used.
+  Your ```40_custom``` file is ready to be used.
   
   ### 4. Make 40_custom executable, and remove the executable bit from 30_os-prober
   
