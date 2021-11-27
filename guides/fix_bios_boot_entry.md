@@ -1,5 +1,7 @@
 # How to add a boot option in your bios menu (UEFI) for any OS.
 
+## See alternative (if applicable) at the end!
+
 It is frequent for some motherboards bios to lose entries to boot operatiing systems. This may happen on disconnection and reconnection of drive that contains the operating system (and the EFI partition. It may also happen when a new operating system is added along side an existing one.
 
 ## Process
@@ -88,5 +90,24 @@ Replace the location of the file with ```\\EFI\\Microsoft\\Boot\\bootmgfw.efi```
 ## Troubleshooting
 
 If you can see the boot entry in the bios after this, but still fail to boot, check the contents of your EFI partition to confirm the locations of the stub files are correct.
+
+## Alternative
+
+Most motherboard UEFIs will look for a folder named ```boot``` in the (only) partition they can read on the drive, and in particular inside ```/boot/efi/EFI```.
+
+Boot off a live USB, mount ```/boot/efi/EFI``` and check if there is a ```boot``` folder in there, and inside it a ```bootx64.efi``` file. That's the absolute default the UEFI looks for to boot from if there is no entry.
+
+That's how it boots off the Live USB (which obviously has no entry in the UEFI). 
+
+If you have not ```boot``` folder with that file in there, you just copy your distributions folder. 
+
+* For Pop_OS you copy ```systemd``` to ```boot``` and then rename ```boot/systemd-bootx64.efi``` to ```/boot/bootx64.efi``` (actually that's what the default is).
+* For grub basaed distributions, you can either copy your distributions folder (e.g. fedora) and inside of it rename the ```shimx64.efi``` file to ```bootx64.efi```. Or you can create ```boot``` and copy ```shimx64.efi``` and rename it to ```bootx64.efi```.
+
+Reboot. 
+
+For Pop_OS, once you boot to your installation you can run ```sudo bootctl --path=/boot/efi install```. Most of it is redundand as it just performs what you just did above, but in addition it creates the UEFI boot entry (under the name ```Linux Boot Manager```). Or you can do it yourself as described furher up with ```efibootmgr```.
+
+For other (grub based) distros, you need to add the boot entry manually with ```efibootmgr``` as discribed further up.
 
 
