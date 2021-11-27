@@ -102,7 +102,7 @@ That's how it boots off the Live USB (which obviously has no entry in the UEFI).
 If you have not ```boot``` folder with that file in there, you just copy your distributions folder. 
 
 * For Pop_OS you copy ```systemd``` to ```boot``` and then rename ```boot/systemd-bootx64.efi``` to ```/boot/bootx64.efi``` (actually that's what the default is).
-* For grub basaed distributions, you can either copy your distributions folder (e.g. fedora) and inside of it rename the ```shimx64.efi``` file to ```bootx64.efi```. Or you can create ```boot``` and copy ```shimx64.efi``` and rename it to ```bootx64.efi```.
+* For grub basaed distributions, you can either copy your distributions folder (e.g. fedora) and inside of it rename the ```shimx64.efi``` file to ```bootx64.efi```. Or you can create ```boot``` and copy ```shimx64.efi``` and rename it to ```bootx64.efi```, and also copy ```grubx64.efi``` and ```grub.cfg``` to ```boot``, as apparently grub is chainloaded (and also needs the cfg file).
 
 Reboot. 
 
