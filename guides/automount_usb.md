@@ -78,6 +78,36 @@ SUBSYSTEMS=="scsi", ATTRS{model}=="Elements 25A3   ", SYMLINK+="oort%n"
 
 For example the first line will name all the partitions on ```/dev/sdj``` to ```/dev/archive1, /dev/archive2```, etc
 
+Now restart udev with ```udevadm control --reload-rules && udevadm trigger```. This works in **FEDORA**, will add later for Ubuntu and derivatives.
+
+Now check:
+~~~
+[root@ceres dev]# ls -l /dev/archive*
+lrwxrwxrwx. 1 root root  3 Nov 28 11:58 /dev/archive -> sdi
+lrwxrwxrwx. 1 root root 12 Nov 28 11:58 /dev/archive0 -> bsg/42:0:0:0
+lrwxrwxrwx. 1 root root  4 Nov 28 11:58 /dev/archive1 -> sdi1
+lrwxrwxrwx. 1 root root  3 Nov 28 11:58 /dev/archive8 -> sg8
+[root@ceres dev]# ls -l /dev/oort*
+lrwxrwxrwx. 1 root root  3 Nov 28 11:58 /dev/oort -> sdj
+lrwxrwxrwx. 1 root root 12 Nov 28 11:58 /dev/oort0 -> bsg/41:0:0:0
+lrwxrwxrwx. 1 root root  4 Nov 28 11:58 /dev/oort1 -> sdj1
+lrwxrwxrwx. 1 root root  3 Nov 28 11:58 /dev/oort9 -> sg9
+[root@ceres dev]# ls -l /dev/orange*
+lrwxrwxrwx. 1 root root  3 Nov 28 11:58 /dev/orange -> sdk
+lrwxrwxrwx. 1 root root 12 Nov 28 11:58 /dev/orange0 -> bsg/43:0:0:0
+lrwxrwxrwx. 1 root root  4 Nov 28 11:58 /dev/orange1 -> sdk1
+lrwxrwxrwx. 1 root root  4 Nov 28 11:58 /dev/orange10 -> sg10
+~~~
+
+The first part is done. Now on to the mounting process.
+
+## Automount
+
+
+More work needed:
+https://github.com/linux-surface/linux-surface
+https://github.com/raamsri/automount-usb
+https://serverfault.com/questions/766506/automount-usb-drives-with-systemd
 
 
 
