@@ -71,9 +71,9 @@ Now let's build the udev rule to change the names to unique ones on connection:
 
 Create the file : ```/etc/udev/rules.d/custom.rules```
 ~~~
-SUBSYSTEM=="scsi", ATTRS{model}=="Backup+ Hub BK  ", SYMLINK+="archive%n"
-SUBSYSTEM=="scsi", ATTRS{model}=="My Passport 25E2", SYMLINK+="orange%n"
-SUBSYSTEM=="scsi", ATTRS{model}=="Elements 25A3   ", SYMLINK+="oort%n"
+SUBSYSTEMS=="scsi", ATTRS{model}=="Backup+ Hub BK  ", SYMLINK+="archive%n"
+SUBSYSTEMS=="scsi", ATTRS{model}=="My Passport 25E2", SYMLINK+="orange%n"
+SUBSYSTEMS=="scsi", ATTRS{model}=="Elements 25A3   ", SYMLINK+="oort%n"
 ~~~
 
 For example the first line will name all the partitions on ```/dev/sdj``` to ```/dev/archive1, /dev/archive2```, etc
