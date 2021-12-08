@@ -123,7 +123,7 @@ Note: You can only see the contents of this folder as *root* as such ```sudo``` 
 
 ## 3. Dual booting from the same drive
 
-### 3.1 Install Pop!_OS first, Windows second (easiest)
+### 3.1 Install Pop!_OS first, Windows second (easiest and recommended)
 
 If you're installing on a fresh drive, installing Pop!_OS first is the easiest option. Follow these steps to get a **dual boot menu**.
 
@@ -135,13 +135,13 @@ If you're installing on a fresh drive, installing Pop!_OS first is the easiest o
 6. If you already have Pop!_OS as your only OS and want to install Windows, you will need to **boot from USB** and start at **step 3** above.
 7. Once the Windows installation is complete, adjust your boot order in the bios to Pop!_OS, and use the **menu** as required.
 
-### 3.2 Install Pop!_OS second, Windows installed first
+### 3.2 Install Pop!_OS second, Windows installed first (most common case for people adding Pop to their systems)
 This is the most common case for new users, and as such I will spend some time explaining with more detail. 
 
 #### 3.2.1 Starting without OS
 If you start with a clean drive, I would strongly suggest installing Pop!_OS first and follow the according steps. If you **have** to install Windows first, you have two options.
 
-##### 3.2.1.1. Install Windows with **planning** for Pop!_OS (hard)
+##### 3.2.1.1. Install Windows with **planning** for Pop!_OS (hard and redundant as you should install Pop first)
 
 All the **planning** is, is to install Windows with a **larger** EFI partition so that you can use it also for Pop!_OS. Windows's EFI partition is by default only 100MB and it is as a result too small for more than OS to store its EFI files. If you make this larger, say 512MB (I would advise 1GB for extra space), you can then use this partition for all your OS's. You can do that following [this guide here](https://www.ctrl.blog/entry/how-to-esp-windows-setup.html). 
 
@@ -150,18 +150,18 @@ Once you have Windows installed with a large EFI partition you can install Pop!_
 2. Go through the step by step screens.
 3. Select custom and resize/move partitions to make as much room as needed for Pop!_OS. 
 4. Go back to the installer and select partitions. Select **the EFI partition of Windows** and set it to ```/boot/efi``` but **DO NOT FORMAT**. 
-5. Select your ```/``` partition and install. 
+5. Select your ```/``` partition and install. If you need a recovery partition see the note in the next case.
 6. Complete and reboot, you should have a menu with **Windows** as an option.
 7. Adjust your Bios to set Pop!_OS as the first boot option.
 
-##### 3.2.2.2. Install Windows without planning for Pop!_OS (easier)
+##### 3.2.2.2. Install Windows without planning for Pop!_OS (easier and most common for users already having Windows installed)
 
 Here you will end up with two separate EFI partitions and as such the procedure is similar to having two separate drives. 
 
 1. Install Windows as normal
 2. Boot from Live USB
-3. Make space for Pop!_OS. You will need two partition, a 512MB FAT32 partition and the rest as ext4 (or use as many partitions as you want for your custom installation)
-4. Select the 512MB FAT32 partition as ```/boot/efi``` partition and the rest as your ```/``` partition (or any other layout you want, but this is the minimum).
+3. Make space for Pop!_OS. You will need two* partition, a 512MB FAT32 partition and the rest as ext4 (or use as many partitions as you want for your custom installation). *You can addd a 4096MB FAT32 partition for the recovery (this is recommended but not required)
+4. Select the 512MB FAT32 partition as ```/boot/efi``` partition and the rest as your ```/``` partition (or any other layout you want, but this is the minimum). If you added a partition for Recovery, then select it, set it to custom and type ```/recovery``` for the mount point (make sure fat32 is selected).
 5. Install.
 6. Now you have two installations each with its own EFI partition. 
 7. Follow the process used for dual booting from two drives to make your menu include **Windows**.
