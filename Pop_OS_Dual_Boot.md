@@ -1,6 +1,15 @@
 # Dual Boot Pop!_OS with Windows using systemd-boot
 ### The ultimate guide for any combination
 
+**EXTREMEY SHORT TL:DR**: If you know what you're doing - The absolute quickest:
+
+1. ```sudo apt install os-prober```
+2. ```sudo os-prober```. The output is ```/dev/sdb1@/efi/Microsoft/Boot/bootmgfw.efi:Windows Boot Manager:Windows:efi```
+3. ```sudo mount /dev/sdb1 /mnt``` (you can find your drive in the first part of the os-prober's output)
+4. ```sudo cp -ax /mnt/EFI/Microsoft /boot/efi/EFI``` (you can find the folder after the word ```efi``` in os-prober's output. It's always ```Microsoft``` but you need capital ```EFI``` when copying```.
+5. Reboot.
+
+
 **TL:DR**: Dual boot from the same drive with Windows and Pop!_OS already installed: See **4. TL:DR** at the end of this document.
 
 ## Abstract
