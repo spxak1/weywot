@@ -7,7 +7,7 @@
 2. ```sudo os-prober```. The output is ```/dev/sdb1@/efi/Microsoft/Boot/bootmgfw.efi:Windows Boot Manager:Windows:efi```
 3. ```sudo mount /dev/sdb1 /mnt``` (you can find your drive in the first part of the os-prober's output)
 4. ```sudo cp -ax /mnt/EFI/Microsoft /boot/efi/EFI``` (you can find the folder after the word ```efi``` in os-prober's output. It's always ```Microsoft``` but you need capital ```EFI``` when copying.
-5. Reboot.
+5. Reboot. Spam your spacebar for the menu. Select with arrows, add timeout with "t" or reduce with "T" (+/- also work), select default with "d". Hold "l" to boot linux after POST or "w" to boot Windows after POST without visiting the menu.
 
 
 **TL:DR**: Dual boot from the same drive with Windows and Pop!_OS already installed: See **4. TL:DR** at the end of this document.
