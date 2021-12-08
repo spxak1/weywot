@@ -125,11 +125,13 @@ Note: You can only see the contents of this folder as *root* as such ```sudo``` 
 
 ### 3.1 Install Pop!_OS first, Windows second (easiest and recommended)
 
+See my video here: https://www.youtube.com/watch?v=Fw3fQQmlXEs
+
 If you're installing on a fresh drive, installing Pop!_OS first is the easiest option. Follow these steps to get a **dual boot menu**.
 
 1. Install Pop!_OS as per normal. You can partition the drive before installation and do a custom installation. This will have the space for Windows alocated at this point and you do not need to move and resize partitions after. But you may end up without a recovery partition. Practice, see what workds for you. 
 2. If you installed the default way, **do not reboot**.
-3. Start ```gparted``` and resize/move as required to make space for Windows. The Windows installer will have to find empty space to install to. 
+3. Start ```gparted``` and resize/move as required to make space for Windows. The Windows installer will have to find empty space to install to. You can format that space to NTFS or leave it unformatted. If formatted, you get the benefit of Windows **not**creating the smaller partitions and as such you can then adjust space between Pop and Windows. If you don't format, Windows will create two more smaller partitions which are impossible to move and as such you cannot adjust the space afterwards. See the video with formatting [here](https://www.youtube.com/watch?v=Fw3fQQmlXEs) and without formatting [here](https://www.youtube.com/watch?v=Fw3fQQmlXEs).
 4. Start the Windows installation, and select the empty space to install to. Windows will **by default** install its EFI folder in the pre-existing EFI partition that Pop!_OS uses. This means that all EFI files will now be in the same place as required for systemd-boot to show Windwos in the **menu**. 
 5. Uppon reboot (Windows requires several) you will need to manually select Windows. Either fire up the menu and make Windows default (see introduction), or hold **w** on every reboot, or make Windows the default in your bios at this stage.
 6. If you already have Pop!_OS as your only OS and want to install Windows, you will need to **boot from USB** and start at **step 3** above.
