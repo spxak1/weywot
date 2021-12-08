@@ -96,7 +96,7 @@ sdb             8:16   0 111.8G  0 disk
 
 In the example above, ```/dev/sda``` is the drive with Pop!_OS and ```/dev/sdb``` is the drive with Windows. You can tell from the mounted partitions of Pop!_OS on ```/dev/sda```. You can also see here that Pop!_OS's EFI partition is mounted at ```/boot/efi``` and its EFI files are located in ```/boot/efi/EFI```. 
 
-4. Identify the EFI partition of Windows. This is typically around 100MB for starnard installations and is typically the first partition in the drive. In the example above, this is partition ```/dev/sdb1```.
+4. Identify the EFI partition of Windows. This is typically around 100MB for starnard installations and is typically the first partition in the drive. In the example above, this is partition ```/dev/sdb1```. Alternatively, you can run ```sudo os-prober``` (install it first with ```sudo apt install os-prober```) and that will give you a line of where Window's EFI is, such as ```/dev/sdb1@/efi/Microsoft/Boot/bootmgfw.efi:Windows Boot Manager:Windows:efi```. You can see that ```/dev/sdb1``` is Windows EFI partition, and specifically the files you need are in the ```Microsoft``` folder inside ```efi``` (note, this is ```EFI``` but in fat32 is not case sensitive).
 5. Mount the EFI partition of Windows. Typically you can type ```sudo mount /dev/sdb1 /mnt```. 
 6. Copy the EFI files of Windows to Pop!_OS's EFI partition. The EFI files of Windows are in the folder ```/mnt/EFI/Microsoft```. You will need the **complete** ```Microsoft``` folder copied in ```/boot/efi/EFI```. So:
 ~~~
