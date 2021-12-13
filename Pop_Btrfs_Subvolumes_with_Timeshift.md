@@ -259,8 +259,7 @@ These options are suggested for better performance with **btrfs** (taken from Wi
 4. **commit=120**: time interval in which data is written to the filesystem (value of 120 is taken from Manjaro’s minimal iso)
 5. **compress=zstd**: allows to specify the compression algorithm which we want to use. btrfs provides lzo, zstd and zlib compression algorithms. Based on some Phoronix test cases, zstd seems to be the better performing candidate.
 
-Now you have your newly installed system mounted on ```/mnt```.
-We are going to make 3 subvolumes:
+Now you have your newly installed system mounted on `/mnt`. We are going to make 3 subvolumes:
 
 1. **@** for root ```/```
 2. **@home** for home ```/home```
@@ -271,14 +270,16 @@ root@pluto:/# btrfs subvolume create /mnt/@
  Create subvolume '/mnt/@'
 </pre>
 
-With the ```@``` subvolume created, we need to move all the data except for `/home` from the old ```/``` to the new ```/``` in the ```@``` subvolume. We are not moving `/home` right now to copy it later into the proper subvolume.
+With the `@` subvolume created, we need to move all the data except for `/home` from the old `/` to the new `/`, under the `@` subvolume. __NB__ : We are not moving `/home` right now as we will copy it later into the proper subvolume.
 
 <pre>
 root@pluto:/# cd /mnt
-root@pluto:/# ls | grep -v '@\|home' | xargs mv -t @ # move all files and folders except the home directory to /mnt/@
+root@pluto:/# ls | grep -v '@\|home' | xargs mv -t @
 </pre>
 
-So if we check now in ```/mnt``` there is nothing but the subvolume **@** and if you check inside of it you will find all installation data.
+The second command moved all files and folders, except the home directory, to `/mnt/@`.
+
+If we check now in `/mnt`, there is nothing but the subvolume **@**. If you check inside of it you will find all installation data.
 
 <pre>
 root@pluto:/# ls /mnt/
@@ -294,7 +295,12 @@ Now for the other two subvolumes.
 <pre>
 root@pluto:/# btrfs subvolume create /mnt/@home
  Create subvolume '/mnt/@home'
-root@pluto:/# mv ./home ./@home # so that all data from /home are written into ./@home 
+root@pluto:/# mv ./home ./@home 
+</pre>
+
+The second command ensure that all data from `/home` were written into `./@home`.
+
+<pre>
 root@pluto:/# btrfs subvolume create /mnt/@swap
  Create subvolume '/mnt/@swap'
 root@pluto:/# btrfs subvolume list /mnt
@@ -325,17 +331,17 @@ root@pluto:/# mkswap /mnt/@swap/swapfile
 mkdir /mnt/@/swap
 </pre>
 
-The last command has created a ```swap``` folder inside the ```/``` root. We will mount the ```@swap``` subvolume to that folder to make it a appear as a swap partition to the filesystem.
+The last command has created a `swap` folder inside the `/` root. We will mount the `@swap` subvolume to that folder to make it a appear as a swap partition to the filesystem.
 
 ### 2.3.3 Editing mount points
 
-For that we need to edit ```/etc/fstab```. The new one, not the one on the system we currently use (which is the live environement. 
+For that we need to edit `/etc/fstab`. The new one, not the one on the system we currently use (which is the live environement. 
 
-To edit the **new** fstab file do ```nano /mnt/@/etc/fstab```
+To edit the **new** fstab file do `nano /mnt/@/etc/fstab`
 
-Remember: The installation is now found in the ```@``` subvolume which is accessible from the ```/mnt/@``` point. As such the ```/etc``` folder of the new installation is there ```/mnt/@/etc```.
+Remember: The installation is now found in the `@` subvolume which is accessible from the `/mnt/@` point. As such the `/etc` folder of the new installation is there `/mnt/@/etc`.
 
-It is helpful to have the ***UUID*** of the partition your **btrfs** system lives. For that do ```lsblk -f```.
+It is helpful to have the ***UUID*** of the partition your **btrfs** system lives. For that do `lsblk -f`.
 
 <pre>
 NAME   FSTYPE FSVER LABEL                 UUID                                
@@ -347,7 +353,7 @@ sdb
 
 In the case above the **UUID** is **78c9787f-1d36-42e8-89bd-7b94b501afaf**. Normally this should already be in your **fstab**, but have it handy in case you need it.
 
-Now make your ```/mnt/@/etc/fstab``` look like this:
+Now have your `/mnt/@/etc/fstab` look like this:
 
 <pre>
 # /etc/fstab: static file system information.
