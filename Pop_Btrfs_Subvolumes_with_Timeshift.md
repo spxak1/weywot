@@ -294,7 +294,7 @@ Now for the other two subvolumes.
 <pre>
 root@pluto:/# btrfs subvolume create /mnt/@home
  Create subvolume '/mnt/@home'
-root@pluto:/# mv ./home ./@home # so that all data from /home are written into ./@home 
+root@pluto:/# mv ./home/ ./@home # so that all data from /home are written into ./@home 
 root@pluto:/# btrfs subvolume create /mnt/@swap
  Create subvolume '/mnt/@swap'
 root@pluto:/# btrfs subvolume list /mnt
