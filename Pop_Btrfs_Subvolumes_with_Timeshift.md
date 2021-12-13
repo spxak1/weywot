@@ -298,7 +298,7 @@ root@pluto:/# btrfs subvolume create /mnt/@home
 root@pluto:/# mv ./home ./@home 
 </pre>
 
-The second command ensure that all data from `/home` were written into `./@home`.
+The second command ensured that all data from `/home` were written into `./@home`.
 
 <pre>
 root@pluto:/# btrfs subvolume create /mnt/@swap
