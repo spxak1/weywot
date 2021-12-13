@@ -265,9 +265,9 @@ Now you have your newly installed system mounted on `/mnt`. We are going to make
 2. **@home** for home ```/home```
 3. **@swap** for, well, swap ```/swap```
 
+Create subvolume '/mnt/@'
 <pre>
 root@pluto:/# btrfs subvolume create /mnt/@
- Create subvolume '/mnt/@'
 </pre>
 
 With the `@` subvolume created, we need to move all the data except for `/home` from the old `/` to the new `/`, under the `@` subvolume. __NB__ : We are not moving `/home` right now as we will copy it later into the proper subvolume.
@@ -295,12 +295,13 @@ Now for the other two subvolumes.
 Create subvolume '/mnt/@home'
 <pre>
 root@pluto:/# btrfs subvolume create /mnt/@home
-root@pluto:/# mv ./home ./@home 
+root@pluto:/# mv ./home/ ./@home 
 </pre>
 The second command ensured that all data from `/home` were written into `./@home`.
+
+Create subvolume '/mnt/@swap'
 <pre>
 root@pluto:/# btrfs subvolume create /mnt/@swap
- Create subvolume '/mnt/@swap'
 root@pluto:/# btrfs subvolume list /mnt
  ID 263 gen 66 top level 5 path @
  ID 264 gen 64 top level 5 path @home
