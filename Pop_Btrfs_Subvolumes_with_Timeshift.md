@@ -295,11 +295,10 @@ Now for the other two subvolumes.
 <pre>
 root@pluto:/# btrfs subvolume create /mnt/@home
  Create subvolume '/mnt/@home'
+
 root@pluto:/# mv ./home ./@home 
 </pre>
-
 The second command ensured that all data from `/home` were written into `./@home`.
-
 <pre>
 root@pluto:/# btrfs subvolume create /mnt/@swap
  Create subvolume '/mnt/@swap'
