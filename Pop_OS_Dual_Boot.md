@@ -224,3 +224,31 @@ Note: You can only see the contents of this folder as *root* as such ```sudo``` 
 7. You are done. You can now reboot your system and check in the **menu** that there is an option named **Windows Boot Manager**. Select it and you can boot to Windows.
 
 **Note**: Your bios may re-read the EFI options offered in the boot manager and may place the new EFI entry for Windows first. If your system boots straight to Windows after restart, reboot to Bios and select **Pop!_OS** as the first choice to boot.
+
+### 4.1 From Windows
+
+This is work in progress but here it goes:
+
+You can copy Windows' boot files to the new ESP from Windows. The steps are:
+
+1. Give Pop's ESP a drive letter (this will be changed after some more work is done)
+2. Run the ```bcdboot``` command
+
+For the first part, you cannot do it using Windows Disk Management, so you will need the command line (as administrator)
+
+~~~
+diskpart
+select disk 0
+select partition 5
+assign letter=y
+exit
+~~~
+
+Assuming the drive and partitions are 0 and 5 respectively. This needs to adjusted for your case.
+Then issue the command:
+
+~~~
+bcdboot c:\Windows /s y:
+~~~
+
+That's it. Windows now copied the files to the new ESP.  The best part about this method is now Windows doesn't use the old ESP ever again, so techincally you can remove it. (Work in progress as this has so far worked erratically). 
