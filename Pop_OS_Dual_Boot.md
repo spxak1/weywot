@@ -180,6 +180,8 @@ Here you will end up with two separate EFI partitions and as such the procedure 
 
 ## 4. TL:DR Dual boot from the same drive with Windows and Pop!_OS already installed
 
+Note: See the very short TL:DR at the very top if you know what you're doing.
+
 If you have managed to install Windows and Pop!_OS, read the introduction before you procede. 
 
 To make Windows appear in the boot menu, you will need to copy its EFI folder to where Pop!_OS's EFI folder is.
