@@ -227,7 +227,7 @@ Note: You can only see the contents of this folder as *root* as such ```sudo``` 
 
 ### 4.1 From Windows
 
-This is work in progress but here it goes:
+This is **work in progress** but here it goes as a placeholder until completed (so use with caution):
 
 You can copy Windows' boot files to the new ESP from Windows. The steps are:
 
