@@ -98,6 +98,8 @@ Simply: ```sudo update-initramfs -u```
 
 Reboot.
 
+End result: https://www.youtube.com/watch?v=Fpt66GfmoY0
+
 Enjoy.
 
 
