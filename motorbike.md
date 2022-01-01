@@ -10,15 +10,16 @@ I have been using a car for the last 20 years but recently I find I am not happy
 
 Here are my concerns:
 
-The bike has no seat belt. Without a seat belt I don’t feel safe. Is there a way I can install a safety belt to the bike?
-
-1. The bike has no doors. While I understand there are no doors on a bike, I would rather install doors to make the experience more like a car. 
-2. I find it hard to change gears with my foot and press the clutch with my hand. Is there a way to change that and make it more like a car: change gears with your hand and press the clutch with the foot? 
-3. Will I be able to use my key remotely to unlock the bike? I liked having this feature in my car. I am not comfortable on the bike’s seat as there is no back rest. Is there a way to install one? 
-4. A bike has tires with round cross-section and I want to install cars with rectangular cross-sections, like in my car, but I cannot find any bike tires like that. Why can’t bikes also offer such tires, like cars do? 
-5. How can people ride a bike with only two wheels? Two wheels cannot stand up without the bike moving, and there is no way for the bike to not fall over when it’s stopped. How do bike users deal with this when such a basic function is missing? 
-6. I found out I need to wear my own helmet with a bike. I mean come on, a car has a roof, you don’t need to have your own helmet. I understand how not having a roof allows you to see the sky, and have the freedom to see in any direction, but I can’t imagine what they’re thinking if they expect every user to have to put their own helmet on. 
-7. Cars have cup holders and as such the coffee I buy from Starbucks can go onto one of those cup holders so I can drink it while I drive. Even if bikes had cupholders no cup can be used with the helmet. Why can’t we have bikes with cupholders and helmets that can be used with the same cups from Starbucks? I miss my Starbucks coffee.
+1. The bike has no seat belt. Without a seat belt I don’t feel safe. Is there a way I can install a safety belt to the bike?
+2. The bike has no doors. While I understand there are no doors on a bike, I would rather install doors to make the experience more like a car. 
+3. I find it hard to change gears with my foot and press the clutch with my hand. Is there a way to change that and make it more like a car: change gears with your hand and press the clutch with the foot? 
+4. Will I be able to use my key remotely to unlock the bike? I liked having this feature in my car. 
+5. I am not comfortable on the bike’s seat as there is no back rest. Is there a way to install one? 
+6. A bike has tires with round cross-section and I want to install cars with rectangular cross-sections, like in my car, but I cannot find any bike tires like that. Why can’t bikes also offer such tires, like cars do? 
+7. How can people ride a bike with only two wheels? Two wheels cannot stand up without the bike moving, and there is no way for the bike to not fall over when it’s stopped. How do bike users deal with this when such a basic function is missing? 
+8. I found out I need to wear my own helmet with a bike. I mean come on, a car has a roof, you don’t need to have your own helmet. I understand how not having a roof allows you to see the sky, and have the freedom to see in any direction, but I can’t imagine what they’re thinking if they expect every user to have to put their own helmet on. 
+9. Cars have cup holders and as such the coffee I buy from Starbucks can go onto one of those cup holders so I can drink it while I drive. Even if bikes had cupholders no cup can be used with the helmet. Why can’t we have bikes with cupholders and helmets that can be used with the same cups from Starbucks? I miss my Starbucks coffee.
+10. I'm told in bikes you can see all the parts and you can even fix/repair or modify them because they're easy to work with. Can I still pay someone to do my servicing?
 
 ## Friendly bike user response
 
@@ -33,6 +34,7 @@ Hi, welcome to bikes!
 7. A bike has by definition only two wheels. It’s what makes it fun, great to ride, flexible in traffic, different and exciting to ride. You learn how to balance at speed and you will have to put your feet down when stopped to stay upright. You will learn and use it as expected, there is not much you can do to avoid this. 
 8. You have to wear a helmet to stay safe. The bike will still work without one but it is strongly recommended you get your own helmet and wear it. Not having a roof on a bike is part of the experience, and what makes riding it great, so having to wear your own helmet is not a big issue. 
 9. You will have to take it up with Starbucks why they don’t make cups for bikers. Not much you can do about that I’m afraid. There are cups designed for that, but they’re not the same as Starbucks. Try them though, you may find them just fine.
+10. Yes, you can with some manufacturers, but most bikers learn to service their own bikes. At the beggining keep it simple, learn how the bike works and learn how to use the tools to fix it. Modifications make it harder to maintain, so keep it simple to start with.
 
 ## OP Response
 
@@ -47,6 +49,8 @@ Hi, thanks for replying. I’m a total noob with bikes, so these answers help. I
 7. Only two wheels is a serious limitation, especially for new users coming from a car. Very scary, turns away new users and makes for a very steep learning curve. Bike manufacturers should seriously reconsider bikes with four wheels. There would be so many more users of bikes if bikes had 4 wheels like most people are used to. I have found stability wheels for bikes, but again, they don't come standard with any bike. And everywhere I asked about it, bike gatekeeping is showing the ugly side of biking. People are just nasty towards new users asking for simple things like stability wheels. 
 8. Not a big issue? I had to find a helmet that fits, is good enough, and in the end I had to do extra work for something that a car has anyway. While some bikes offer helmets as a package, I found those helmets were not always to my liking, or I couldn’t use them and I had to find a different one, or shift to another bike altogether. I can see why cars are so popular compared to bikes now. 
 9. Shifting the blame to Starbucks is laughable. Starbucks makes coffee cups for the most popular means of transportation. If bikers wanted Starbucks to make coffee cups so they can use them on a bike, they need to address all other issues with bikes. Then people can find bikes more user friendly and as bikes become more popular, Starbucks will consider supporting them. But not with a helmet. A roof to remove the helmet would help, so that the same cup would work. See my point on number 8. Also, if it’s not Starbucks, it sucks.
+10. There is a lot to learn just to keep the bike working. Also with the extensions added I keep breaking things. Twice I had to get a new bike as it was impossible to fix after I added some extension. Is there a way to stop my additions breaking the bike?
+
 
 To conclude, bikes need to be more user friendly. Especially for new users. Many things can be done with extensions and additions, but even then the bikes are not as good as cars. I think I’ll stick with cars for the time being until all these issues are addressed.
 
@@ -63,6 +67,8 @@ So I’ve been riding a bike for the past month or so, so I’m not totally new 
 7. Long guides to install stuff like rectangular tires are not going to cut it, especially for new users. Bike manufacturers should invest the time to make these one-step installations, or come with it. It makes no sense to keep such features out of bikes, since so many new users are used to rectangular tires. 
 8. Modern features such as keyless entry are definitely a must. Especially once doors are part of bikes, keyless entry is a must.
 9. If all these are done, the Starbucks may make a coffee cup for a bike. 
+10. It's impossible to maintain a bike if I have to add all these modifications. At least in a car you don't need these modifications and it doesn't break that often. If all modifications are part of the bike, it may be easier. Then you can limit the amount of modifications available to make it easier to maintain.
+
 
 ## (Real) Bike industry:
 
