@@ -69,6 +69,8 @@ So I’ve been riding a bike for the past month or so, so I’m not totally new 
 9. If all these are done, the Starbucks may make a coffee cup for a bike. 
 10. It's impossible to maintain a bike if I have to add all these modifications. At least in a car you don't need these modifications and it doesn't break that often. If all modifications are part of the bike, it may be easier. Then you can limit the amount of modifications available to make it easier to maintain.
 
+How can we expect to make bikes as popular as cars if we bikes are so unfriendly to new users. This is why we never actually se year of the bike on the road.
+
 
 ## (Real) Bike industry:
 
