@@ -10,16 +10,16 @@ I have been using a car for the last 20 years but recently I find I am not happy
 
 Here are my concerns:
 
-1. The bike has no seat belt. Without a seat belt I don’t feel safe. Is there a way I can install a safety belt to the bike?
+1. The bike has no seat belt. Without a seat belt I don’t feel safe. Is there a way I can install a seat belt to the bike?
 2. The bike has no doors. While I understand there are no doors on a bike, I would rather install doors to make the experience more like a car. 
 3. I find it hard to change gears with my foot and press the clutch with my hand. Is there a way to change that and make it more like a car: change gears with your hand and press the clutch with the foot? 
 4. Will I be able to use my key remotely to unlock the bike? I liked having this feature in my car. 
 5. I am not comfortable on the bike’s seat as there is no back rest. Is there a way to install one? 
-6. A bike has tires with round cross-section and I want to install cars with rectangular cross-sections, like in my car, but I cannot find any bike tires like that. Why can’t bikes also offer such tires, like cars do? 
+6. A bike has tires with round cross-section and I want to install tires with rectangular cross-sections, like in my car, but I cannot find any bike tires like that. Why can’t bikes also offer such tires, like cars do? 
 7. How can people ride a bike with only two wheels? Two wheels cannot stand up without the bike moving, and there is no way for the bike to not fall over when it’s stopped. How do bike users deal with this when such a basic function is missing? 
 8. I found out I need to wear my own helmet with a bike. I mean come on, a car has a roof, you don’t need to have your own helmet. I understand how not having a roof allows you to see the sky, and have the freedom to see in any direction, but I can’t imagine what they’re thinking if they expect every user to have to put their own helmet on. 
 9. Cars have cup holders and as such the coffee I buy from Starbucks can go onto one of those cup holders so I can drink it while I drive. Even if bikes had cupholders no cup can be used with the helmet. Why can’t we have bikes with cupholders and helmets that can be used with the same cups from Starbucks? I miss my Starbucks coffee.
-10. I'm told in bikes you can see all the parts and you can even fix/repair or modify them because they're easy to work with. Can I still pay someone to do my servicing?
+10. I'm told with bikes you can see all the parts and you can even fix/repair or modify them because they're easy to work with. Can I still pay someone to do my servicing?
 
 ## Friendly bike user response
 
