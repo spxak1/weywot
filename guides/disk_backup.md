@@ -8,7 +8,7 @@ Make an image of a disk on another.
 ```dd if=/dev/nvme0n1 bs=1M status=progress | gzip > /mnt/Zeus_laptop.img.gz```
 
 Then other terminals: 
-```watch -n 10 "ls -lh Zeus_laptop.img.gz"```
-```watch -n 5 "sensors | grep -e 'Sensor\|Composite'"```
-```sudo intel-undervolt measure```
-```progress -M```
+* ```watch -n 10 "ls -lh Zeus_laptop.img.gz"```
+* ```watch -n 5 "sensors | grep -e 'Sensor\|Composite'"```
+* ```sudo intel-undervolt measure```
+* ```progress -M```
