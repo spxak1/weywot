@@ -7,7 +7,7 @@ This is a very simple trick. I started using it eversince video hardware acceler
 * **Press a keyboard shortcut to start playback**
 
 
-## Steps to copy
+## Steps to copy the link
 
 The copying part is easy. This has been tested with:
 * Youtube (highlight link address on browser, or copy link with right mouse click)
