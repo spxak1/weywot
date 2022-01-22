@@ -39,7 +39,7 @@ Install ```pip``` if not installed already:
 
 Then
 
-```sudo pip install yt-dlp```.
+```pip install yt-dlp```.
 
 Because ```mpv``` still looks for the ```youtube-dl``` binary, make a soft link to replicate it.
 
