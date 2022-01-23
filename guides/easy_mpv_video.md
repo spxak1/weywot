@@ -39,11 +39,11 @@ Install ```pip``` if not installed already:
 
 Then
 
-```pip install yt-dlp```.
+```pip install -U yt-dlp```.
 
-Because ```mpv``` still looks for the ```youtube-dl``` binary, make a soft link to replicate it.
+Because ```mpv``` still looks for the ```youtube-dl``` binary, make a soft link and place it in the path.
 
-```sudo ln -s /usr/local/bin/yt-dlp /usr/bin/youtube-dl```
+```ln -sf ~/.local/bin/yt-dlp ~/.local/bin/youtube-dl```
 
 Done
 
