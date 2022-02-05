@@ -4,6 +4,7 @@ This is a collection of notes that worked for my system at the time of writing.
 
 Feel free to use them, share them, modify them. I don't claim credit for them, so I don't ask for it either. Just be happy.
 
+* [Boot Pop!_OS without a bootmanager, from UEFI straight with the kernel](https://github.com/spxak1/weywot/blob/main/boot2kernel.md)
 * [Play online videos on MPV the easiest possible way](https://github.com/spxak1/weywot/blob/main/guides/easy_mpv_video.md)
 * [Car user moving to a motorbike: an analogy rant](https://github.com/spxak1/weywot/blob/main/motorbike.md)
 * [How to fix a missing boot option from your bios](https://github.com/spxak1/weywot/blob/main/guides/fix_bios_boot_entry.md)
