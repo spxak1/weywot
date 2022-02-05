@@ -112,11 +112,16 @@ Here they are:
 efibootmgr -c -d /dev/sda -p 1 -L "Pop Current" -l /EFI/Pop_OS-f925d79c-a485-43cf-8cd2-2d24cdea718b/vmlinuz.efi --unicode 'root=UUID=f925d79c-a485-43cf-8cd2-2d24cdea718b ro quiet loglevel=0 systemd.show_status=false splash mitigations=off rw initrd=\EFI\Pop_OS-f925d79c-a485-43cf-8cd2-2d24cdea718b\initrd.img' --verbose
 ~~~
 ### Old
+~~~
 efibootmgr -c -d /dev/sda -p 1 -L "Pop Old" -l /EFI/Pop_OS-f925d79c-a485-43cf-8cd2-2d24cdea718b/vmlinuz-previous.efi --unicode 'root=UUID=f925d79c-a485-43cf-8cd2-2d24cdea718b ro quiet loglevel=0 systemd.show_status=false splash mitigations=off rw initrd=\EFI\Pop_OS-f925d79c-a485-43cf-8cd2-2d24cdea718b\initrd.img-previous' --verbose
+~~~
 ### Recovery
+~~~
 efibootmgr -c -d /dev/sda -p 1 -L "Pop Recovery" -l /EFI/Recovery-7827-FA9E/vmlinuz.efi --unicode 'boot=casper hostname=recovery userfullname=Recovery username=recovery live-media-path=/casper-7827-FA9E live-media=/dev/disk/by-partuuid/a9fbe686-9f08-487c-9bc9-db094845b8c2 noprompt initrd=\EFI\Recovery-7827-FA9E\initrd.gz' --verbose
+~~~
 ### Single user (with current kernel)
+~~~
 efibootmgr -c -d /dev/sda -p 1 -L "Pop Single" -l /EFI/Pop_OS-f925d79c-a485-43cf-8cd2-2d24cdea718b/vmlinuz.efi --unicode 'root=UUID=f925d79c-a485-43cf-8cd2-2d24cdea718b ro quiet loglevel=0 systemd.show_status=false splash mitigations=off rw single initrd=\EFI\Pop_OS-f925d79c-a485-43cf-8cd2-2d24cdea718b\initrd.img' --verbose
-
+~~~
 
 
