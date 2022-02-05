@@ -1,6 +1,8 @@
 # How to boot directly to the Kernel (EFISTUB)
 This is a quick guide on how to boot to Pop_OS without systemd_boot, or any other bootmanager, simply by loading directly the linux kernel.
 
+For **Fedora** (and other grub based distros) see the end.
+
 ## Why?
 For fun, proof of concept and perhaps to shave a couple of seconds from your boot time. But mostly for the former two.
 
@@ -123,5 +125,51 @@ efibootmgr -c -d /dev/sda -p 1 -L "Pop Recovery" -l /EFI/Recovery-7827-FA9E/vmli
 ~~~
 efibootmgr -c -d /dev/sda -p 1 -L "Pop Single" -l /EFI/Pop_OS-f925d79c-a485-43cf-8cd2-2d24cdea718b/vmlinuz.efi --unicode 'root=UUID=f925d79c-a485-43cf-8cd2-2d24cdea718b ro quiet loglevel=0 systemd.show_status=false splash mitigations=off rw single initrd=\EFI\Pop_OS-f925d79c-a485-43cf-8cd2-2d24cdea718b\initrd.img' --verbose
 ~~~
+
+
+## Fedora
+For distros that use grub, and as such keep their kernels and initrd files in the ```/boot``` partition (or directory), there is very little difference. 
+The only issue is that you need to **copy the kernel and initrd** to the **ESP** after **every kernel upgrade**.
+
+I find all the info in the loader entry fedora makes in ```/boot/loader/entries```, which looks like this (this is the same systemd_boot entry as before):
+~~~
+title Fedora Linux (5.16.5-200.fc35.x86_64) 35 (Workstation Edition)
+version 5.16.5-200.fc35.x86_64
+linux /boot/vmlinuz-5.16.5-200.fc35.x86_64
+initrd /boot/initramfs-5.16.5-200.fc35.x86_64.img
+options root=UUID=62a337f0-ae6b-4d17-83bb-8f1b86345e20 ro rhgb quiet
+grub_users $grub_users
+grub_arg --unrestricted
+grub_class fedora
+~~~
+
+The kernel and initrd names, as well as all the kernel options and the partition UUID. When ```grub``` is updated, this config file is updated too.
+
+I have a very basic script that does this (needs ```sudo``` to run):
+~~~
+#!/bin/bash
+esp=/boot/efi/EFI/fedora
+loc=/boot/loader/entries
+loader=`ls $loc -ltr | tail -1 | cut -d " " -f 10`
+kern=`cat $loc/$loader | grep linux | cut -d " " -f 2`
+init=`cat $loc/$loader | grep initrd | cut -d " " -f 2`
+echo $init
+\cp $kern $esp/vmlinuz.efi
+\cp $init $esp/initrd.img
+~~~
+
+This copies the latest kernel and initrd to Fedora's ESP ```/boot/efi/EFI/fedora```, under the same name ```vmlinuz.efi``` and ```initrd.img``` repsectively. So the boot entry always points to these names.
+
+This scripts needs to run **after every kernel update**
+
+Once this is done, you just create the boot entry:
+~~~
+sudo efibootmgr -c -d /dev/sda -p 1 -L "Fedora Kernel" -l /EFI/fedora/vmlinuz.efi --unicode 'root=UUID=62a337f0-ae6b-4d17-83bb-8f1b86345e20 ro quiet mitigations=off initrd=\EFI\fedora\initrd.img' --verbose
+~~~
+
+You **only need to run this once** after fedora installs. Or re-run it if for some reason your boot entry is deleted (Windows update?).
+
+## Ubuntu
+The above should also work on Ubuntu.
 
 
