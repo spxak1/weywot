@@ -2,6 +2,8 @@
 This is a quick guide on how to boot to Pop_OS without systemd-boot, or any other bootmanager, simply by loading directly the linux kernel.
 
 For **Fedora** and **Ubuntu** see the end.
+![image](https://user-images.githubusercontent.com/29977030/152643674-3d052134-3377-4f9c-b6d0-2bec800626e4.png)
+
 
 ## Why?
 For fun, proof of concept and perhaps to shave a couple of seconds from your boot time. But mostly for the former two.
