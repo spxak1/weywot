@@ -111,11 +111,11 @@ I like having 4 entries for **Pop!_OS**
 Here they are:
 ### Current
 ~~~
-efibootmgr -c -d /dev/sda -p 1 -L "Pop Current" -l /EFI/Pop_OS-f925d79c-a485-43cf-8cd2-2d24cdea718b/vmlinuz.efi --unicode 'root=UUID=f925d79c-a485-43cf-8cd2-2d24cdea718b ro quiet loglevel=0 systemd.show_status=false splash mitigations=off rw initrd=\EFI\Pop_OS-f925d79c-a485-43cf-8cd2-2d24cdea718b\initrd.img' --verbose
+efibootmgr -c -d /dev/sda -p 1 -L "Pop Current" -l /EFI/Pop_OS-f925d79c-a485-43cf-8cd2-2d24cdea718b/vmlinuz.efi --unicode 'root=UUID=f925d79c-a485-43cf-8cd2-2d24cdea718b ro quiet loglevel=0 systemd.show_status=false splash mitigations=off initrd=\EFI\Pop_OS-f925d79c-a485-43cf-8cd2-2d24cdea718b\initrd.img' --verbose
 ~~~
 ### Old
 ~~~
-efibootmgr -c -d /dev/sda -p 1 -L "Pop Old" -l /EFI/Pop_OS-f925d79c-a485-43cf-8cd2-2d24cdea718b/vmlinuz-previous.efi --unicode 'root=UUID=f925d79c-a485-43cf-8cd2-2d24cdea718b ro quiet loglevel=0 systemd.show_status=false splash mitigations=off rw initrd=\EFI\Pop_OS-f925d79c-a485-43cf-8cd2-2d24cdea718b\initrd.img-previous' --verbose
+efibootmgr -c -d /dev/sda -p 1 -L "Pop Old" -l /EFI/Pop_OS-f925d79c-a485-43cf-8cd2-2d24cdea718b/vmlinuz-previous.efi --unicode 'root=UUID=f925d79c-a485-43cf-8cd2-2d24cdea718b ro quiet loglevel=0 systemd.show_status=false splash mitigations=off initrd=\EFI\Pop_OS-f925d79c-a485-43cf-8cd2-2d24cdea718b\initrd.img-previous' --verbose
 ~~~
 ### Recovery
 ~~~
@@ -123,7 +123,7 @@ efibootmgr -c -d /dev/sda -p 1 -L "Pop Recovery" -l /EFI/Recovery-7827-FA9E/vmli
 ~~~
 ### Single user (with current kernel)
 ~~~
-efibootmgr -c -d /dev/sda -p 1 -L "Pop Single" -l /EFI/Pop_OS-f925d79c-a485-43cf-8cd2-2d24cdea718b/vmlinuz.efi --unicode 'root=UUID=f925d79c-a485-43cf-8cd2-2d24cdea718b ro quiet loglevel=0 systemd.show_status=false splash mitigations=off rw single initrd=\EFI\Pop_OS-f925d79c-a485-43cf-8cd2-2d24cdea718b\initrd.img' --verbose
+efibootmgr -c -d /dev/sda -p 1 -L "Pop Single" -l /EFI/Pop_OS-f925d79c-a485-43cf-8cd2-2d24cdea718b/vmlinuz.efi --unicode 'root=UUID=f925d79c-a485-43cf-8cd2-2d24cdea718b ro quiet loglevel=0 systemd.show_status=false splash mitigations=off single initrd=\EFI\Pop_OS-f925d79c-a485-43cf-8cd2-2d24cdea718b\initrd.img' --verbose
 ~~~
 
 
@@ -164,12 +164,54 @@ This scripts needs to run **after every kernel update**
 
 Once this is done, you just create the boot entry:
 ~~~
-sudo efibootmgr -c -d /dev/sda -p 1 -L "Fedora Kernel" -l /EFI/fedora/vmlinuz.efi --unicode 'root=UUID=62a337f0-ae6b-4d17-83bb-8f1b86345e20 ro quiet mitigations=off initrd=\EFI\fedora\initrd.img' --verbose
+sudo efibootmgr -c -d /dev/sda -p 1 -L "Fedora Kernel" -l /EFI/fedora/vmlinuz.efi --unicode 'root=UUID=62a337f0-ae6b-4d17-83bb-8f1b86345e20 ro quiet splash mitigations=off initrd=\EFI\fedora\initrd.img' --verbose
 ~~~
 
 You **only need to run this once** after fedora installs. Or re-run it if for some reason your boot entry is deleted (Windows update?).
 
 ## Ubuntu
-The above should also work on Ubuntu.
+Ubuntu doesn't use loader conf files, but it makes links to the latest kernel and initrd inside of ```/boot```, named ```vmlinuz``` and ```initrd.img``` respectively. These are updated to the latest installed kernel after every update, so it's simply a task of copying them to the ESP.
+
+This little script does it:
+~~~
+#!/bin/bash
+esp=/boot/efi/EFI/ubuntu
+loc=/boot
+\cp -H $loc/vmlinuz $esp/vmlinuz.efi
+\cp -H $loc/initrd.img $esp/initrd.img
+~~~
+
+You can find the UUID of the **root** partition either with ```lsblk -o name,fstype,mountpoint,uuid | grep "/ "```
+
+Sample output:
+~~~
+└─sda8 ext4     /                            6496be90-810c-4b5c-bc7f-624aa51c5d9d
+~~~
+
+or you can look inside ```/boot/efi/EFI/ubuntu/grub.cfg```.
+
+Mine looks like this:
+~~~
+search.fs_uuid 6496be90-810c-4b5c-bc7f-624aa51c5d9d root hd0,gpt8 
+set prefix=($root)'/boot/grub'
+configfile $prefix/grub.cfg
+~~~
+
+Finally for your kernel options you need to look in ```/etc/default/grub```. 
+Example:
+~~~
+# cat /etc/default/grub | grep CMDLINE
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash mitigations=off"
+GRUB_CMDLINE_LINUX=""
+~~~
+
+So you build your ```efibootmgr``` command as before with the new info:
+
+~~~
+sudo efibootmgr -c -d /dev/sda -p 1 -L "Ubuntu Kernel" -l /EFI/ubuntu/vmlinuz.efi --unicode 'root=UUID=6496be90-810c-4b5c-bc7f-624aa51c5d9d ro quiet splash mitigations=off initrd=\EFI\ubuntu\initrd.img' --verbose
+~~~
+
+
+
 
 
