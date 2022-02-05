@@ -1,5 +1,5 @@
 # How to boot directly to the Kernel (EFISTUB)
-This is a quick guide on how to boot to Pop_OS without systemd_boot, or any other bootmanager, simply by loading directly the linux kernel.
+This is a quick guide on how to boot to Pop_OS without systemd-boot, or any other bootmanager, simply by loading directly the linux kernel.
 
 For **Fedora** and **Ubuntu** see the end.
 
@@ -15,9 +15,9 @@ Provided you don't delete any boot entries, this process does not involve and fi
 If the boot entry you create doesn't work, your UEFI either will move to the next available boot entry, or get **stuck** at the OEM logo screen. If the latter happens, power off, restart, and go to the bios and manually select a different entry. Then delete the entry you created and try again.
 
 ## Principle
-The linux kernel can be loaded directly from UEFI, without the need for a boot manager such as *grub* or *systemd_boot* or *rEFInd*.
+The linux kernel can be loaded directly from UEFI, without the need for a boot manager such as *grub* or *systemd-boot* or *rEFInd*.
 
-**Pop!_OS**, and the use of *systemd_boot* means that the **kernel** and **initfamfs** are already placed in the **ESP** and as such you need just to create the bios boot entries. 
+**Pop!_OS**, and the use of *systemd-boot* means that the **kernel** and **initfamfs** are already placed in the **ESP** and as such you need just to create the bios boot entries. 
 
 This means that once these are created, you don't need to move any files in and out of the ESP! **Pop!_OS** is great!
 
@@ -25,7 +25,7 @@ This means that once these are created, you don't need to move any files in and 
 Simple, we add the entries to the UEFI using ```efibootmgr```.
 
 ### Find the information
-Another blessing of **systemd_boot** is that it creates simple loader files where all the info is stated. For instance, for my *current kernel*, if I look in ```/boot/efi/loader/entries/Pop_OS-current.conf``` I have:
+Another blessing of **systemd-boot** is that it creates simple loader files where all the info is stated. For instance, for my *current kernel*, if I look in ```/boot/efi/loader/entries/Pop_OS-current.conf``` I have:
 
 ~~~
 title Pop!_OS
@@ -131,7 +131,7 @@ efibootmgr -c -d /dev/sda -p 1 -L "Pop Single" -l /EFI/Pop_OS-f925d79c-a485-43cf
 For distros that use grub, and as such keep their kernels and initrd files in the ```/boot``` partition (or directory), there is very little difference. 
 The only issue is that you need to **copy the kernel and initrd** to the **ESP** after **every kernel upgrade**.
 
-I find all the info in the loader entry fedora makes in ```/boot/loader/entries```, which looks like this (this is the same systemd_boot entry as before):
+I find all the info in the loader entry fedora makes in ```/boot/loader/entries```, which looks like this (this is the same systemd-boot entry as before):
 ~~~
 title Fedora Linux (5.16.5-200.fc35.x86_64) 35 (Workstation Edition)
 version 5.16.5-200.fc35.x86_64
@@ -153,10 +153,11 @@ loc=/boot/loader/entries
 loader=`ls $loc -ltr | tail -1 | cut -d " " -f 10`
 kern=`cat $loc/$loader | grep linux | cut -d " " -f 2`
 init=`cat $loc/$loader | grep initrd | cut -d " " -f 2`
-echo $init
-\cp $kern $esp/vmlinuz.efi
-\cp $init $esp/initrd.img
+echo $loader $kern $init
+#\cp $kern $esp/vmlinuz.efi
+#\cp $init $esp/initrd.img
 ~~~
+**Note:** *The copy commands are hashed, and only the echo command to see that the script actually detects the correct files is left to run. If what you see is correct, unhash the copy commands and run it again.*
 
 This copies the latest kernel and initrd to Fedora's ESP ```/boot/efi/EFI/fedora```, under the same name ```vmlinuz.efi``` and ```initrd.img``` repsectively. So the boot entry always points to these names.
 
