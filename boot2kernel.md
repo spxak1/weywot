@@ -1,7 +1,7 @@
 # How to boot directly to the Kernel (EFISTUB)
 This is a quick guide on how to boot to Pop_OS without systemd_boot, or any other bootmanager, simply by loading directly the linux kernel.
 
-For **Fedora** (and other grub based distros) see the end.
+For **Fedora** and **Ubuntu** see the end.
 
 ## Why?
 For fun, proof of concept and perhaps to shave a couple of seconds from your boot time. But mostly for the former two.
@@ -210,6 +210,10 @@ So you build your ```efibootmgr``` command as before with the new info:
 ~~~
 sudo efibootmgr -c -d /dev/sda -p 1 -L "Ubuntu Kernel" -l /EFI/ubuntu/vmlinuz.efi --unicode 'root=UUID=6496be90-810c-4b5c-bc7f-624aa51c5d9d ro quiet splash mitigations=off initrd=\EFI\ubuntu\initrd.img' --verbose
 ~~~
+
+## Manjaro
+
+Manjaro doesn't create links and doesn't use loader configs. So the script which copies the kernel and initrd should also find the latest kernel and initrd in ```/boot```. 
 
 
 
