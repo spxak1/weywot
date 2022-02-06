@@ -21,7 +21,7 @@ The command to playback comes simple from ```mpv http://.....```. So let's set u
 
 ### Install mpv
 
-```sudo apt install mpv```.
+```sudo apt install mpv```
 
 This will also install the youtube downloader, ```youtube-dl```. However I find this is not working well, and creates choppy playback. As such I replace it.
 
@@ -29,17 +29,17 @@ This will also install the youtube downloader, ```youtube-dl```. However I find 
 
 First uninstall ```youtube-dl``` with:
 
-```sudo apt remove youtube-dl```.
+```sudo apt remove youtube-dl```
 
 Then install ```yt-dlp``` with ```pip```.
 
 Install ```pip``` if not installed already:
 
-```sudo apt install pip```.
+```sudo apt install pip```
 
 Then
 
-```pip install -U yt-dlp```.
+```pip install -U yt-dlp```
 
 Because ```mpv``` still looks for the ```youtube-dl``` binary, make a soft link and place it in the path.
 
