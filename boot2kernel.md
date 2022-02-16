@@ -152,7 +152,7 @@ I have a very basic script that does this (needs ```sudo``` to run):
 #!/bin/bash
 esp=/boot/efi/EFI/fedora
 loc=/boot/loader/entries
-loader=`ls $loc -ltr | tail -1 | cut -d " " -f 10`
+loader=`ls $loc -ltr | tail -1 | cut -d " " -f 9`
 kern=`cat $loc/$loader | grep linux | cut -d " " -f 2`
 init=`cat $loc/$loader | grep initrd | cut -d " " -f 2`
 echo $loader $kern $init
@@ -217,6 +217,8 @@ sudo efibootmgr -c -d /dev/sda -p 1 -L "Ubuntu Kernel" -l /EFI/ubuntu/vmlinuz.ef
 ## Manjaro
 
 Manjaro doesn't create links and doesn't use loader configs. So the script which copies the kernel and initrd should also find the latest kernel and initrd in ```/boot```. 
+
+TBD.
 
 
 
