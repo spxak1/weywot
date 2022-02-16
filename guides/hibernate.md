@@ -17,7 +17,7 @@ Effectively the system, when powered back on, it goes through POST in the same w
 3. Configure the swapfile as swap to the system
 4. Configure the kernel to load the swap conents after resuming from hibernate
 5. Add the function to hibernate to the system
-6. Add a hibernate button to the power meny
+6. Add a hibernate button to the power menu
 
 Note: This list is longer than the actual steps, so don't fret.
 
@@ -196,10 +196,94 @@ HibernateDelaySec=1min
 ~~~
 This tells the system how long to wait on suspend before it goes to hibernate.
 
-Test it.
+Test it with:
+~~~
+otheos@kepler:~$ sudo systemctl suspend-then-hibernate
+~~~
+
+Because I've set the timeout to only 1 minute, if you power on your laptop within a minute, the laptop should resume straight into the lock screen (or session if you have disabled the lock screen).
+
+Try it again. Now wait for more than 1 minute. Power the laptop on, and you should see it going throuhg POST now, then going to your lock screen. 
+
+These two show the system works fine. First it goes to suspend (to RAM) and after the time set it goes to hibernation (suspend to disk).
+
+You want this behaviour when: 
+
+1. you press the power button
+2. close the lid
+3. idle
+
+Note: Source: https://askubuntu.com/questions/12383/how-to-go-automatically-from-suspend-into-hibernate
+
+You need to edit ```/etc/systemd/logind.conf```
+
+#### For the 1st, edit the line:
+~~~
+#HandlePowerKey=poweroff
+~~~
+to
+~~~
+HandlePowerKey=suspend-then-hibernate
+~~~
+
+If your laptop has more keys for suspend etc, look furtherdown the list and enable acccordingly.
+
+#### For the 2nd, edit the line:
+~~~
+#HandleLidSwitch=suspend
+~~~
+to
+~~~
+HandleLidSwitch=suspend-then-hibernate
+~~~
+
+This is also when you set different behaviour when on dock or on charger. Typically you'd want on such occasions to forego hibernation and stick to suspend-to-ram. Adjust according to your needs.
 
 
+#### For the 3rd, edith the lines
+~~~
+#IdleAction=ignore
+#IdleActionSec=30min
+~~~
+to
+~~~
+IdleAction=suspend-then-hibernate
+IdleActionSec=10min
+~~~
 
+Note: I haven't tested if the latter setting superseeds that from gnome settings to suspend on idle. There may be a conflict, I haven't tested, but I remember there is a dconf command to do the same as above. I will update as needed.
+
+### 3.6 Add a hibernate in the power menu
+
+Source: https://www.how2shout.com/linux/how-to-hibernate-ubuntu-20-04-lts-focal-fossa/
+
+
+Create this file as root ```/etc/polkit-1/localauthority/50-local.d/com.ubuntu.enable-hibernate.pkla```
+
+With this content:
+~~~
+[Re-enable hibernate by default in upower]
+Identity=unix-user:*
+Action=org.freedesktop.upower.hibernate
+ResultActive=yes
+
+[Re-enable hibernate by default in logind]
+Identity=unix-user:*
+Action=org.freedesktop.login1.hibernate;org.freedesktop.login1.handle-hibernate-key;org.freedesktop.login1;org.freedesktop.login1.hibernate-multiple-sessions;org.freedesktop.login1.hibernate-ignore-inhibit
+ResultActive=yes
+
+Reboot. Do[Re-enable hibernate by default in upower]
+Identity=unix-user:*
+Action=org.freedesktop.upower.hibernate
+ResultActive=yes
+
+[Re-enable hibernate by default in logind]
+Identity=unix-user:*
+Action=org.freedesktop.login1.hibernate;org.freedesktop.login1.handle-hibernate-key;org.freedesktop.login1;org.freedesktop.login1.hibernate-multiple-sessions;org.freedesktop.login1.hibernate-ignore-inhibit
+ResultActive=yes
+~~~
+
+Reboot. 
 
 
 
