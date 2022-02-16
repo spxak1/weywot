@@ -147,8 +147,44 @@ otheos@kepler:~$ sudo kernelstub -a "resume=UUID=f639405e-c5a9-4472-93fa-a39edda
 
 See the **UUID** and the **offset** how they were used above? You use your own.
 
+Note: If you use a swap partition, there is no offset, as the whole partition is the swap. So you don't add the ```resume_offset``` part.
+
+Finish it off by updating your initramfs with (this takes a minute):
+
+~~~
+otheos@kepler:~$ sudo update-initramfs -u
+update-initramfs: Generating /boot/initrd.img-5.15.15-76051515-generic
+kernelstub.Config    : INFO     Looking for configuration...
+kernelstub           : INFO     System information: 
+
+    OS:..................Pop!_OS 21.10
+    Root partition:....../dev/nvme0n1p3
+    Root FS UUID:........f639405e-c5a9-4472-93fa-a39edda16e4c
+    ESP Path:............/boot/efi
+    ESP Partition:......./dev/nvme0n1p1
+    ESP Partition #:.....1
+    NVRAM entry #:.......-1
+    Boot Variable #:.....0000
+    Kernel Boot Options:.quiet splash loglevel=0 mitigations=off systemd.show_status=false pci=nocrs resume=UUID=f639405e-c5a9-4472-93fa-a39edda16e4c resume_offset=9021440
+    Kernel Image Path:.../boot/vmlinuz-5.15.15-76051515-generic
+    Initrd Image Path:.../boot/initrd.img-5.15.15-76051515-generic
+    Force-overwrite:.....False
+
+kernelstub.Installer : INFO     Copying Kernel into ESP
+kernelstub.Installer : INFO     Copying initrd.img into ESP
+kernelstub.Installer : INFO     Setting up loader.conf configuration
+kernelstub.Installer : INFO     Making entry file for Pop!_OS
+kernelstub.Installer : INFO     Backing up old kernel
+kernelstub.Installer : INFO     Making entry file for Pop!_OS
+~~~
+
 You're good to go. Now of to enable the hibernation function at the OS level.
 
+### 3.5 Enable Hibernation
+
+First check it works. Save all your work!
+
+~~~
 
 
 
