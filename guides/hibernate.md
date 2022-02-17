@@ -1,6 +1,9 @@
 # How to configure Hibernation in Pop 
 This guid does **not** include encryption and uses a swap **file**.
 
+## 0.0 Warning - Speed!
+Writing all your RAM **to disk** and then reading it back **from disk** is not as fast as suspend/resume. This becomes even more of an issue **if you have a lot of RAM**, like 32GB or more , and **much, much worse** if you use an HDD or even a SATA SSD. Note that for a SATA SSD with 500MBps sequential speed, writing 32GB when you go to hibernatin takes 64 seconds! With a 3000MBps NVMe drive, this takes only 11 seconds. For an HDD with 140MBps, this will take almost 4 minutes!!! And just as much to resume. It is clearly faster to reboot, no matter what drive.
+
 ## 1.0 Sources
 This guide is a shameless copy of this: https://abskmj.github.io/notes/posts/pop-os/enable-hibernate/
 All credit goes to that author.
@@ -284,6 +287,8 @@ ResultActive=yes
 ~~~
 
 Reboot. 
+
+Test as required, and then **remember to change from 1 minute** to something sensible, at the begining of step 3.5.
 
 
 
