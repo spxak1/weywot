@@ -2,11 +2,12 @@
 This guid does **not** include encryption and uses a swap **file**.
 
 ## 0.0 Warning - Speed!
-Writing all your RAM **to disk** and then reading it back **from disk** is not as fast as suspend/resume. This becomes even more of an issue **if you have a lot of RAM**, like 32GB or more , and **much, much worse** if you use an HDD or even a SATA SSD. Note that for a SATA SSD with 500MBps sequential speed, writing 32GB when you go to hibernatin takes 64 seconds! With a 3000MBps NVMe drive, this takes only 11 seconds. For an HDD with 140MBps, this will take almost 4 minutes!!! And just as much to resume. It is clearly faster to reboot, no matter what drive.
+Writing all your RAM **to disk** and then reading it back **from disk** is not as fast as suspend/resume. This becomes even more of an issue **if you have a lot of RAM**, like 32GB or more , and **much, much worse** if you use an HDD or even a SATA SSD. Note that for a SATA SSD with 500MBps sequential speed, writing 32GB when you go to hibernation takes 64 seconds! With a 3000MBps NVMe drive, this takes only 11 seconds. For an HDD with 140MBps, this will take almost 4 minutes!!! And just as much to resume. It is clearly faster to reboot, no matter what drive.
 
 ## 1.0 Sources
 This guide is a shameless copy of this: https://abskmj.github.io/notes/posts/pop-os/enable-hibernate/
-All credit goes to that author.
+
+All credit goes to that author and  the sources credited therein.
 
 ## 2.0 Principle of operation (very basic description)
 When the computer suspends, the RAM is kept powered to maintain its content. So the rest of the system can be powered off, and when resumed, the OS is in the same state it was before suspension.
