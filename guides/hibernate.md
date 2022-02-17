@@ -193,7 +193,7 @@ otheos@kepler:~$ sudo systemctl hibernate
 
 Your system should hibernate, then on manual power on, it will resume.
 
-To enable it, edit ```/etc/systemc/sleep.conf``` and uncomment the line with:
+To enable it, edit ```/etc/systemd/sleep.conf``` and uncomment the line with:
 ~~~
 HibernateDelaySec=1min
 ~~~
