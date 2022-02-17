@@ -27,7 +27,7 @@ Note: This list is longer than the actual steps, so don't fret.
 
 ### 3.1 Check your kernel can do it:
 
-Issue:
+Do:
 ~~~
 otheos@kepler:~$ cat /sys/power/state
 freeze mem disk
