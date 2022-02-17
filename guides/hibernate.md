@@ -274,19 +274,11 @@ ResultActive=yes
 Identity=unix-user:*
 Action=org.freedesktop.login1.hibernate;org.freedesktop.login1.handle-hibernate-key;org.freedesktop.login1;org.freedesktop.login1.hibernate-multiple-sessions;org.freedesktop.login1.hibernate-ignore-inhibit
 ResultActive=yes
-
-Reboot. Do[Re-enable hibernate by default in upower]
-Identity=unix-user:*
-Action=org.freedesktop.upower.hibernate
-ResultActive=yes
-
-[Re-enable hibernate by default in logind]
-Identity=unix-user:*
-Action=org.freedesktop.login1.hibernate;org.freedesktop.login1.handle-hibernate-key;org.freedesktop.login1;org.freedesktop.login1.hibernate-multiple-sessions;org.freedesktop.login1.hibernate-ignore-inhibit
-ResultActive=yes
 ~~~
 
 Reboot. 
+
+Finally install the extension from here: https://extensions.gnome.org/extension/755/hibernate-status-button/
 
 Test as required, and then **remember to change from 1 minute** to something sensible, at the begining of step 3.5.
 
