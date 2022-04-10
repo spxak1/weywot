@@ -1,5 +1,8 @@
 # Add a Pop!_OS boot logo
 
+**UPDATE: Latest plymouth makes the pop-theme logo obsolete**
+I keep this here for the relevant tools used, but this is no longer applicable.
+
 [Watch it here in action](https://streamable.com/9mp1nl)
 
 ~~~
