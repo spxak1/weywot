@@ -287,5 +287,60 @@ Plenty of resources, Arch Wiki, as always, great: https://wiki.archlinux.org/ind
 
 This guide use material from [here](https://github.com/DIGImend/digimend-kernel-drivers/issues/510#issue-793499371)
 
+## Appendix
+
+Some random ```xsetwacom``` commands that are helpful.
+
+~~~
+otheos@kepler:~$ xsetwacom list devices
+Wacom Pen and multitouch sensor Finger touch	id: 11	type: TOUCH     
+Wacom Pen and multitouch sensor Pen stylus	id: 12	type: STYLUS    
+Wacom Pen and multitouch sensor Pen eraser	id: 18	type: ERASER  
+~~~
+~~~
+otheos@kepler:~$ xsetwacom --shell get "Wacom Pen and multitouch sensor Pen stylus" all 
+xsetwacom set "Wacom Pen and multitouch sensor Pen stylus" "Area" "0 0 29376 16524"
+xsetwacom set "Wacom Pen and multitouch sensor Pen stylus" "Button" "1" "button +1 "
+xsetwacom set "Wacom Pen and multitouch sensor Pen stylus" "Button" "2" "button +2 "
+xsetwacom set "Wacom Pen and multitouch sensor Pen stylus" "Button" "3" "button +3 "
+xsetwacom set "Wacom Pen and multitouch sensor Pen stylus" "Button" "8" "button +8 "
+xsetwacom set "Wacom Pen and multitouch sensor Pen stylus" "ToolDebugLevel" "0"
+xsetwacom set "Wacom Pen and multitouch sensor Pen stylus" "TabletDebugLevel" "0"
+xsetwacom set "Wacom Pen and multitouch sensor Pen stylus" "Suppress" "2"
+xsetwacom set "Wacom Pen and multitouch sensor Pen stylus" "RawSample" "4"
+xsetwacom set "Wacom Pen and multitouch sensor Pen stylus" "PressureCurve" "0 0 100 100"
+xsetwacom set "Wacom Pen and multitouch sensor Pen stylus" "Mode" "Absolute"
+xsetwacom set "Wacom Pen and multitouch sensor Pen stylus" "TabletPCButton" "off"
+xsetwacom set "Wacom Pen and multitouch sensor Pen stylus" "Touch" "off"
+xsetwacom set "Wacom Pen and multitouch sensor Pen stylus" "Gesture" "off"
+xsetwacom set "Wacom Pen and multitouch sensor Pen stylus" "ZoomDistance" "0"
+xsetwacom set "Wacom Pen and multitouch sensor Pen stylus" "ScrollDistance" "0"
+xsetwacom set "Wacom Pen and multitouch sensor Pen stylus" "TapTime" "250"
+xsetwacom set "Wacom Pen and multitouch sensor Pen stylus" "CursorProximity" "30"
+xsetwacom set "Wacom Pen and multitouch sensor Pen stylus" "Rotate" "none"
+xsetwacom set "Wacom Pen and multitouch sensor Pen stylus" "Threshold" "26"
+xsetwacom set "Wacom Pen and multitouch sensor Pen stylus" "BindToSerial" "0"
+xsetwacom set "Wacom Pen and multitouch sensor Pen stylus" "PressureRecalibration" "on"
+xsetwacom set "Wacom Pen and multitouch sensor Pen stylus" "PanScrollThreshold" "1300"
+~~~
+
+The ```--shell get``` option renders all commands that can be run from a shell, along with current options.
+
+This is great to store when you start to keep an eye on defaults.
+
+Finally: **Resetting** to stock!
+
+~~~
+xsetwacom set "Wacom Pen and multitouch sensor Pen stylus" "Button" "1" "button +1 "
+~~~
+
+Or,
+
+~~~
+xsetwacom set "Wacom Pen and multitouch sensor Pen stylus" "Button" "1"
+~~~
+
+Effectively without an option, resets to default.
+
 
 
