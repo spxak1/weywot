@@ -2,6 +2,16 @@
 
 This is adapted from [the ArchWiki](https://wiki.archlinux.org/index.php/Bluetooth#Dual_boot_pairing), so all credit goes to the Arch community.
 
+This guide describes concepts and steps for sync Bluetooth keys manually. At the same time multiple tools exist handling this issue. Checkout ["bluetooth dualboot" on github](https://github.com/search?q=bluetooth+dualboot&type=repositories). 
+
+For example simple cli
+
+```console
+$ sudo bt-dualboot --sync-all
+```
+
+Checkout the tool https://github.com/x2es/bt-dualboot and another [alternatives](https://github.com/x2es/bt-dualboot#alternatives).
+
 ## 1.0 Prerequisites
 
 Install **chntpw**, a registry editor. 
