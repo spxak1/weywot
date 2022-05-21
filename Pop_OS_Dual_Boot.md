@@ -16,7 +16,7 @@
 To dual boot Windows and Pop!_OS with a menu, both operating systems' EFI files need to be in the same FAT32 partition. This guide elaborates on how to either install OS's using the same EFI partition or **copy Windows's EFI ```Microsoft``` folder into Pop!_OS's ```/boot/efi/EFI```**. 
 
 ## 1. Introduction
-Pop!_OS uses **systemd-boot** as its boot manager. Most new users don't know how **systemd-boot** works and the fact that it is mostly transparent to the user (as a boot-manager should be), makes it hard for some users to understand. As such a common advice when new users want to dual boot with Windows is to install **grub**. Grub is better known as it is commonly used by other distributions, namely **Ubuntu** and has a visible menu at boot, which new users grow to expect. As such it is common *advice* between new users to install **grub** in order to dual boot Pop!_OS with Windows. This, is **totally unecessary** as not only it removes the ease and simplicity of **systemd-boot** and replaces it with the rather complex configuration of **grub**, but also **grub** has the tedency to break with **Windows updates**, while **systemd-boot** does not. 
+Pop!_OS uses **systemd-boot** as its boot manager. Most new users don't know how **systemd-boot** works and the fact that it is mostly transparent to the user (as a boot-manager should be), makes it hard for some users to understand. As such a common advice when new users want to dual boot with Windows is to install **grub**. Grub is better known as it is commonly used by other distributions, namely **Ubuntu** and has a visible menu at boot, which new users grow to expect. As such it is common *advice* between new users to install **grub** in order to dual boot Pop!_OS with Windows. This, is **totally unecessary** as not only it removes the ease and simplicity of **systemd-boot** and replaces it with the rather complex configuration of **grub**, but also **grub** has the tendency to break with **Windows updates**, while **systemd-boot** does not. 
 
 Check your system is in UEFI mode with ```mount | grep efivars``` and expect an ouput of ```efivarfs on /sys/firmware/efi/efivars type efivarfs (rw,nosuid,nodev,noexec,relatime)```. 
 
@@ -33,14 +33,14 @@ While this is a guide tested many times, the procedures followed include creatin
 
 ### 1.3 Prerequisites
 
-Some basic skills are required before you move on. You need to be apt enough in **linux** to complete the followin tasks:
+Some basic skills are required before you move on. You need to be apt enough in **linux** to complete the following tasks:
 
 1. Use ```lsblk``` 
 2. Mount a partition
 3. Copy files **and** folders from the terminal
 4. Create Live USB sticks from Windows and Linux
 5. Install Pop!_OS and Windows from USB
-6. Understand the difference between **mbr** and **gpt** and how to use ```fdisk``` to change disks from on type to the other
+6. Understand the difference between **mbr** and **gpt** and how to use ```fdisk``` to change disks from one type to the other
 7. Understand the difference between **UEFI** and **legacy** modes in BIOS and use your system's bios to check/modify
 8. Use your system's bios to change the boot order
 9. Use your system's bios to disable **secure boot** and enable AHCI for storage
@@ -49,7 +49,7 @@ While these will all be used in this guide, they will be handy when setting up a
 
 ### 1.4 Not covered
 This guide does not cover how to install Pop!_OS, Windows, how to create partitions on either OS, how to resize partitions. 
-**This guid does not cover installation on Legacy/Bios systems. This is for UEFI only**.
+**This guide does not cover installation on Legacy/Bios systems. This is for UEFI only**.
 
 ### 1.5 Basic concept
 **Systemd-boot** is simple. It will boot any OS that has an EFI entry (with the boot file) in ```/boot/efi```. All this guide does is describe the process of copying such files. 
@@ -72,7 +72,7 @@ Finally you can supersede the boot order and choose to boot Windows or Pop!_OS b
 This is the simplest case. Each operating system is installed separately on its own drive. This requires a minimum of two drives (obviously) and the order of installation does not matter. It is *advisable* to only have one drive installed at a time of installing each OS, so that you avoid confusion. However with Pop!_OS not using **systemd-boot** rather than **grub**, there is no danger of misplacing the boot loader, so both drives can be connected while installing Pop!_OS, just make sure you select only the drive you want Pop!_OS installed before you install Pop!_OS.
 
 ### 2.1 OS installation
-Install each OS to its onwn drive. At this point you can boot each OS by selectig the boot device from your BIOS.
+Install each OS to its own drive. At this point you can boot each OS by selecting the boot device from your BIOS.
 At this point Pop!_OS may **or** many **not** provide you with a **menu**. But there is one:
 
 With Pop!_OS selected to boot, when your system shows the manufacturers logo (i.e. during POST), you **spam** or **hold** the **spacebar**. This will bring up the **menu**. This menu does **not** include an option for Windows (yet).
@@ -138,11 +138,11 @@ See my video here: https://www.youtube.com/watch?v=Fw3fQQmlXEs
 
 If you're installing on a fresh drive, installing Pop!_OS first is the easiest option. Follow these steps to get a **dual boot menu**.
 
-1. Install Pop!_OS as per normal. You can partition the drive before installation and do a custom installation. This will have the space for Windows alocated at this point and you do not need to move and resize partitions after. But you may end up without a recovery partition. Practice, see what workds for you. 
+1. Install Pop!_OS as per normal. You can partition the drive before installation and do a custom installation. This will have the space for Windows alocated at this point and you do not need to move and resize partitions after. But you may end up without a recovery partition. Practice, see what works for you. 
 2. If you installed the default way, **do not reboot**.
-3. Start ```gparted``` and resize/move as required to make space for Windows. The Windows installer will have to find empty space to install to. You can format that space to NTFS or leave it unformatted. If formatted, you get the benefit of Windows **not**creating the smaller partitions and as such you can then adjust space between Pop and Windows. If you don't format, Windows will create two more smaller partitions which are impossible to move and as such you cannot adjust the space afterwards. See the video with formatting [here](https://www.youtube.com/watch?v=Fw3fQQmlXEs) and without formatting [here](https://www.youtube.com/watch?v=Fw3fQQmlXEs).
+3. Start ```gparted``` and resize/move as required to make space for Windows. The Windows installer will have to find empty space to install to. You can format that space to NTFS or leave it unformatted. If formatted, you get the benefit of Windows **not** creating the smaller partitions and as such you can then adjust space between Pop and Windows. If you don't format, Windows will create two more smaller partitions which are impossible to move and as such you cannot adjust the space afterwards. See the video with formatting [here](https://www.youtube.com/watch?v=Fw3fQQmlXEs) and without formatting [here](https://www.youtube.com/watch?v=Fw3fQQmlXEs).
 4. Start the Windows installation, and select the empty space to install to. Windows will **by default** install its EFI folder in the pre-existing EFI partition that Pop!_OS uses. This means that all EFI files will now be in the same place as required for systemd-boot to show Windwos in the **menu**. 
-5. Uppon reboot (Windows requires several) you will need to manually select Windows. Either fire up the menu and make Windows default (see introduction), or hold **w** on every reboot, or make Windows the default in your bios at this stage.
+5. Upon reboot (Windows requires several) you will need to manually select Windows. Either fire up the menu and make Windows default (see introduction), or hold **w** on every reboot, or make Windows the default in your bios at this stage.
 6. If you already have Pop!_OS as your only OS and want to install Windows, you will need to **boot from USB** and start at **step 3** above.
 7. Once the Windows installation is complete, adjust your boot order in the bios to Pop!_OS, and use the **menu** as required.
 
@@ -182,7 +182,7 @@ Here you will end up with two separate EFI partitions and as such the procedure 
 
 Note: See the very short TL:DR at the very top if you know what you're doing.
 
-If you have managed to install Windows and Pop!_OS, read the introduction before you procede. 
+If you have managed to install Windows and Pop!_OS, read the introduction before you proceed. 
 
 To make Windows appear in the boot menu, you will need to copy its EFI folder to where Pop!_OS's EFI folder is.
 
@@ -253,4 +253,4 @@ Then issue the command:
 bcdboot c:\Windows /s y:
 ~~~
 
-That's it. Windows now copied the files to the new ESP.  The best part about this method is now Windows doesn't use the old ESP ever again, so techincally you can remove it. (Work in progress as this has so far worked erratically). 
+That's it. Windows now copied the files to the new ESP.  The best part about this method is now Windows doesn't use the old ESP ever again, so technically you can remove it. (Work in progress as this has so far worked erratically). 
