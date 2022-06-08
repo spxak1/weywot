@@ -23,6 +23,10 @@ as this OS has the key stored in the device.
 The solution to this problem is to make both operating systems **use the same key**. For this the device is **paired to linux first, then paired to Windows**.
 At this point the device can connect to Windows, but not linux. We need to **copy the key from Windows to Linux**, as it is easier to edit that in linux than in Windows.
 
+So, steps:
+* Pair the device in linux first
+* Reboot to Windows, pair the device in Windows. Reboot to linux.
+
 ## 4.0 View the Windows registry from Linux
 
 From linux, mount your Windows partition to a known path, then navigate to ```/path/to/Windows/Windows/System32/config```
@@ -326,7 +330,8 @@ EDiv=0
 
 Save and exit with **ctrl+x** (if using nano). 
 
-As soon as the file is saved your mouse becomes available. Enjoy using the same device on both your operating systems without repairing.
+As soon as the file is saved your mouse becomes available. Or restart BT with ```sudo systemctl restart bluetooth```.
+Enjoy using the same device on both your operating systems without repairing.
 
 
 
