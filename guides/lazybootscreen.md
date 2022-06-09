@@ -83,7 +83,7 @@ SubTitle=Do not turn off your computer
 
 ## 3. Changes
 
-* Under **two-step** I have edited every part that includes the word **vertical**. That's that.
+* Under **[two-step]** I have edited every part that includes the word **vertical**. That's that.
 * Under **[boot]** I've added the last two lines.
 * Under **[shutdown]** and **[reboot]** i've added the last line.
 
