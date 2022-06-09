@@ -28,7 +28,7 @@ root@brahe:/home/otheos# cd /usr/share/plymouth/themes/pop-basic/
 root@brahe:/usr/share/plymouth/themes/pop-basic# cp pop-basic.plymouth pop-basic.plymouth.bak
 ~~~
 
-Here's my modified ```pop-basic.plymouth```.
+Here's my modified ```pop-basic.plymouth```. Changes are in **bold**.
 ~~~
 [Plymouth Theme]
 Name=Pop Basic
@@ -40,13 +40,13 @@ Font=Fira Sans Regular 11
 TitleFont=Fira Sans Regular 11
 ImageDir=/usr/share/plymouth/themes/pop-basic
 DialogHorizontalAlignment=.5
-DialogVerticalAlignment=.7
+<b>DialogVerticalAlignment=.7</b>
 TitleHorizontalAlignment=.5
-TitleVerticalAlignment=.682
+<b>TitleVerticalAlignment=.682</b>
 HorizontalAlignment=.5
-VerticalAlignment=.83
+<b>VerticalAlignment=.83</b>
 WatermarkHorizontalAlignment=.5
-WatermarkVerticalAlignment=.8
+<b>WatermarkVerticalAlignment=.8</b>
 Transition=none
 TransitionDuration=0.0
 BackgroundStartColor=0x36322f
@@ -61,17 +61,17 @@ CursorAnimationSpeed=7
 
 [boot-up]
 UseEndAnimation=false
-UseProgressBar=true
-UseFirmwareBackground=true
+<b>UseProgressBar=true</b>
+<b>UseFirmwareBackground=true</b>
 
 [shutdown]
 UseEndAnimation=false
-UseFirmwareBackground=true
+<b>UseFirmwareBackground=true</b>
 
 
 [reboot]
 UseEndAnimation=false
-UseFirmwareBackground=true
+<b>UseFirmwareBackground=true</b>
 
 [updates]
 SuppressMessages=true
