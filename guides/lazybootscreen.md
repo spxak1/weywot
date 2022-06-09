@@ -1,7 +1,9 @@
 # Simple Pop_OS boot screen
 
 This is a lazy guid to convert the grey boot screen to a **OEM logo + Pop logo + progress bar boot screen**. 
+
 **Note**: I don't know two-step syntax for plymouth, so this is the result of a quick figuring out how it works. You may well improve on it.
+
 **Note**: This adds a good 2-3 seconds to the boot time, compared to the grey screen.
 
 ## 1. Steps
