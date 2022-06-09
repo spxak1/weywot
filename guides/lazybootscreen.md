@@ -1,6 +1,6 @@
 # Simple Pop_OS boot screen
 
-This is a lazy guid to convert the grey boot screen to a **OEM logo + Pop logo + progress bar boot screen**. 
+This is a quick and lazy guide to convert the grey boot screen to a **OEM logo + Pop logo + progress bar boot screen**. 
 
 **Note**: I don't know two-step syntax for plymouth, so this is the result of a quick figuring out how it works. You may well improve on it.
 
@@ -13,7 +13,7 @@ This is what it looks like:
 ## 1. Steps
 Easy mod:
 * Edit ```/usr/share/plymouth/themes/pop-basic/pop-basic.plymouth```
-* Place the watermark picture (donwload from [here](https://github.com/spxak1/weywot/blob/main/assets/watermark.png) in the same folder.
+* Place the watermark picture (donwload from [here](https://github.com/spxak1/weywot/blob/main/assets/watermark.png) or below) in the same folder.
 
 ![Pop Logo](../assets/watermark.png)
 
