@@ -6,6 +6,10 @@ This is a lazy guid to convert the grey boot screen to a **OEM logo + Pop logo +
 
 **Note**: This adds a good 2-3 seconds to the boot time, compared to the grey screen.
 
+This is what it looks like:
+
+![Boot Screen](../assets/bootscreen.jpg)
+
 ## 1. Steps
 Easy mod:
 * Edit ```/usr/share/plymouth/themes/pop-basic/pop-basic.plymouth```
@@ -14,7 +18,15 @@ Easy mod:
 ![Pop Logo](../assets/watermark.png)
 
 ## 2. Execution
-All steps require *root*, so **be careful**. Make a backup of any files you are going to edi, before editing them!
+All steps require *root*, so **be careful**. Make a backup of any files you are going to edit, before editing them!
+
+The following sequence is suggested:
+~~~
+otheos@brahe:~$ sudo su
+[sudo] password for otheos: 
+root@brahe:/home/otheos# cd /usr/share/plymouth/themes/pop-basic/
+root@brahe:/usr/share/plymouth/themes/pop-basic# cp pop-basic.plymouth pop-basic.plymouth.bak
+~~~
 
 Here's my modified ```pop-basic.plymouth```.
 ~~~
