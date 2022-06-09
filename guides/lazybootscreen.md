@@ -7,7 +7,9 @@ This is a lazy guid to convert the grey boot screen to a OEM logo + Pop logo + p
 ## 1. Steps
 Easy mod:
 * Edit ```/usr/share/plymouth/themes/pop-basic/pop-basic.plymouth```
-* Place the watermark picture (donwload from [here](https://github.com/spxak1/weywot/blob/main/assets/watermark.png) in the same folder
+* Place the watermark picture (donwload from [here](https://github.com/spxak1/weywot/blob/main/assets/watermark.png) in the same folder.
+
+![Pop Logo](../assets/watermark.png)
 
 ## 2. Execution
 All steps require *root*, so **be careful**. Make a backup of any files you are going to edi, before editing them!
