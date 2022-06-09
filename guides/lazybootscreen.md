@@ -30,7 +30,6 @@ root@brahe:/usr/share/plymouth/themes/pop-basic# cp pop-basic.plymouth pop-basic
 
 Here's my modified ```pop-basic.plymouth```.
 ~~~
-  GNU nano 6.2 /usr/share/plymouth/themes/pop-basic/pop-basic.plymouth          
 [Plymouth Theme]
 Name=Pop Basic
 Description=Re-Write of Pop!_OS decryption screen using two-step rather than pl>
