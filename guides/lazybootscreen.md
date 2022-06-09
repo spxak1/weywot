@@ -29,7 +29,8 @@ root@brahe:/usr/share/plymouth/themes/pop-basic# cp pop-basic.plymouth pop-basic
 ~~~
 
 Here's my modified ```pop-basic.plymouth```. Changes are in **bold**.
-~~~
+
+<pre>
 [Plymouth Theme]
 Name=Pop Basic
 Description=Re-Write of Pop!_OS decryption screen using two-step rather than pl>
@@ -92,7 +93,7 @@ ProgressBarShowPercentComplete=true
 UseProgressBar=true
 Title=Upgrading Firmware...
 SubTitle=Do not turn off your computer
-~~~
+</pre>
 
 ## 3. Changes
 
