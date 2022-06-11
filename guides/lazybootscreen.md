@@ -54,7 +54,7 @@ BackgroundStartColor=0x36322f
 BackgroundEndColor=0x36322f
 ProgressBarBackgroundColor=0x606060
 ProgressBarForegroundColor=0xffffff
-DialogClearsFirmwareBackground=false
+<b>DialogClearsFirmwareBackground=false</b>
 MessageBelowAnimation=true
 MessageBelowAnimationDistance=10
 CursorAnimation=breath
@@ -97,7 +97,7 @@ SubTitle=Do not turn off your computer
 
 ## 3. Changes
 
-* Under **[two-step]** I have edited every part that includes the word **vertical**. That's that.
+* Under **[two-step]** I have edited every part that includes the word **vertical**. and changed to **false** the DialogClears... entry.
 * Under **[boot]** I've added the last two lines.
 * Under **[shutdown]** and **[reboot]** i've changed the last line to true.
 
