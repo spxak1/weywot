@@ -6,6 +6,8 @@ This is a quick and lazy guide to convert the grey boot screen to a **OEM logo +
 
 **Note**: This adds a good 2-3 seconds to the boot time, compared to the grey screen.
 
+Video of what it looks like (with encryption): https://youtu.be/Etj3wdG5NIY
+
 This is what it looks like:
 
 ![Boot Screen](../assets/bootscreen.jpg)
