@@ -47,7 +47,7 @@ TitleHorizontalAlignment=.5
 HorizontalAlignment=.5
 <b>VerticalAlignment=.83</b>
 WatermarkHorizontalAlignment=.5
-<b>WatermarkVerticalAlignment=.8</b>
+<b>WatermarkVerticalAlignment=.9</b>
 Transition=none
 TransitionDuration=0.0
 BackgroundStartColor=0x36322f
@@ -97,7 +97,7 @@ SubTitle=Do not turn off your computer
 
 ## 3. Changes
 
-* Under **[two-step]** I have edited every part that includes the word **vertical**. and changed to **false** the DialogClears... entry.
+* Under **[two-step]** I have edited every part that includes the word **vertical**. and changed to **false** the entry *DialogClearsFirmwareBackground*.
 * Under **[boot]** I've added the last two lines.
 * Under **[shutdown]** and **[reboot]** i've changed the last line to true.
 
