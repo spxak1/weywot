@@ -99,7 +99,7 @@ SubTitle=Do not turn off your computer
 
 * Under **[two-step]** I have edited every part that includes the word **vertical**. That's that.
 * Under **[boot]** I've added the last two lines.
-* Under **[shutdown]** and **[reboot]** i've added the last line.
+* Under **[shutdown]** and **[reboot]** i've changed the last line to true.
 
 ## 4. Update the initramfs
 
