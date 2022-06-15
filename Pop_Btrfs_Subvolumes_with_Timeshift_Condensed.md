@@ -87,7 +87,7 @@ chroot /mnt
 nano /etc/fstab
 ```
 
-Make sure you have one line starting with UUID for `/` and one for `/home`. The only difference between these two lines is that one uses the `subvol=@` parameter while the other uses `subvol=@home`. Example:
+Make sure you have one line starting with UUID for `/` and one for `/home`. The only difference between these two lines is that one uses the `subvol=@` parameter while the other uses `subvol=@home`. (Remove the `ssd` option if you are not using an SSD). Example:
 
 ```
 UUID=18226258-bb30-4552-98c0-775ae3d74433  /  btrfs  defaults,subvol=@,ssd,noatime,space_cache,commit=120,compress=zstd  0  0
