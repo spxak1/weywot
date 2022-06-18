@@ -60,7 +60,7 @@ Change to *root* (be careful now!) with ```sudo su``` and go to ```/boot/efi/EFI
 
 Everything else is now the **kernel options**. These may be different for your usecase, but **these are the minimum required**.
 
-* ```'root=UUID=f925d79c-a485-43cf-8cd2-2d24cdea718b rw initrd=\EFI\Pop_OS-f925d79c-a485-43cf-8cd2-2d24cdea718b\initrd.img'```. These state the location of the *root* partition, and the location of the *initrd*. The *initrd* file is in the **same location as the kernel**. But **notice how the path is written** with forward slashes (/) rather than backward slashes (\\) as expected. 
+* ```'root=UUID=f925d79c-a485-43cf-8cd2-2d24cdea718b rw initrd=\EFI\Pop_OS-f925d79c-a485-43cf-8cd2-2d24cdea718b\initrd.img'```. These state the location of the *root* partition, and the location of the *initrd*. The *initrd* file is in the **same location as the kernel**. But **notice how the path is written** with back slashes (/) rather than forward slashes (\\) as expected. 
 
 For the **root** partition UUID, you can do: ```blkid``` and see it in the output, e.g. ```/dev/sda3: UUID="f925d79c-a485-43cf-8cd2-2d24cdea718b" BLOCK_SIZE="4096" TYPE="ext4" PARTUUID="63b38b7c-c4d9-4452-9403-127034ea8ebd"```. You need the **UUID** not the **PARTUUID**. 
 
