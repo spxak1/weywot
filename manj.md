@@ -1,25 +1,25 @@
 # Dual Boot Pop with Manjaro
 
-I wanted to be able to keep my distro hoping without changing my productivity system. This is how I installed Manjaro next to Pop.
+I wanted to be able to keep my distro, hoping to maintain my productivity system. This is how I installed Manjaro next to Pop.
 
 # Disclaimer
 
-This method worked on my system and I cannot see why it won't work with yours. It does involve performing some tasks that if executed poorly **you may lose all your data**. This involves resizing partitions, so it is **dangerous**. Also this process involves messing with the EFI partition which, if done poorly, **may make your system unbootable**. So, use at your own risk.
+This method worked on my system and I cannot see why it won't work with yours. It does involve performing some tasks that should be carefully executed less **you may lose all your data**. The dualboot process involves resizing partitions, so it is **dangerous**. Also this process involves messing with the EFI partition which, if done poorly, **may make your system unbootable**. So, use at your own risk.
 
 # Prerequisites
 
-* Pop\_OS (20.10 in this case) installed first on SSD.
+* Pop\_OS (20.10 in this case) installed first.
 * 512MB /boot/efi default partition is enough for this (but not if you want to triple boot).
-* Manjaro can be installed on the same SSD or on a separate SSD, makes no difference here where the **"/"** partition of Manjaro goes. If on separate SSD, you can just install normally and chose boot from your BIOS (or from efibootmgr).
+* Manjaro can be installed on the same drive or on a separate drive, makes no difference where the **"/"** partition of Manjaro goes. If on separate drive, you can just install normally and chose boot from your BIOS (or from efibootmgr).
 
-# Prepare the SSD
+# Prepare the boot drive
 
-**Skip this if you installing on a separate SSD**
+**Skip this if you installing on a separate boot drive**
 
-You will need free space on the SSD. If your Pop\_OS takes it all up, you will need to resize. This is NOT done from Pop\_OS as **gparted** cannot resize a mounted partition.
+You will need free space on the drive. If your Pop\_OS takes it all up, you will need to resize. This is NOT done from Pop\_OS as **gparted** cannot resize a mounted partition.
 
 Instead boot from USB or from recovery, run **gparted** and make some free space.
-If it is not installed, open a terminal and do:
+If it is not installed, open a terminal and execute:
 
     sudo apt install gparted
 
@@ -41,7 +41,7 @@ Also mark it as boot in the options.
 
 ## For **"/"**
 
-Here you select the free space you made earlier, or, if you're installing on a separate SSD, a partition on that SSD. I normally go with ext4 and no encryption. Up to you.
+Here you select the free space you made earlier, or, if you're installing on a separate boot drive, a partition on that boot drive. I normally go with ext4 and no encryption. Up to you.
 
 # First boot
 
@@ -49,27 +49,27 @@ As soon as the installation process completes, you will see Manjaro's grub loade
 
 # Boot option 1: You like grub
 
-At this point you can keep it as it is, with Manjaro's grub bootloader talking over. You can customize grub **from within Manjaro** to make Pop\_OS your first choice if you want. [Grub customizer](https://launchpad.net/grub-customizer) can be installed in Manjaro and used for that purpose if you find editing files in the terminal hard. Whatever works for you.
+At this point you can keep it as it is, with Manjaro's grub bootloader taking over. You can customize grub **from within Manjaro** to make Pop\_OS your first choice, if you want. [Grub customizer](https://launchpad.net/grub-customizer) can be installed in Manjaro and used for that purpose if you find editing files in the terminal hard. Whatever works for you.
 
-# Boot option 2: You prefere systemd-boot
+# Boot option 2: You prefer systemd-boot
 
-This is my preferred method as I find it cleaner, easier, faster and it is part of Pop\_OS which I really like.
+This is my preferred method as I find it cleaner, easier, and faster. Systemd-boot it is part of Pop\_OS, which I really like.
 
-For this, you need to reboot to Pop\_OS. Use Manjaro's grub screen, select Pop\_OS, let it boot.
+For systemd-boot, you need to reboot to Pop\_OS. Use Manjaro's grub screen, select Pop\_OS, let it boot.
 
-Once in Pop you need to get systemd-boot to **see** Manjaro.
+Once in Pop\_OS you need to get systemd-boot to **see** Manjaro.
 
 Look in **/boot/efi/EFI** and there will be a Manjaro folder there. It only contains one file, the grub boot image **grubx64.efi**.
 
-You will need to add this to systemd-boot's loader. This is a simple config (txt) file that should be placed in **/boot/efi/loader/entries**.
+You will need to add the **grubx64.efi** to systemd-boot's loader. This is a simple config (txt) file that should be placed in **/boot/efi/loader/entries**.
 
 # Create the Manjaro entry file
 
-You will need to work as root for this and **sudo** is cumbersome as it won't allow you to see files and locations as you type. So instead, do:
+You will need to work as root for the file editing and **sudo** is cumbersome. **Sudo** will not allow you to see files and locations as you type. So instead, do:
 
     sudo su
 
-Now you're **root**. Be **extra careful**.
+Now you are **root**. Be **extra careful**.
 
 In **/boot/efi/loader/entries** you need to create a file, call it **Manjaro.conf**. In it you need three lines:
 
@@ -83,11 +83,11 @@ It's the title. Call it what you like. Manjaro is the obvious choice.
 
 ## The second line
 
-This gives the location of the boot image. This is a **relative** path, so you give it as it appears inside **/boot/efi**. That is, you do not need the /boot/efi part of this path, as it would have been the case if this was an absolute path.
+This gives the location of the boot image. This is a **relative** path, so you give it as it appears inside **/boot/efi**. That is, you do not need the /boot/efi part of this path, as that would be the case if this were an absolute path.
 
 ## The third line
 
-This is the partition, as identified with its UUID, where the system (that is **"/"** is). So you will need to find the UUID of your Manjaro **"/"** partition. It is a long number in the format of this XXXXXXXX-XXXX-XXXX-XXXXXXXXXXXXXXX placeholder.
+This is the partition, as identified with its UUID, where the system (that is **"/"**) is located. So you will need to find the UUID of your Manjaro **"/"** partition. It is a long number in the format of this XXXXXXXX-XXXX-XXXX-XXXXXXXXXXXXXXX placeholder.
 
 ## Find the UUID of Manjaro's "/" partition
 
@@ -95,7 +95,7 @@ On your terminal, type:
 
     lsblk -f 
 
-and see which partition is the one you've installed Manjaro. Normally it should be the one with ext4 that is not mounted. For example, mine is **/dev/sda4**
+to see which partition has the Manjaro installation. Normally it should be the one with the ext4 file system and is not mounted. For example, mine is **/dev/sda4**
 
 From the output of the above command, you can also see the UUID. You copy and paste it in Manjaro.conf.
 
@@ -103,7 +103,7 @@ Your configuration is complete.
 
 ## Make the menu appear at boot
 
-Although I personally don't need the menu, at this point it helps if you can see the menu so that you can check everything works.
+Although I personally don't need the menu, at this point it helps if you can see the menu to check everything works.
 
 You need to edit **/boot/efi/loader/loader.conf**. This will normally have just:
 
@@ -113,7 +113,7 @@ You need to add:
 
     timeout 10
 
-For the menu to stay up for 10 seconds (way to long, but we only do this for checking, adjust now or later as required). To remove the menu again, just remove the timeout line you just added.
+The menu to stay up for 10 seconds; Way to long, but we only do this for checking, adjust now or later as required. Remove the menu again by removing the timeout line you just added.
 
 Save and reboot.
 
