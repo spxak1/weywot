@@ -16,7 +16,7 @@
 To dual boot Windows and Pop!_OS with a menu, both operating systems' EFI files need to be in the same FAT32 partition. This guide elaborates on how to either install OS's using the same EFI partition or **copy Windows's EFI ```Microsoft``` folder into Pop!_OS's ```/boot/efi/EFI```**. 
 
 ## 1. Introduction
-Pop!_OS uses **systemd-boot** as its boot manager. Most new users don't know how **systemd-boot** works and the fact that it is mostly transparent to the user (as a boot-manager should be), makes it hard for some users to understand. As such a common advice when new users want to dual boot with Windows is to install **grub**. Grub is better known as it is commonly used by other distributions, namely **Ubuntu** and has a visible menu at boot, which new users grow to expect. As such it is common *advice* between new users to install **grub** in order to dual boot Pop!_OS with Windows. This, is **totally unecessary** as not only it removes the ease and simplicity of **systemd-boot** and replaces it with the rather complex configuration of **grub**, but also **grub** has the tendency to break with **Windows updates**, while **systemd-boot** does not. 
+Pop!_OS uses **systemd-boot** as its boot manager. Most new users don't know how **systemd-boot** works and the fact that it is mostly transparent to the user (as a boot-manager should be), makes it hard for some users to understand. As such a common advice when new users want to dual boot with Windows is to install **grub**. Grub is better known as it is commonly used by other distributions, namely **Ubuntu** and has a visible menu at boot, which new users grow to expect. As such it is common *advice* between new users to install **grub** in order to dual boot Pop!_OS with Windows. This is **totally unecessary** as not only it removes the ease and simplicity of **systemd-boot** and replaces it with the rather complex configuration of **grub**, but also **grub** has the tendency to break with **Windows updates**, while **systemd-boot** does not. 
 
 Check your system is in UEFI mode with ```mount | grep efivars``` and expect an ouput of ```efivarfs on /sys/firmware/efi/efivars type efivarfs (rw,nosuid,nodev,noexec,relatime)```. 
 
@@ -69,11 +69,11 @@ Finally you can supersede the boot order and choose to boot Windows or Pop!_OS b
 * **l**: this will boot Linux (Pop!_OS)
 
 ## 2. Dual booting with separate drives
-This is the simplest case. Each operating system is installed separately on its own drive. This requires a minimum of two drives (obviously) and the order of installation does not matter. It is *advisable* to only have one drive installed at a time of installing each OS, so that you avoid confusion. However with Pop!_OS not using **systemd-boot** rather than **grub**, there is no danger of misplacing the boot loader, so both drives can be connected while installing Pop!_OS, just make sure you select only the drive you want Pop!_OS installed before you install Pop!_OS.
+This is the simplest case. Each operating system is installed separately on its own drive. This requires a minimum of two drives (obviously) and the order of installation does not matter. It is *advisable* to only have one drive installed at a time of installing each OS, so that you avoid confusion. However with Pop!_OS not using **systemd-boot** rather than **grub**, there is no danger of misplacing the boot loader, so both drives can be connected while installing Pop!_OS, just make sure you select only the drive you want Pop!_OS installed on before you install Pop!_OS.
 
 ### 2.1 OS installation
 Install each OS to its own drive. At this point you can boot each OS by selecting the boot device from your BIOS.
-At this point Pop!_OS may **or** many **not** provide you with a **menu**. But there is one:
+At this point Pop!_OS may **or** may **not** provide you with a **menu**. But there is one:
 
 With Pop!_OS selected to boot, when your system shows the manufacturers logo (i.e. during POST), you **spam** or **hold** the **spacebar**. This will bring up the **menu**. This menu does **not** include an option for Windows (yet).
 
@@ -105,7 +105,7 @@ sdb             8:16   0 111.8G  0 disk
 
 In the example above, ```/dev/sda``` is the drive with Pop!_OS and ```/dev/sdb``` is the drive with Windows. You can tell from the mounted partitions of Pop!_OS on ```/dev/sda```. You can also see here that Pop!_OS's EFI partition is mounted at ```/boot/efi``` and its EFI files are located in ```/boot/efi/EFI```. 
 
-4. Identify the EFI partition of Windows. This is typically around 100MB for starnard installations and is typically the first partition in the drive. In the example above, this is partition ```/dev/sdb1```. Alternatively, you can run ```sudo os-prober``` (install it first with ```sudo apt install os-prober```) and that will give you a line of where Window's EFI is, such as ```/dev/sdb1@/efi/Microsoft/Boot/bootmgfw.efi:Windows Boot Manager:Windows:efi```. You can see that ```/dev/sdb1``` is Windows EFI partition, and specifically the files you need are in the ```Microsoft``` folder inside ```efi``` (note, this is ```EFI``` but in fat32 is not case sensitive).
+4. Identify the EFI partition of Windows. This is typically around 100MB for standard installations and is typically the first partition in the drive. In the example above, this is partition ```/dev/sdb1```. Alternatively, you can run ```sudo os-prober``` (install it first with ```sudo apt install os-prober```) and that will give you a line of where Window's EFI is, such as ```/dev/sdb1@/efi/Microsoft/Boot/bootmgfw.efi:Windows Boot Manager:Windows:efi```. You can see that ```/dev/sdb1``` is Windows EFI partition, and specifically the files you need are in the ```Microsoft``` folder inside ```efi``` (note, this is ```EFI``` but in fat32 it is not case sensitive).
 5. Mount the EFI partition of Windows. Typically you can type ```sudo mount /dev/sdb1 /mnt```. 
 6. Copy the EFI files of Windows to Pop!_OS's EFI partition. The EFI files of Windows are in the folder ```/mnt/EFI/Microsoft```. You will need the **complete** ```Microsoft``` folder copied in ```/boot/efi/EFI```. So:
 ~~~
@@ -118,7 +118,7 @@ otheos@pop-os:/mnt/EFI$ ls
 Boot  Microsoft
 otheos@pop-os:/mnt/EFI$ sudo cp -ax Microsoft /boot/efi/EFI
 ~~~
-At this point you are done. You can check the folder is where it should be:
+At this point you are done. You can check if the folder is where it should be:
 ~~~
 otheos@pop-os:/mnt/EFI$ sudo ls /boot/efi/EFI
 BOOT   Microsoft				    Recovery-8138-A6FE
@@ -154,7 +154,7 @@ If you start with a clean drive, I would strongly suggest installing Pop!_OS fir
 
 ##### 3.2.1.1. Install Windows with **planning** for Pop!_OS (hard and redundant as you should install Pop first)
 
-All the **planning** is, is to install Windows with a **larger** EFI partition so that you can use it also for Pop!_OS. Windows's EFI partition is by default only 100MB and it is as a result too small for more than OS to store its EFI files. If you make this larger, say 512MB (I would advise 1GB for extra space), you can then use this partition for all your OS's. You can do that following [this guide here](https://www.ctrl.blog/entry/how-to-esp-windows-setup.html). 
+All the **planning** is necessary to install Windows with a **larger** EFI partition so that you can use it also for Pop!_OS. Windows's EFI partition is by default only 100MB and as a result it is too small for more than one OS to store its EFI files. If you make this larger, say 512MB (I would advise 1GB for extra space), you can then use this partition for all your OSs. You can do that following [this guide here](https://www.ctrl.blog/entry/how-to-esp-windows-setup.html). 
 
 Once you have Windows installed with a large EFI partition you can install Pop!_OS. Simple steps include:
 1. Boot from Live USB.
@@ -171,8 +171,8 @@ Here you will end up with two separate EFI partitions and as such the procedure 
 
 1. Install Windows as normal
 2. Boot from Live USB
-3. Make space for Pop!_OS. You will need two* partition, a 512MB FAT32 partition and the rest as ext4 (or use as many partitions as you want for your custom installation). *You can addd a 4096MB FAT32 partition for the recovery (this is recommended but not required)
-4. Select the 512MB FAT32 partition as ```/boot/efi``` partition and the rest as your ```/``` partition (or any other layout you want, but this is the minimum). If you added a partition for Recovery, then select it, set it to custom and type ```/recovery``` for the mount point (make sure fat32 is selected).
+3. Make space for Pop!_OS. You will need **two** partitions, a 512MB FAT32 partition and the rest as ext4 (or use as many partitions as you want for your custom installation). You can add a 4096MB FAT32 partition for the recovery (this is recommended but not required)
+4. Select the 512MB FAT32 partition as ```/boot/efi``` partition and the rest as your ```/``` partition (or any other layout you want, but this is the minimum). If you added a partition for Recovery, then select it, set it to custom and type ```/recovery``` for the mount point (make sure FAT32 is selected).
 5. Install.
 6. Now you have two installations each with its own EFI partition. 
 7. Follow the process used for dual booting from two drives to make your menu include **Windows**.
