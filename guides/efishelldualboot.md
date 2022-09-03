@@ -80,6 +80,11 @@ The last step is crucial as systemd-boot will not see the file with *correct* na
 
 ### Reboot to the EFI shell
 
+Bring up the menu (spam the space bar after POST) and select EFI Shell.
+
+This will drop you to a screen like this:
+
+![EFI Shell](../assets/efi_shell.png)
 
 
 
