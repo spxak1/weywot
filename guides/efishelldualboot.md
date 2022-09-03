@@ -2,6 +2,8 @@
 
 Note: This is slightly advanced, but it is a more elegant solution to copying MS efi files over to Pop's ESP. **It comes with a caveat, see the [end](https://github.com/spxak1/weywot/edit/main/guides/efishelldualboot.md#50-caveat)!
 
+A walk-through of this guide, not very well done, admittedly, and rather lengthy and with mistakes (it's unedited) can be watched here: https://youtu.be/UpoyCSyDXz4
+
 ## 1.0 What is this guide?
 
 This is a guide to get to boot Pop with other OS, namely Windows 10/11 or any other distribution, on UEFI systems, that are already preinstalled, or where the user cannot figure out partitioning, or if encryption is used in Pop and as such other OS are on separate drives.
