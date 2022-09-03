@@ -1,6 +1,6 @@
 # Dual boot Windows with Pop!\_OS without copying Windows's efi files
 
-Note: This is slightly advanced, but it is a more elegant solution to copying MS efi files over to Pop's ESP. **It comes with two caveats, see the end!**
+Note: This is slightly advanced, but it is a more elegant solution to copying MS efi files over to Pop's ESP. **It comes with a caveat, see the [end](/efishelldualboot.md#50-caveat)!
 
 ## 1.0 What is this guide?
 
