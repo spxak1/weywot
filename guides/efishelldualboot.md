@@ -169,6 +169,12 @@ This method is more elegant as Windows actually boots its own efi files, not the
 
 **But the main disadvantage** is that if you connect a new drive, even if it's USB, the alias to the Windows ESP changes and the menu entry won't work. It will work as soon as you remove the USB drive, or if it is an internal drive connected permanently you need to find the new alias, and edit the shell script (the one liner). 
 
+## 6.0 Dual boot Pop with other OS
+
+If other linux distributions are installed with their one ESP*, you can use the exact same process to add them to Pop's systemd-boot menu. Only change will be in the EFI shell script which will need to point to their bootloader (commonly the grub efi stub) inside their ESP. 
+
+\*If you intend intalling other linux distributions with Pop, you should do a custom installation of them, and select Pop's ESP to be used for their ```/boot/efi```. Don't forget to **NOT** format it.
+
 
 
 
