@@ -161,10 +161,10 @@ Select Windows 10 and try if it boots. If it returns back to the menu, you have 
 
 ## 5.0 Caveat
 
-This method is more elegant as Windows actually boots its own efi files, not the copies, and you don't have to copy anything over. But it has its drawbacks:
+This method is more elegant as Windows actually boots its own efi files, not the copies, and you don't have to copy anything over. But it has its minor drawbacks:
 
 * No auto-windows entry, as such:
-* You can't hold **w** to boot Windows or **l** to boot linux
+* You can't hold **w** to boot Windows or **l** to boot linux, so you have to hold **1-9** if you remember which one's which.
 * Rebooting from Pop needs the name of the menu entry, not auto-windows in the command
 
 **But the main disadvantage** is that if you connect a new drive, even if it's USB, the alias to the Windows ESP changes and the menu entry won't work. It will work as soon as you remove the USB drive, or if it is an internal drive connected permanently you need to find the new alias, and edit the shell script (the one liner). 
