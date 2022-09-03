@@ -86,6 +86,26 @@ This will drop you to a screen like this:
 
 ![EFI Shell](../assets/efi_shell.jpg)
 
+What we need is to take a picture of this screen, and reboot to Pop.
+
+#### What is on this screen?
+This is the shell (at the end there is a prompt and it can take commands, like a linux terminal, but that's for another day).
+It starts by listing all the storage devices.
+Devices named **FSX**, like FS0, FS1 etc, are partitions that the UEFI can see (i.e Fat32).
+Devices named **BLKX**, like BLK0, BLK5 etc are block devices and/or partitions that the UEFI cannot see (ext4, ntfs, btrfs etc).
+
+What we are after is the **alias** of the partition that holds Windows's ESP. We don't know which one it is, but it's one of either FS0, FS1, FS2, FS3, FS4. 
+
+You can (if you understand some basics) figure out which one is the partition we're after. You can see that FS0, sits on SATA device 0x0, while FS3 and FS2 on SATA device 0x1. Which means the first is **sda** and the second **sdb**. Probably! So we will check with the partUUID quoted, which unlike all other notation used here is the **same** in all OS/UEFI etc.
+
+### Reboot to Pop
+
+Bring up a terminal and check the partuuid with:
+
+~~~
+lsblk -o name,type,partuuid
+ 
+
 
 
 
