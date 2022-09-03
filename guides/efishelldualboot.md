@@ -1,12 +1,15 @@
 # Dual boot Windows with Pop!\_OS without copying Windows's efi files
 
-Note: This is slightly advanced, but it is a more elegant solution to copying MS efi files over to Pop's ESP. **It comes with a caveat, see the [end](/efishelldualboot.md#50-caveat)!
+Note: This is slightly advanced, but it is a more elegant solution to copying MS efi files over to Pop's ESP. **It comes with a caveat, see the [end](https://github.com/spxak1/weywot/edit/main/guides/efishelldualboot.md#50-caveat)!
 
 ## 1.0 What is this guide?
 
 This is a guide to get to boot Pop with other OS, namely Windows 10/11 or any other distribution, on UEFI systems, that are already preinstalled, or where the user cannot figure out partitioning, or if encryption is used in Pop and as such other OS are on separate drives.
 
 This guide is also the better solution if Pop!\_OS and other OS share the same drive.
+
+### 1.1 Credit
+All credit, once more, goes to the Archwiki and its [systemd-boot configuration guide](https://wiki.archlinux.org/title/systemd-boot). Many thanks to the collective effort.
 
 ## 2.0 Requirements
 
