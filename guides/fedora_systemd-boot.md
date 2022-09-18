@@ -89,7 +89,7 @@ So your path should be ```/boot/efi/EFI```.
 
  ```mkdir $(cat /etc/machine-id)```
 
-This creates the ```6b2ace2249194d7abf60d6f185ced47c``` for me. It can probably be any name you want, but haven't tried.```
+This creates the ```6b2ace2249194d7abf60d6f185ced47c``` for me. It can probably be any name you want, but haven't tried.
 
 Now you need the kernel and initramfs. These are found in ```/boot```. 
 
@@ -139,8 +139,7 @@ Note this is not the same as the target, ```/boot/efi/loaders/entries```. These 
 The loader for the kernel we use has the same name. The firs part is the machine-id, same as the one I used for the folder where we stored the kernel and initramfs.
 Then the kernel number. So for ```5.19.9-300.fc37.x86_64``` which we copied, we need ```6b2ace2249194d7abf60d6f185ced47c-5.19.9-300.fc37.x86_64.conf```.
 
-Copy it over to the ESP loader entries folder: ```[root@galileo entries]# cp 6b2ace2249194d7abf60d6f185ced47c-5.19.9-300.fc37.x86_64.conf /boot/efi/loader/entries
-```
+Copy it over to the ESP loader entries folder: ```[root@galileo entries]# cp 6b2ace2249194d7abf60d6f185ced47c-5.19.9-300.fc37.x86_64.conf /boot/efi/loader/entries```
 
 Now, go to the **copied** file and edit it. Here what mine looks like:
 
