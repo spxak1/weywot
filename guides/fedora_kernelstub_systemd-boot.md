@@ -207,6 +207,9 @@ The benefit of using kernelstub is that when a new kernel is added, it moves the
 
 In order to do this, kernelstub looks to backup the older kernel, but it looks for it with a specific name, that is the original, with an extension ```.old```.
 
+In distributions with kernelstub (PopOS) a script runs after a kernel upgrade, which creates links and moves the old links to the ```.old``` place so that kernelstub can do its thing. 
+
+Work in Progress! 
 
 
 
