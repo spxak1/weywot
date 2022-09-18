@@ -189,7 +189,8 @@ I will add:
 * possible use of kernelstub
 
 
-
+Universal kernel: 
+sudo dracut -fvM --uefi --hostonly-cmdline --kernel-cmdline "root=UUID=b6b8fa59-92cc-4d03-8d8f-d66dab76d433 ro rootflags=subvol=root resume=UUID=fb661671-97dc-45db-b720-062acdcf095e rhgb quiet mitigations=off"
 
 
 
