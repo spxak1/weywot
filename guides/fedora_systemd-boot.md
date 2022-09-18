@@ -89,7 +89,7 @@ So your path should be ```/boot/efi/EFI```.
 
  ```mkdir $(cat /etc/machine-id)```
 
-This creates the ```6b2ace2249194d7abf60d6f185ced47c``` for me. It can probably be any name you want, but haven't tried.
+This creates the ```6b2ace2249194d7abf60d6f185ced47c``` for me. It can probably be any name you want, but haven't tried.```
 
 Now you need the kernel and initramfs. These are found in ```/boot```. 
 
