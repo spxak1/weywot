@@ -91,14 +91,23 @@ root=UUID=acfa66bf-3738-4b70-86e8-7841a05b633c ro rootflags=subvol=root rhgb qui
 These are the minimum required options (default). You need those as default.
 
 Find the kernel and initramfs:
+
 ~~~
 [otheos@brahe ~]$ ls /boot
-config-5.19.7-300.fc37.x86_64                            lost+found
-efi                                                      symvers-5.19.7-300.fc37.x86_64.gz
-grub2                                                    System.map-5.19.7-300.fc37.x86_64
-initramfs-0-rescue-e1228775572d405583e9bbee05d18a6b.img  vmlinuz-0-rescue-e1228775572d405583e9bbee05d18a6b
-initramfs-5.19.7-300.fc37.x86_64.img                     vmlinuz-5.19.7-300.fc37.x86_64
+config-5.19.7-300.fc37.x86_64
+efi
+grub2
+initramfs-0-rescue-e1228775572d405583e9bbee05d18a6b.img
+initramfs-5.19.7-300.fc37.x86_64.img
+loader
+lost+found
+symvers-5.19.7-300.fc37.x86_64.gz
+System.map-5.19.7-300.fc37.x86_64
+vmlinuz-0-rescue-e1228775572d405583e9bbee05d18a6b
+vmlinuz-5.19.7-300.fc37.x86_64
 ~~~
+
+There they are: ```vmlinuz-5.19.7-300.fc37.x86_64``` and ```initramfs-5.19.7-300.fc37.x86_64.img```
 
 Prepare the command:
 
@@ -190,12 +199,11 @@ Finally the ```manage_mode``` is also set to ```true``` which means that kernels
 
 You are now ready for your first reboot. Remember to select **Linux Boot Manager** as the default option in your bios.
 
+## Maintenance - after a kernel upgrade
 
 
 
 
-
-## Configure kernelstub
 
 
 
