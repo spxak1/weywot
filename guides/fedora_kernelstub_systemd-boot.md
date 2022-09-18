@@ -201,6 +201,11 @@ You are now ready for your first reboot. Remember to select **Linux Boot Manager
 
 ## Maintenance - after a kernel upgrade
 
+This is still Work in progress.
+
+The benefit of using kernelstub is that when a new kernel is added, it moves the old one in to a second boot entry, named *oldkern*, and then copies the new one.
+
+In order to do this, kernelstub looks to backup the older kernel, but it looks for it with a specific name, that is the original, with an extension ```.old```.
 
 
 
