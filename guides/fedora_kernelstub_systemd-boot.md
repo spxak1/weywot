@@ -209,7 +209,47 @@ In order to do this, kernelstub looks to backup the older kernel, but it looks f
 
 In distributions with kernelstub (PopOS) a script runs after a kernel upgrade, which creates links and moves the old links to the ```.old``` place so that kernelstub can do its thing. 
 
-Work in Progress! 
+Here's a script that does that, please use with caution, and understand what it does before you use it! I'm not a programmer and I use ```csh```, so if you want to use it you need to ```dnf install tcsh```. But there are certainly better ways to do this.
+
+~~~
+#!/bin/csh
+#Set ESP location
+set loc = `ls /boot/efi/EFI/ | grep Fedora`
+set esp = /boot/efi/EFI/$loc
+
+#Move to /boot
+cd /boot
+
+#Find the latest kernel and initrd
+set vm_new = `ls -1t --time=birth | grep vmlinuz-5 | head -1`
+set in_new = `ls -1t --time=birth | grep initramfs-5 | head -1`
+
+#Compare the latest kernel in /boot to the latest in the ESP
+set comp = `cmp -b $vm_new $esp/vmlinuz.efi`
+#Create a variable: it's the number of / in the paths in the output of comp
+set tst = `echo $comp | grep -o '/' | wc -l`
+#If there is a difference, tst is 6, otherwise is 0
+#echo $tst
+
+#if there is a difference, copy the new kernel, push the old to the previous position
+if ($tst == "6") then
+echo "New kernel found, copying files..."
+
+# Move previous links to old
+\mv vmlinuz vmlinuz.old
+\mv initramfs initramfs.old
+
+# Create new links
+ln -s $vm_new vmlinuz
+ln -s $in_new initramfs
+
+# Update systemd-boot entries
+kernelstub  -k /boot/vmlinuz -i /boot/initramfs
+
+else 
+echo "No new kernel found, exiting."
+endif
+~~~
 
 
 
