@@ -190,7 +190,18 @@ I will add:
 
 
 Universal kernel: 
-sudo dracut -fvM --uefi --hostonly-cmdline --kernel-cmdline "root=UUID=b6b8fa59-92cc-4d03-8d8f-d66dab76d433 ro rootflags=subvol=root resume=UUID=fb661671-97dc-45db-b720-062acdcf095e rhgb quiet mitigations=off"
+```sudo dracut -fvM --uefi --hostonly-cmdline --kernel-cmdline "root=UUID=b6b8fa59-92cc-4d03-8d8f-d66dab76d433 ro rootflags=subvol=root resume=UUID=fb661671-97dc-45db-b720-062acdcf095e rhgb quiet mitigations=off"```
 
+Find cmdline at ```/proc/cmdline``` or ```/etc/kernel/cmdline```. See above for what is needed (and what not).
+
+Att ```--kver``` for a different *kernel version*. The number following this is what appears in ```/lib/modules```.
+
+E.g
+~~~
+otheos@kepler ~]$ ls /lib/modules/
+5.18.16-200.fc36.x86_64  5.18.5-200.fc36.x86_64  5.18.6-200.fc36.x86_64
+~~~
+
+So if you want to build for a different kernel, you add ```--kver 5.18.5-200.fc36.x86_64```.
 
 
