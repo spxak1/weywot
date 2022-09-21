@@ -205,3 +205,13 @@ otheos@kepler ~]$ ls /lib/modules/
 So if you want to build for a different kernel, you add ```--kver 5.18.5-200.fc36.x86_64```.
 
 
+This littke script should take care of it:
+~~~
+#!/bin/bash
+newkern=$(ls -t -1 /lib/modules | head -1)
+echo $newkern
+cmdline=$(cat /proc/cmdline)
+echo $cmdline
+sleep 5
+sudo dracut -fvM --uefi --hostonly-cmdline --kernel-cmdline "$cmdline" --kver $newkern
+~~~
