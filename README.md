@@ -4,6 +4,7 @@ This is a collection of notes that worked for my system at the time of writing.
 
 Feel free to use them, share them, modify them. I don't claim credit for them, so I don't ask for it either. Just be happy.
 
+* [Make USB to Gigabit adapters based on the ASIX AX88179 chip work!](https://github.com/spxak1/weywot/blob/main/guides/AX88179_USB.md)
 * [Fedora 36/37 with systemd-boot and kernelstub]( https://github.com/spxak1/weywot/blob/main/guides/fedora_kernelstub_systemd-boot.md)
 * [Dual boot Windows with Pop!_OS without copying Windows's efi files](https://github.com/spxak1/weywot/blob/main/guides/efishelldualboot.md)
 * [Install Pop!_OS with btrfs and subvolumes (shortened)](https://github.com/spxak1/weywot/blob/main/Pop_Btrfs_Subvolumes_with_Timeshift_Condensed.md)
