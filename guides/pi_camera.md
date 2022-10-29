@@ -58,7 +58,7 @@ This RTSP server works with Raspberry Pi camera using :
 	sudo uv4l --driver raspicam --auto-video_nr --encoding h264
 ~~~
 
-Which brings uv4l into the game.
+Which brings uv4l into the game. **This is closed source software**. If you're not happy about it, don't use it.
 
 https://www.linux-projects.org/uv4l/installation/
 
