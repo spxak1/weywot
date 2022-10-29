@@ -4,6 +4,7 @@ This is a collection of notes that worked for my system at the time of writing.
 
 Feel free to use them, share them, modify them. I don't claim credit for them, so I don't ask for it either. Just be happy.
 
+* [Turn a Raspberry Pi + camera to a streaming camera device over rtsp and http](https://github.com/spxak1/weywot/blob/main/guides/pi_camera.md)
 * [Make USB to Gigabit adapters based on the ASIX AX88179 chip work!](https://github.com/spxak1/weywot/blob/main/guides/AX88179_USB.md)
 * [Fedora 36/37 with systemd-boot and kernelstub]( https://github.com/spxak1/weywot/blob/main/guides/fedora_kernelstub_systemd-boot.md)
 * [Dual boot Windows with Pop!_OS without copying Windows's efi files](https://github.com/spxak1/weywot/blob/main/guides/efishelldualboot.md)
