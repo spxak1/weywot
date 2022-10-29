@@ -251,7 +251,7 @@ echo "No new kernel found, exiting."
 endif
 ~~~
 
-
+Also check here for more: https://github.com/spxak1/weywot/blob/main/guides/fedora_systemd-boot.md
 
 
 
