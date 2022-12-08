@@ -316,8 +316,12 @@ As soon as you connect the drive with the modified partition table, the kernel c
 [ 6518.720448] GPT: Use GNU Parted to correct GPT errors.
 ~~~
 
-OK, let's comply. Fire up ```gparted```
-Say **Yes** to fixing the partition header, but say **No** to expanding the partition table to use any empty space (which will undo what we did. Done!
+OK, let's comply. Fire up ```gparted```.
+![Fix the GPT](../assets/fix_GPT.png)
+Say **Yes** to fixing the partition header... 
+
+![Don't Expand](../assets/Dont_Expand.png)
+but say **No** to expanding the partition table to use any empty space (which will undo what we did. Done!
 
 One last test. Disconnect SATA and reconnect to SATA to check if the kernel still complains: No, all done!
 
