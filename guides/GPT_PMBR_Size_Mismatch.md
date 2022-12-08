@@ -128,6 +128,7 @@ Device     Start       End   Sectors   Size Type
 
 The solution is rather basic: **shrink the partition by 33MB**.
 I use **gparted** for it.
+![Resize with gparted](../assets/resize_USB.png)
 
 After resizing, check with ```fdisk```:
 
