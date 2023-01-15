@@ -119,8 +119,8 @@ update-initramfs -c -k all
 You can now exit the terminal with `exit` (you will need to enter it twice) and reboot to the newly installed system.
 
 NB:
-- in a few cases `/home` is not properly written to disk; when this happens the current user will be sent back to the login screen even if they successfully authenticate
-- if that happens you can simply switch to a tty with `Ctrl + Alt + F3`, login from the console and then run `sudo mkhomedir_helper <your_user_account>`
+- in a few cases `/home` is not properly written to disk; when this happens the current user is sent back to the login screen even though they successfully authenticated
+- if that happens to you. you can simply switch to a tty with `Ctrl + Alt + F3`, log in from the console and then run `sudo mkhomedir_helper <your_user_account>`
 
 ## Optional step: Defrag & rebalance data blocks
 
