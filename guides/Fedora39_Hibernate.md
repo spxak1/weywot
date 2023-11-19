@@ -193,6 +193,7 @@ allow systemd_sleep_t unlabeled_t:dir search;
 cd /tmp
 audit2allow -b -M systemd_sleep
 semodule -i systemd_sleep.pp
+~~~
 
 Check that hibernation is working via systemctl hibernate again.
 
