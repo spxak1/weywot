@@ -67,11 +67,160 @@ Run gcc where the downloaded file is:
 gcc -O2 -o btrfs_map_physical btrfs_map_physical.c
 ~~~
 
-Then execute the compiled file. @@Make your terminal as wide as possible for this@@.
+Then execute the compiled file. **Make your terminal as wide as possible for this**.
 
 ~~~
 ./btrfs_map_physical /path/to/swapfile
 ~~~
+
+You need the last number from the first line with numbers, the *PHYSICAL OFFSET*. The output can be mingled so make sure you copy the number correctly. 
+
+~~~
+0	4096	0	regular	268435456	60255100928	268435456	1	60263489536
+~~~
+
+In my case it's *60263489536*.
+
+Find the *pagesize* with
+~~~
+getconf PAGESIZE
+~~~
+
+Mine is *4096*, so the offset calculation is ```60263489536/4096=14712766```.
+
+If you use **grub** you need to add the kernel option with ```grubby``` as so:
+
+~~~
+grubby --args="resume=UUID=b6b8fa59-92cc-4d03-8d8f-d66dab76d433
+ resume_offset=14712766" --update-kernel=ALL
+~~~
+
+If you use **systemd-boot**, currently (F39) you need to add this line in all loaders. Hopefully with the next kernel install, the system will use the default for grub to write the new loaders with the correct options.
+
+## Finish up.
+
+You need to only use the swapfile for hibernation, not swap, so two services will do that.
+
+~~~
+cat <<-EOF | sudo tee /etc/systemd/system/hibernate-preparation.service
+[Unit]
+Description=Enable swap file and disable zram before hibernate
+Before=systemd-hibernate.service
+
+[Service]
+User=root
+Type=oneshot
+ExecStart=/bin/bash -c "/usr/sbin/swapon /swap/swapfile && /usr/sbin/swapoff /dev/zram0"
+
+[Install]
+WantedBy=systemd-hibernate.service
+EOF
+~~~
+
+and
+
+~~~
+systemctl enable hibernate-preparation.service
+~~~
+
+Then, 
+
+~~~
+cat <<-EOF | sudo tee /etc/systemd/system/hibernate-resume.service
+[Unit]
+Description=Disable swap after resuming from hibernation
+After=hibernate.target
+
+[Service]
+User=root
+Type=oneshot
+ExecStart=/usr/sbin/swapoff /swap/swapfile
+
+[Install]
+WantedBy=hibernate.target
+EOF
+~~~
+
+and
+
+~~~
+systemctl enable hibernate-resume.service
+~~~
+
+Systemd does memory checks on login and hibernation. In order to avoid issues when moving the memory back and forth between swapfile and zram disable some of them.
+
+~~~
+mkdir -p /etc/systemd/system/systemd-logind.service.d/
+~~~
+~~~
+cat <<-EOF | sudo tee /etc/systemd/system/systemd-logind.service.d/override.conf
+[Service]
+Environment=SYSTEMD_BYPASS_HIBERNATION_MEMORY_CHECK=1
+EOF
+~~~
+
+~~~
+mkdir -p /etc/systemd/system/systemd-hibernate.service.d/
+~~~
+
+~~~
+cat <<-EOF | sudo tee /etc/systemd/system/systemd-hibernate.service.d/override.conf
+[Service]
+Environment=SYSTEMD_BYPASS_HIBERNATION_MEMORY_CHECK=1
+EOF
+~~~
+
+**Reboot.**
+
+## Allow this through Selinux
+
+Try to hibernate (as a user, not root).
+
+~~~
+systemctl hibernate
+~~~
+
+The following command will fail, returning you to a login prompt.
+
+After you’ve logged in again check the audit log, compile a policy and install it. The -b option filters for audit log entries from last boot. The -M option compiles all filtered rules into a module, which is then installed using semodule -i.
+
+As root,
+
+~~~
+audit2allow -b
+#============= systemd_sleep_t ==============
+allow systemd_sleep_t unlabeled_t:dir search;
+cd /tmp
+audit2allow -b -M systemd_sleep
+semodule -i systemd_sleep.pp
+
+Check that hibernation is working via systemctl hibernate again.
+
+~~~
+systemctl hibernate
+~~~
+
+That should now work.
+
+Check that only ZRAM appears here:
+
+~~~
+swapon
+NAME       TYPE      SIZE USED PRIO
+/dev/zram0 partition   8G   0B  100
+~~~
+
+All is good.
+
+## Finish off
+
+You can add the **extension** to make the hibernation option appear in the power menu.
+It's [Hibernation Status Button](https://github.com/arelange/gnome-shell-extension-hibernate-status).
+
+Finally you can set the default behaviour when you close the lid, or set the default sleep option to **sleep-then-hibernate**.
+
+
+
 
 
 
