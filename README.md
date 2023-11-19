@@ -4,6 +4,7 @@ This is a collection of notes that worked for my system at the time of writing.
 
 Feel free to use them, share them, modify them. I don't claim credit for them, so I don't ask for it either. Just be happy.
 
+* [Configure Hibernation on Fedora 39](https://github.com/spxak1/weywot/blob/main/guides/Fedora39_Hibernate.md)
 * [Reuse a WD Elements enclosure when the disk connected appears empty, while it has data in it -no data loss](https://github.com/spxak1/weywot/blob/main/guides/GPT_PMBR_Size_Mismatch.md)
 * [Turn a Raspberry Pi + camera to a streaming camera device over rtsp and http](https://github.com/spxak1/weywot/blob/main/guides/pi_camera.md)
 * [Make USB to Gigabit adapters based on the ASIX AX88179 chip work!](https://github.com/spxak1/weywot/blob/main/guides/AX88179_USB.md)
