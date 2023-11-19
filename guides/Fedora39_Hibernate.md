@@ -217,7 +217,36 @@ All is good.
 You can add the **extension** to make the hibernation option appear in the power menu.
 It's [Hibernation Status Button](https://github.com/arelange/gnome-shell-extension-hibernate-status).
 
+(this part is copied from [the top comment here](https://askubuntu.com/questions/12383/how-to-go-automatically-from-suspend-into-hibernate)
+
 Finally you can set the default behaviour when you close the lid, or set the default sleep option to **sleep-then-hibernate**.
+
+Edit ```/etc/systemd/sleep.conf```
+
+And change the line:
+~~~
+[Sleep]
+HibernateDelaySec=3600
+~~~
+
+This configures the time before it goes to hibernation from sleep!
+
+Test with:
+
+~~~
+sudo systemctl suspend-then-hibernate
+~~~
+
+Finally, you can set the default behaviour on closing the lid by editing ```/etc/systemd/logind.conf```.
+
+You need to find option ```HandleLidSwitch=```, uncomment it and change to ```HandleLidSwitch=suspend-then-hibernate```.
+
+Then you need to restart systemd-logind service (warning! you user session will be restarted) by the next command:
+
+```sudo systemctl restart systemd-logind.service```
+
+That's all! Now you can use this nice function.
+
 
 
 
