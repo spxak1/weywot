@@ -213,6 +213,16 @@ NAME       TYPE      SIZE USED PRIO
 
 All is good.
 
+## Suspend-then-hibernate: Gone!
+The old(er) function of ```suspend-then hibernate``` is gone.
+Previously, when selected, the system would suspend after some time of inactivity, or with the lid down, then after some time it would hibernate. A great feature that worked well.
+
+However, this is no more. The systemd devs have decided this is not a good idea, and now ```suspend-then-hibernate``` is totally irrelevant. The system suspends as before, but only goes to hibernate if the battery is at 5% or lower. It will no longer hibernate after some time (given with ```HibernateDelaySec=3600``` as shown below). 
+
+This is completely idiotic and useless. Hybrid sleep was available to avoid data loss in case of battery drain. With Hybrid Sleep, the system would dump the RAM to disk (hibernate, aka S4) and go to suspend. If the power died, it would resume from hibernate as per normal. This is still available, but sadly ```suspend-then-hibernate``` is not.
+
+See this (now locked) thread [here](https://github.com/systemd/systemd/issues/25269). It is clear the devs (bluca) are not going to listen. Shame!
+
 ## Finish off
 
 You can add the **extension** to make the hibernation option appear in the power menu.
