@@ -225,6 +225,8 @@ See this (now locked) thread [here](https://github.com/systemd/systemd/issues/25
 
 ## Finish off
 
+[This guide](https://mitchellroe.dev/auto-hibernate.html) is better. Not that this matters anymore as the suspend-then hibernate is no longer important (see above).
+
 You can add the **extension** to make the hibernation option appear in the power menu.
 It's [Hibernation Status Button](https://github.com/arelange/gnome-shell-extension-hibernate-status).
 
