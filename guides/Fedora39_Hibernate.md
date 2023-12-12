@@ -70,7 +70,7 @@ gcc -O2 -o btrfs_map_physical btrfs_map_physical.c
 Then execute the compiled file. **Make your terminal as wide as possible for this**.
 
 ~~~
-./btrfs_map_physical /path/to/swapfile
+./btrfs_map_physical /swap/swapfile
 ~~~
 
 You need the last number from the first line with numbers, the *PHYSICAL OFFSET*. The output can be mingled so make sure you copy the number correctly. 
