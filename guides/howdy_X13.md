@@ -109,5 +109,25 @@ semodule -X 300 -i my-python3.pp
 
 And everything works. Follow the original link for more.
 
+Finally, to get all the gnome "Authentication" prompts to use howdy, 
+add to ```/etc/pam.d/polkit-1``` the same line:
+
+~~~
+auth        sufficient    pam_python.so /lib64/security/howdy/pam.py
+~~~
+
+You can add more profiles (glasses, no glasses, different hair, sitting position etc) with:
+~~~
+sudo howdy add
+~~~
+
+You can enable/disable howdy simply with:
+~~~
+sudo howdy disable 0/1
+~~~
+
+With 0 enabling and 1 disabling.
+
+
 
 
