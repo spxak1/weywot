@@ -1,3 +1,39 @@
+
+## Update:
+A simple way to do this comes frome the last comment in [this thread](https://serverfault.com/questions/766506/automount-usb-drives-with-systemd).
+
+Pasting here:
+
+Using ```pmount```, systemd and Mike Blackwell's approach, you can simplify the whole thing:
+
+```sudo dnf install pmount```, then create:
+
+```/etc/systemd/system/usb-mount@.service```
+With:
+~~~
+[Unit]
+Description=Mount USB Drive on %i
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=/usr/bin/pmount --umask 000 /dev/%i /media/%i
+ExecStop=/usr/bin/pumount /dev/%i
+~~~
+
+Then create ```/etc/udev/rules.d/99-usb-mount.rules``` with:
+~~~
+ACTION=="add",KERNEL=="sd[a-z][0-9]*",SUBSYSTEMS=="usb",RUN+="/bin/systemctl start usb-mount@%k.service"
+ACTION=="remove",KERNEL=="sd[a-z][0-9]*",SUBSYSTEMS=="usb",RUN+="/bin/systemctl stop usb-mount@%k.service"
+~~~
+
+You can reload the rules with ```sudo udevadm control --reload-rules && udevadm trigger```.
+
+This will automount the drives to ```/media/sdi1 /media/sdk1``` etc. 
+
+It would be nice to get this done with their Labels instead, but it will do
+
+## Follows WIP.
+
 WIP!!!
 
 With info from:
