@@ -34,8 +34,16 @@ Test if that is the device with:
 ~~~
 sudo howdy test
 ~~~
+
 If not box with your camera output shows, and an error message concludes the terminal output, it's the wrond device. 
 Change to another one and try until you get the B&W camera output. That's it then.
+
+You can make howdy faster (but less secure/certain) by changing this line:
+~~~
+certainty = 4.2
+~~~
+
+Closer to 5 is less certain and faster, closer to 3 is more secure but slower.
 
 ## 2 Configure the user face data
 ~~~
