@@ -59,7 +59,7 @@ b6b8fa59-92cc-4d03-8d8f-d66dab76d433
 ~~~
 
 And the offset. This is the tricky part for BTRFS.
-Download the [source of the btrfs_map_physical tool](https://github.com/osandov/osandov-linux/blob/master/scripts/btrfs_map_physical.c) and compile it:
+Download the [source of the btrfs_map_physical tool](https://github.com/osandov/osandov-linux/blob/master/scripts/btrfs_map_physical.c) (open the link, download from git, don't just right click-save file) and compile it:
 
 Run gcc where the downloaded file is:
 
