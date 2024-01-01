@@ -74,7 +74,7 @@ root@weywot:/home/otheos# cd /usr/share/libwacom/
 root@weywot:/usr/share/libwacom# cp isdv4-5285.tablet isdv4-5284.tablet
 ~~~
 
-Now let's edit the new file:
+Now let's edit the new file:Wacom 5284	- ThinkPad X13 Yoga Gen	3
 ~~~
 # Lenovo ThinkPad X13 Yoga Gen 3
 # Sensor Type: AES
@@ -86,7 +86,7 @@ Now let's edit the new file:
 
 
 [Device]
-Name=Wacom 5285	- ThinkPad X13 Yoga Gen	3
+Name=Wacom 5284	- ThinkPad X13 Yoga Gen	3
 ModelName=WACF2200
 DeviceMatch=i2c:056a:5284
 Class=ISDV4
