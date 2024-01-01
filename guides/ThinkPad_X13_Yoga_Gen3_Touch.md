@@ -30,6 +30,8 @@ otheos@weywot:~$ sudo dmesg | grep Wacom
 The touchscreen device is a WACF2200 (supported) with an id of **056A:5284**.
 
 ## Create the file for libwacom to identify the touchscreen
+More details regarding these files and more are [here](https://github.com/linuxwacom/libwacom/blob/master/README.md).
+
 These files are in ```/usr/share/libwacom```.
 
 Doing a quick ```ls``` in that folder shows many files named ```isdv4-XXXX.tablet```. 
@@ -99,4 +101,30 @@ Touch=true
 ~~~
 
 Note: The most important change is the **DeviceMatch** changed to **5284**.
+
 Reboot.
+
+## Test it
+After the reboot, fire up Gnome Settings and go to the Wacom Tab:
+![image](https://github.com/spxak1/weywot/assets/29977030/ea5599d5-35f8-42be-82e0-279258a4782d)
+
+**Note**: The Stylus is missing. You need to interact with that screen with the stylus for it to appear.
+
+![image](https://github.com/spxak1/weywot/assets/29977030/2d08a0b5-1916-4186-9541-d0976c727eee)
+
+
+You can confirm from the terminal:
+~~~
+otheos@weywot:~$ libwacom-list-local-devices
+devices:
+- name: 'Wacom 5284 - ThinkPad X13 Yoga Gen 3'
+  bus: 'i2c'
+  vid: '0x056a'
+  pid: '0x5284'
+  nodes: 
+  - /dev/input/event7: 'Wacom HID 5284 Pen'
+~~~
+
+That's it.
+
+Please note: **The functionality of the touchscreen does not chage or improve.**
