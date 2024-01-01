@@ -86,7 +86,7 @@ Now let's edit the new file:
 [Device]
 Name=Wacom 5285	- ThinkPad X13 Yoga Gen	3
 ModelName=WACF2200
-DeviceMatch=i2c:056a:5285
+DeviceMatch=i2c:056a:5284
 Class=ISDV4
 Width=11
 Height=7
@@ -98,4 +98,5 @@ Stylus=true
 Touch=true
 ~~~
 
+Note: The most important change is the **DeviceMatch** changed to **5284**.
 Reboot.
