@@ -26,6 +26,19 @@ Full write up later. With and without BTRFS.
 * Do it again, name it ```@home``` and mount it on ```/home```.
 * Install
 
+## Unlock Fedora Luks with TPM2
+Taken from: https://fedoramagazine.org/automatically-decrypt-your-disk-using-tpm2/
+
+###Simple: 
+Install ```sudo dnf install clevis clevis-luks clevis-dracut clevis-udisks2 clevis-systemd```
+Update initramfs ```sudo dracut -fv --regenerate-all```
+**Reboot**
+Then: ```sudo clevis luks bind -d /dev/nvme0n1p6... tpm2 '{"pcr_ids":"1,4,5,7,9"}'```
+Enter password. 
+Done.
+
+This uses clevis, which means the password prompt is still present when booting.
+
 ## Adapt timeshift-autosnap-apt to work with dnf in Fedora
 Still to find out: how to work with dnf5.
 
