@@ -17,6 +17,15 @@ Only downside: the LUKS password prompt still appears.
 Full write up later. With and without BTRFS.
 
 
+## Install Fedora 39 with snapshots
+*Do the net install (inst.sdboot for systemd.boot in place of grub).
+*Go full custom on partitionin (third option).
+*Create a new btrfs encrypted partition (no mount point).
+*Select it on the right.
+*Right click, new, it makes a new subvolume. Name it ```@``` mount it on ```/```.
+*Do it again, name it ```@home``` and mount it on ```/home```.
+*Install
+
 ## Adapt timeshift-autosnap-apt to work with dnf in Fedora
 Still to find out: how to work with dnf5.
 
