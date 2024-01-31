@@ -30,58 +30,76 @@ First I clear my drive. Only do this if you start from scratch. If you already h
 ### On gparted
 
 Create the ESP.
+
 ![2024-01-31_22-21](https://github.com/spxak1/weywot/assets/29977030/d6035c7a-1274-4ca4-a01d-86828688434a)
 
 Then, the recovery partition.
+
 ![2024-01-31_22-45](https://github.com/spxak1/weywot/assets/29977030/c536c266-d4c2-4d2c-bb77-098c51753a4a)
 
 Apply the changes.
+
 ![2024-01-31_22-22](https://github.com/spxak1/weywot/assets/29977030/a099d541-d65a-4ca5-8208-8b35f3a07d4c)
 
 End result.
+
 ![2024-01-31_22-22_1](https://github.com/spxak1/weywot/assets/29977030/53c28615-b833-4f1e-90c9-2bafc3aa3abb)
 
 
 ### On gnome-disks
 
-Select the drive on the list on the left, then select the free space to highlight it. Click on the + symbol
+Select the drive on the list on the left, then select the free space to highlight it. Click on the + symbol.
+
 ![2024-01-31_22-23_1](https://github.com/spxak1/weywot/assets/29977030/b41f8913-fdd0-4f18-a37e-cdddaa1e55a5)
 
 Add a new partition, select the size (I chose 90GB).
+
 ![2024-01-31_22-23_2](https://github.com/spxak1/weywot/assets/29977030/0925472f-18dd-4e84-9c2b-c839f47278d2)
 
 Click next, name the partition (I chose POPOS), and select ```ext4``` with encryption.
+
 ![2024-01-31_22-24](https://github.com/spxak1/weywot/assets/29977030/5eba80e1-0a60-4833-81b6-b87d4a89d63a)
 
 Select a password you will **NEVER FORGET**, and apply.
+
 ![2024-01-31_22-25](https://github.com/spxak1/weywot/assets/29977030/ce725041-b95a-4223-9e64-b1858b097141)
 
 ## Install Pop
+
 Fire up the installer from the dock, and select custom installation.
+
 ![2024-01-31_22-26](https://github.com/spxak1/weywot/assets/29977030/6b4d8973-21a2-4605-af39-64ab6d595ca7)
 
 You are going to use the 3 partitions you created. That's what they look like. The pink one is the encrypted partition.
+
 ![2024-01-31_22-27](https://github.com/spxak1/weywot/assets/29977030/d067a96e-2ce1-413e-99e9-c8510cc6a304)
 
 Click on the first one to set it to ```/boot/efi```.
+
 ![2024-01-31_22-27_1](https://github.com/spxak1/weywot/assets/29977030/6200b70f-509c-444a-8575-dc009a358cd7)
 
 Click on the second one to set it to ```/recover```.
+
 ![2024-01-31_22-28](https://github.com/spxak1/weywot/assets/29977030/d2a2d231-de91-4c32-af08-c2a536eef88f)
 
 Click on the pink partition to unlock it with the password you gave it in gnome-disks.
+
 ![2024-01-31_22-28_1](https://github.com/spxak1/weywot/assets/29977030/cc016660-b73b-45a9-b13a-baa67816acb7)
 
 You can rename it from ```cryptdata``` to anything you want (but remember that name). I use ```popos``` (all small).
+
 ![2024-01-31_22-29](https://github.com/spxak1/weywot/assets/29977030/9d361896-3bf6-4045-bfa3-3eea90adcbe3)
 
 The unlocked encryption appears. This is where you'll install your ```/```.
+
 ![2024-01-31_22-29_1](https://github.com/spxak1/weywot/assets/29977030/843feee1-ba8d-4d37-a857-fb9913947fa0)
 
 Select the green partition to mount ```/``` on it.
+
 ![2024-01-31_22-30](https://github.com/spxak1/weywot/assets/29977030/5045976a-21d5-46a2-978f-3c86d36bfecf)
 
 Click **Erase and Install** to proceed and complete the installation. Once done **DO NOT REBOOT**.
+
 ![2024-01-31_22-36](https://github.com/spxak1/weywot/assets/29977030/c6603952-a6f3-4f77-8882-82978c559a5f)
 
 
