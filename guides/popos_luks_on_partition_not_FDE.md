@@ -8,6 +8,9 @@ This guide uses as much GUI as possible, mainly because it's dead easy.
 
 Boot from USB to the Pop installer. Go through the first steps to configure language, keyboard etc, but then click on the left bottom corner to just try Pop, **do NOT install**.
 
+![2024-01-31_22-19](https://github.com/spxak1/weywot/assets/29977030/973d2a18-7609-429a-8fa5-a8684fe0cdaa)
+
+
 ### Partitions
 
 You need a minimum of 2 partitions to install Pop, but I use 3:
@@ -15,4 +18,167 @@ You need a minimum of 2 partitions to install Pop, but I use 3:
 * The ```/recovery``` partition. This is **not required** but it's one of Pop's nicest features so I always use it. You can skip this. It takes 4GB in FAT32.
 * The ```/``` (root) partition. This is the one that will be encrypted. Use as much space as you want for this. I use 90GB and ```ext4```, the default filesystem for Pop. Guides with BTRFS are available, I will  also make one later.
 
-### The ESP  
+I find ```gparted``` the easiest for the first two, but I use ```gnome-disks``` for the third one, as it is simpler.
+
+First I clear my drive. Only do this if you start from scratch. If you already have other OS installed and you are installing Pop alongside **do NOT do this**.
+
+![2024-01-31_22-20](https://github.com/spxak1/weywot/assets/29977030/6445386f-f8c0-4ca4-a52a-9e6c937d4ac3)
+
+
+### On gparted
+
+Create the ESP.
+![2024-01-31_22-21](https://github.com/spxak1/weywot/assets/29977030/d6035c7a-1274-4ca4-a01d-86828688434a)
+
+Then, the recovery partition.
+![2024-01-31_22-45](https://github.com/spxak1/weywot/assets/29977030/c536c266-d4c2-4d2c-bb77-098c51753a4a)
+
+Apply the changes.
+![2024-01-31_22-22](https://github.com/spxak1/weywot/assets/29977030/a099d541-d65a-4ca5-8208-8b35f3a07d4c)
+
+End result.
+![2024-01-31_22-22_1](https://github.com/spxak1/weywot/assets/29977030/53c28615-b833-4f1e-90c9-2bafc3aa3abb)
+
+
+### On gnome-disks
+
+Select the drive on the list on the left, then select the free space to highlight it. Click on the + symbol
+![2024-01-31_22-23_1](https://github.com/spxak1/weywot/assets/29977030/b41f8913-fdd0-4f18-a37e-cdddaa1e55a5)
+
+Add a new partition, select the size (I chose 90GB).
+![2024-01-31_22-23_2](https://github.com/spxak1/weywot/assets/29977030/0925472f-18dd-4e84-9c2b-c839f47278d2)
+
+Click next, name the partition (I chose POPOS), and select ```ext4``` with encryption.
+![2024-01-31_22-24](https://github.com/spxak1/weywot/assets/29977030/5eba80e1-0a60-4833-81b6-b87d4a89d63a)
+
+Select a password you will **NEVER FORGET**, and apply.
+![2024-01-31_22-25](https://github.com/spxak1/weywot/assets/29977030/ce725041-b95a-4223-9e64-b1858b097141)
+
+## Install Pop
+Fire up the installer from the dock, and select custom installation.
+![2024-01-31_22-26](https://github.com/spxak1/weywot/assets/29977030/6b4d8973-21a2-4605-af39-64ab6d595ca7)
+
+You are going to use the 3 partitions you created. That's what they look like. The pink one is the encrypted partition.
+![2024-01-31_22-27](https://github.com/spxak1/weywot/assets/29977030/d067a96e-2ce1-413e-99e9-c8510cc6a304)
+
+Click on the first one to set it to ```/boot/efi```.
+![2024-01-31_22-27_1](https://github.com/spxak1/weywot/assets/29977030/6200b70f-509c-444a-8575-dc009a358cd7)
+
+Click on the second one to set it to ```/recover```.
+![2024-01-31_22-28](https://github.com/spxak1/weywot/assets/29977030/d2a2d231-de91-4c32-af08-c2a536eef88f)
+
+Click on the pink partition to unlock it with the password you gave it in gnome-disks.
+![2024-01-31_22-28_1](https://github.com/spxak1/weywot/assets/29977030/cc016660-b73b-45a9-b13a-baa67816acb7)
+
+You can rename it from ```cryptdata``` to anything you want (but remember that name). I use ```popos``` (all small).
+![2024-01-31_22-29](https://github.com/spxak1/weywot/assets/29977030/9d361896-3bf6-4045-bfa3-3eea90adcbe3)
+
+The unlocked encryption appears. This is where you'll install your ```/```.
+![2024-01-31_22-29_1](https://github.com/spxak1/weywot/assets/29977030/843feee1-ba8d-4d37-a857-fb9913947fa0)
+
+Select the green partition to mount ```/``` on it.
+![2024-01-31_22-30](https://github.com/spxak1/weywot/assets/29977030/5045976a-21d5-46a2-978f-3c86d36bfecf)
+
+Click **Erase and Install** to proceed and complete the installation. Once done **DO NOT REBOOT**.
+![2024-01-31_22-36](https://github.com/spxak1/weywot/assets/29977030/c6603952-a6f3-4f77-8882-82978c559a5f)
+
+
+## Post installation configuration
+This is where we are going to complete the configuration. Pop doesn't know there is encryption on its ```/```. 
+So we will have to fix this. 
+
+We are going to:
+* Tell Pop there is an encrypted partition by adding it to ```/etc/crypttab``` so that it unlocks at boot
+* ```chroot``` to the system to update the ```initramfs``` to add this change to the boot process.
+
+### Mount the encrypted drive
+
+When Pop finishes installation, the encrypted drive is still unlocked and can be accessed. 
+
+Become ```root``` to avoid ```sudo``` in all commands.
+
+~~~
+pop-os@pop-os:~$ sudo -i
+root@pop-os:~# 
+~~~
+
+Mount the encrypted partition to ```/mnt```. You should know what partition that is. Check with ```lsblk```. 
+In the same step you can find out that partitions ```UUID``` too. We need this.
+
+~~~
+root@pop-os:~# lsblk -o +uuid
+NAME        MAJ:MIN RM   SIZE RO TYPE  MOUNTPOINTS UUID
+loop0         7:0    0   2.6G  1 loop  /rofs       
+sda           8:0    1  14.8G  0 disk              
+├─sda1        8:1    1  14.7G  0 part              51BA-0E7D
+│ └─ventoy  252:0    0   2.9G  0 dm    /cdrom      
+└─sda2        8:2    1    32M  0 part              2024-01-26-07-14-13-00
+zram0       251:0    0    16G  0 disk  [SWAP]      
+nvme0n1     259:0    0 476.9G  0 disk              
+├─nvme0n1p3 259:1    0  83.8G  0 part              a634142c-8d5a-4476-8e5f-55403f9ad6e0
+│ └─popos   252:1    0  83.8G  0 crypt             2287d8f6-ec12-4b9d-9e12-a7a692205737
+├─nvme0n1p1 259:3    0     2G  0 part              8004-C286
+└─nvme0n1p2 259:4    0     4G  0 part              8011-BBB2
+~~~
+
+Let's undestand the above. ```/dev/sda``` is the USB stick we are installing from. 
+The only other drive here is ```/dev/nvme0n1```. That's the drive you have partitioned at the start.
+
+More importantly, you can see that the third partition ```/mnt/nvme0n1p3``` has ```popos```, the encrypted unit, attached to it.
+
+This is what we are after. It's ```UUID``` is ```a634142c-8d5a-4476-8e5f-55403f9ad6e0```. **Your ```UUID``` will be different to mine.
+Be careful, you need the ```UUID``` of the device partition, **not** the encrypted unit (popos). 
+
+Mount the enrcypted unit (**not the device partition**). Remember, that's where the data is, The device partition doesn't hold the data but the unit (popos) that has the data. So, mount the unit.
+
+~~~
+root@pop-os:~# mount /dev/mapper/popos /mnt
+~~~
+
+This has mounted it to ```/mnt```. 
+
+
+### Edit crypttab
+
+Be careful. You need to edit the ```crypttab``` file of the new installation. That is ```/mnt/etc/crypttab```. 
+Be careful **not** to edit the file on the USB stick, which is found in ```/etc/crypttab```. 
+
+So, 
+~~~
+root@pop-os:~# pico /mnt/etc/crypttab 
+~~~
+In there you should add:
+~~~
+popos  UUID=a634142c-8d5a-4476-8e5f-55403f9ad6e0 none luks```.
+~~~
+Note, this is the ```UUID``` you copied from the previous step, the ```UUID``` of the device ```/dev/nvme0n1p3```. Remember your ```UUID``` will be different to mine.
+
+Here you declare that the encrypted unit ```popos``` is on the device with that ```UUID```, has ```none``` decryption files and uses ```luks```.
+
+Save and exit (if on pico/nano, CTRL+X).
+
+### Chroot
+
+The process of ```chroot``` is as if you boot to the new system and act from within. 
+Let's first mount the rest of the partitions of the new installation, as well as all the other filesystems required for a system to run (such as ```/dev``` and ```/sys``` and ```/proc``` and such).
+
+~~~
+root@pop-os:~# for i in /dev /dev/pts /proc /sys /run; do mount -B $i /mnt$i; done
+~~~
+
+There is no output here, so proceed with:
+~~~
+root@pop-os:~# chroot /mnt
+
+
+
+
+
+
+
+
+
+
+
+
+
