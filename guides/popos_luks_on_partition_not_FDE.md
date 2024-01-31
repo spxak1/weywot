@@ -300,10 +300,13 @@ sudo apt -y install clevis clevis-tpm2 clevis-luks clevis-initramfs initramfs-to
 Here's the command:
 ~~~
 sudo clevis luks bind -d /dev/nvme0n1p3 tpm2 '{"pcr_bank":"sha256"}' <<< "LUKSKEY"
+Warning: Value 512 is outside of the allowed entropy range, adjusting it.
 ~~~
 
 Check **your partition** that has the encrypted unit is correct. Mine is, as above, ```/dev/nvme0n1p3```.
 Also **change LUKSKEY** to ***your** LUKS password. **KEEP** the quotes.
+
+The warning is fine.
 
 That's it. Update the ```initramfs``` to inform the boot process.
 ~~~
