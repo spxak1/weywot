@@ -282,8 +282,33 @@ Once the system momentarily turns of before it turns back on **remove the USB st
 Enjoy.
 
 ## Configure TPM to avoid typing the LUKS password at boot.
+This is taken from [here](https://askubuntu.com/questions/1470391/luks-tpm2-auto-unlock-at-boot-systemd-cryptenroll). First answer.
 
+Boot to your new installation of Pop.
 
+### Required packages
+
+Simply install them all with:
+~~~
+sudo apt -y install clevis clevis-tpm2 clevis-luks clevis-initramfs initramfs-tools tss2
+~~~
+
+Here's the command:
+~~~
+sudo clevis luks bind -d /dev/nvme0n1p3 tpm2 '{"pcr_bank":"sha256"}' <<< "LUKSKEY"
+~~~
+
+Check **your partition** that has the encrypted unit is correct. Mine is, as above, ```/dev/nvme0n1p3```.
+Also **change LUKSKEY** to ***your** LUKS password. **KEEP** the quotes.
+
+That's it. Update the ```initramfs``` to inform the boot process.
+~~~
+sudo update-initramfs -u -k all
+~~~
+
+Done. Reboot.
+
+**Note:** You will still **see** and be able to type the LUKS password at boot. If you don't type anything, after a couple of seconds the drive will unlock and the booting process will proceed. This method using ```clevis``` has **no way** to remove the password prompt. It's a safety feature, to avoid getting locked out if TPM is reset.
 
 
 
