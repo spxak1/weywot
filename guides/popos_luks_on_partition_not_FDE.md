@@ -288,6 +288,8 @@ Enjoy.
 ## Configure TPM to avoid typing the LUKS password at boot.
 This is taken from [here](https://askubuntu.com/questions/1470391/luks-tpm2-auto-unlock-at-boot-systemd-cryptenroll). First answer.
 
+**Warning:** This adds a good 5-7 seconds to the boot process!
+
 Boot to your new installation of Pop.
 
 ### Required packages
