@@ -4,6 +4,8 @@ Currently Pop's installer only offers encryption when installing on the whole di
 
 This guide uses as much GUI as possible, mainly because it's dead easy.
 
+**Update**: Luks with TPM (no password) at the end!
+
 ## Preparation
 
 Boot from USB to the Pop installer. Go through the first steps to configure language, keyboard etc, but then click on the left bottom corner to just try Pop, **do NOT install**.
@@ -169,6 +171,103 @@ root@pop-os:~# for i in /dev /dev/pts /proc /sys /run; do mount -B $i /mnt$i; do
 There is no output here, so proceed with:
 ~~~
 root@pop-os:~# chroot /mnt
+~~~
+
+Mount the ESP! You need this to access the boot files.
+
+~~~
+root@pop-os:/# mount -av
+/boot/efi                : successfully mounted
+/recovery                : successfully mounted
+/                        : ignored
+~~~
+The *ignored* message is because ```/``` is already mounted.
+
+Update the ```initramfs```:
+~~~
+root@pop-os:/# update-initramfs -c -k all
+~~~
+
+This has a long output. Here's mine:
+
+~~~
+root@pop-os:/# update-initramfs -c -k all
+update-initramfs: Generating /boot/initrd.img-6.6.10-76060610-generic
+W: Possible missing firmware /lib/firmware/amdgpu/ip_discovery.bin for module amdgpu
+W: Possible missing firmware /lib/firmware/amdgpu/vega10_cap.bin for module amdgpu
+W: Possible missing firmware /lib/firmware/amdgpu/sienna_cichlid_cap.bin for module amdgpu
+W: Possible missing firmware /lib/firmware/amdgpu/navi12_cap.bin for module amdgpu
+W: Possible missing firmware /lib/firmware/amdgpu/psp_14_0_0_ta.bin for module amdgpu
+W: Possible missing firmware /lib/firmware/amdgpu/psp_14_0_0_toc.bin for module amdgpu
+W: Possible missing firmware /lib/firmware/amdgpu/psp_13_0_6_ta.bin for module amdgpu
+W: Possible missing firmware /lib/firmware/amdgpu/psp_13_0_6_sos.bin for module amdgpu
+W: Possible missing firmware /lib/firmware/amdgpu/aldebaran_cap.bin for module amdgpu
+W: Possible missing firmware /lib/firmware/amdgpu/gc_9_4_3_rlc.bin for module amdgpu
+W: Possible missing firmware /lib/firmware/amdgpu/gc_9_4_3_mec.bin for module amdgpu
+W: Possible missing firmware /lib/firmware/amdgpu/gc_11_0_0_toc.bin for module amdgpu
+W: Possible missing firmware /lib/firmware/amdgpu/sdma_4_4_2.bin for module amdgpu
+W: Possible missing firmware /lib/firmware/amdgpu/sdma_6_1_0.bin for module amdgpu
+W: Possible missing firmware /lib/firmware/amdgpu/sienna_cichlid_mes1.bin for module amdgpu
+W: Possible missing firmware /lib/firmware/amdgpu/sienna_cichlid_mes.bin for module amdgpu
+W: Possible missing firmware /lib/firmware/amdgpu/navi10_mes.bin for module amdgpu
+W: Possible missing firmware /lib/firmware/amdgpu/gc_11_0_3_mes.bin for module amdgpu
+W: Possible missing firmware /lib/firmware/amdgpu/vcn_4_0_3.bin for module amdgpu
+kernelstub.Config    : INFO     Looking for configuration...
+EFI variables are not supported on this system.
+kernelstub.NVRAM     : ERROR    Failed to retrieve NVRAM data. Are you running in a chroot?
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/kernelstub/nvram.py", line 54, in get_nvram
+    return subprocess.check_output(command).decode('UTF-8').split('\n')
+  File "/usr/lib/python3.10/subprocess.py", line 421, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+  File "/usr/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['efibootmgr']' returned non-zero exit status 2.
+kernelstub           : INFO     System information: 
+
+    OS:..................Pop!_OS 22.04
+    Root partition:....../dev/dm-1
+    Root FS UUID:........2287d8f6-ec12-4b9d-9e12-a7a692205737
+    ESP Path:............/boot/efi
+    ESP Partition:......./dev/nvme0n1p1
+    ESP Partition #:.....1
+    NVRAM entry #:.......-1
+    Boot Variable #:.....0000
+    Kernel Boot Options:.quiet loglevel=0 systemd.show_status=false splash
+    Kernel Image Path:.../boot/vmlinuz-6.6.10-76060610-generic
+    Initrd Image Path:.../boot/initrd.img-6.6.10-76060610-generic
+    Force-overwrite:.....False
+
+kernelstub.Installer : INFO     Copying Kernel into ESP
+kernelstub.Installer : INFO     Copying initrd.img into ESP
+kernelstub.Installer : INFO     Setting up loader.conf configuration
+kernelstub.Installer : INFO     Making entry file for Pop!_OS
+kernelstub.Installer : INFO     Backing up old kernel
+kernelstub.Installer : INFO     No old kernel found, skipping
+~~~
+
+Scroll all the way to the top to check the first line for possible errors about anything including ```crypt``` or ```popos```. If you have any such errors, you've done something wrong. Go back and check what you've missed, then try again.
+
+You can **ignore** any ```Possible missing firmware``` messages, they are normal.
+Further down **ignore** ```ERROR    Failed to retrieve NVRAM data. Are you running in a chroot?```. It's normal, you *are* running in ```chroot```!
+Finally **ignore** this ```Command '['efibootmgr']' returned non-zero exit status 2```. It's also normal.
+
+That's it. Exit chroot:
+~~~
+root@pop-os:/# exit
+exit
+~~~
+
+You can go back to the window waiting after you installed, to press reboot. Or just reboot any way you want. 
+Once the system momentarily turns of before it turns back on **remove the USB stick** and boot Pop to the LUKS password prompt.
+
+Enjoy.
+
+## Configure TPM to avoid typing the LUKS password at boot.
+
+
+
+
 
 
 
