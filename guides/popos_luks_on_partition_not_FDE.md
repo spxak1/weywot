@@ -4,6 +4,9 @@ Currently Pop's installer only offers encryption when installing on the whole di
 
 This guide uses as much GUI as possible, mainly because it's dead easy.
 
+A video version of this is found here: [https://youtu.be/fgYeXLUoBfI](https://youtu.be/fgYeXLUoBfI).
+**Read the video description for a small eratum**.
+
 **Update**: Luks with TPM (no password) at the end!
 
 ## Preparation
