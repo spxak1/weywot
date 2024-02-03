@@ -4,6 +4,7 @@ This is a collection of notes that worked for my system at the time of writing.
 
 Feel free to use them, share them, modify them. I don't claim credit for them, so I don't ask for it either. Just be happy.
 
+* [Maximum Powersavings -Work in progress](https://github.com/spxak1/weywot/blob/main/guides/Full_powersavings.md)
 * [Change the screen temperature - white balance](https://github.com/spxak1/weywot/blob/main/guides/screen_colour_temperature.md)
 * [Install Pop!_OS on a custom partition with LUKS - For dual boot, with TPM LUKS unlock](https://github.com/spxak1/weywot/blob/main/guides/popos_luks_on_partition_not_FDE.md)
 * [Make the X13 Yoga Gen3 Touchscreen identified by Gnome 45](https://github.com/spxak1/weywot/blob/main/guides/ThinkPad_X13_Yoga_Gen3_Touch.md)
