@@ -16,6 +16,8 @@ This is done simply by editing ```/etc/udisk2/mount_options.conf```.
 
 More details can be found [here](http://storaged.org/doc/udisks2-api/latest/mount_options.html).
 
+More on BTRFS can be found [here](https://fedoramagazine.org/working-with-btrfs-compression/#:~:text=If%2C%20for%20some%20reason%2C%20you,algorithm%20at%20compression%20level%203.)
+
 An ```.example``` file exists, copy it to create one.
 You can read extensively whan can be done there. You can change defaults for *all* BTRFS drives, or for one drive. 
 I choose to only change the defaults for that one drive, so I add:
