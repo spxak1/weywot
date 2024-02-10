@@ -12,7 +12,9 @@ In that answer a ```udev``` solution is also shown, not used here.
 
 ## Change udisks2 defaults
 
-This is done simply by editing ```/etc/udisk2/mount_options.conf```
+This is done simply by editing ```/etc/udisk2/mount_options.conf```.
+
+More details can be found [here](http://storaged.org/doc/udisks2-api/latest/mount_options.html).
 
 An ```.example``` file exists, copy it to create one.
 You can read extensively whan can be done there. You can change defaults for *all* BTRFS drives, or for one drive. 
