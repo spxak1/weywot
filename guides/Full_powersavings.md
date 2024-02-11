@@ -172,7 +172,7 @@ https://github.com/redhat-performance/tuned/blob/master/tuned/plugins/plugin_dis
 https://github.com/redhat-performance/tuned/blob/master/tuned/plugins/plugin_net.py
 # Comma separated list of devices, all devices if commented out.
 # devices=eth0
-# dynamic=1
+# dynamic=0
 
 [scsi_host]
 alpm=min_power
