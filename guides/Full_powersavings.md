@@ -137,9 +137,14 @@ Here's my custom ```tunded.conf``` fore ```ceres```:
 summary=Low power consumption on Ceres
 
 [cpu]
+#https://github.com/redhat-performance/tuned/blob/master/tuned/plugins/plugin_cpu.py
 governor=ondemand|powersave
 energy_perf_bias=powersave|power
 energy_performance_preference=power
+#force_latency=cstate.name:C6|cstate.id:4|10
+#min_perf_pct=100
+#no_turbo=1
+#pm_qos_resume_latency_us=100
 
 [acpi]
 platform_profile=low-power|quiet
@@ -155,12 +160,19 @@ timeout=10
 radeon_powersave=dpm-battery, auto
 
 [disk]
+https://github.com/redhat-performance/tuned/blob/master/tuned/plugins/plugin_disk.py
 # Comma separated list of devices, all devices if commented out.
 # devices=sda
+#Mine
+#apm=128
+#spindown=6
+
 
 [net]
+https://github.com/redhat-performance/tuned/blob/master/tuned/plugins/plugin_net.py
 # Comma separated list of devices, all devices if commented out.
 # devices=eth0
+# dynamic=1
 
 [scsi_host]
 alpm=min_power
@@ -176,6 +188,12 @@ script=${i:PROFILE_DIR}/script.sh
 [sysfs]
 /sys/module/pcie_aspm/parameters/policy = powersupersave
 /sys/bus/pci/devices/0000:*/power/control = auto
+
+
+[usb]
+https://github.com/redhat-performance/tuned/blob/master/tuned/plugins/plugin_usb.py
+#devices=1-3,1-4
+#autosuspend=0
 ~~~
 
 Info on tuned:
