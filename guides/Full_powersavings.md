@@ -1,5 +1,6 @@
 # Maximum Power savings.
 
+## Using scripts for laptops
 This is just a dump of the scripts:
 
 ```/usr/local/bin/on_battery.sh```
@@ -120,7 +121,65 @@ systemctl start tp-auto-kbbl.service
 
 Additional udev rules in: ```/etc/udev/rules.d/99-battery.rules```
 
+## Using TuneD for servers
+
+Here's my custom ```tunded.conf``` fore ```ceres```:
 ~~~
+#
+# tuned configuration
+#
+
+[main]
+summary=Low power consumption on Ceres
+
+[cpu]
+governor=ondemand|powersave
+energy_perf_bias=powersave|power
+energy_performance_preference=power
+
+[acpi]
+platform_profile=low-power|quiet
+
+[eeepc_she]
+
+[vm]
+
+[audio]
+timeout=10
+
+[video]
+radeon_powersave=dpm-battery, auto
+
+[disk]
+# Comma separated list of devices, all devices if commented out.
+# devices=sda
+
+[net]
+# Comma separated list of devices, all devices if commented out.
+# devices=eth0
+
+[scsi_host]
+alpm=min_power
+
+[sysctl]
+vm.laptop_mode=5
+vm.dirty_writeback_centisecs=1500
+kernel.nmi_watchdog=0
+
+[script]
+script=${i:PROFILE_DIR}/script.sh
+
+[sysfs]
+/sys/module/pcie_aspm/parameters/policy = powersupersave
+/sys/bus/pci/devices/0000:*/power/control = auto
+~~~
+
+Info on tuned:
+https://gist.github.com/v-fox/b7adbc2414da46e2c49e571929057429
+https://github.com/redhat-performance/tuned/blob/master/profiles/realtime/tuned.conf
+https://github.com/redhat-performance/tuned/blob/master/profiles/throughput-performance/tuned.conf
+
+
 #SUBSYSTEM=="power_supply", ATTR{online}=="0", RUN+="/usr/local/bin/on_battery.sh"
 #SUBSYSTEM=="power_supply", ATTR{online}=="1", RUN+="/usr/local/bin/on_ac.sh"
 ~~~
