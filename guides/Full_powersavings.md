@@ -120,7 +120,7 @@ systemctl start tp-auto-kbbl.service
 ~~~
 
 Additional udev rules in: ```/etc/udev/rules.d/99-battery.rules```
-
+~~~
 #SUBSYSTEM=="power_supply", ATTR{online}=="0", RUN+="/usr/local/bin/on_battery.sh"
 #SUBSYSTEM=="power_supply", ATTR{online}=="1", RUN+="/usr/local/bin/on_ac.sh"
 ~~~
