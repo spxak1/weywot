@@ -121,6 +121,10 @@ systemctl start tp-auto-kbbl.service
 
 Additional udev rules in: ```/etc/udev/rules.d/99-battery.rules```
 
+#SUBSYSTEM=="power_supply", ATTR{online}=="0", RUN+="/usr/local/bin/on_battery.sh"
+#SUBSYSTEM=="power_supply", ATTR{online}=="1", RUN+="/usr/local/bin/on_ac.sh"
+~~~
+
 ## Using TuneD for servers
 
 Here's my custom ```tunded.conf``` fore ```ceres```:
@@ -180,6 +184,4 @@ https://github.com/redhat-performance/tuned/blob/master/profiles/realtime/tuned.
 https://github.com/redhat-performance/tuned/blob/master/profiles/throughput-performance/tuned.conf
 
 
-#SUBSYSTEM=="power_supply", ATTR{online}=="0", RUN+="/usr/local/bin/on_battery.sh"
-#SUBSYSTEM=="power_supply", ATTR{online}=="1", RUN+="/usr/local/bin/on_ac.sh"
-~~~
+
