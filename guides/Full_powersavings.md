@@ -185,4 +185,10 @@ https://github.com/redhat-performance/tuned/blob/master/profiles/realtime/tuned.
 https://github.com/redhat-performance/tuned/blob/master/profiles/throughput-performance/tuned.conf
 
 
+## HD-Idle (for ceres)
 
+You can install the package ```hd-idle```. Its config is in ```/etc/sysconfig/hd-idle
+
+It spins down disks after some time. Default is 600s.
+
+See here poing 3.5 here for some info: https://wiki.archlinux.org/title/Hdparm
