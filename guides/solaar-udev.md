@@ -81,7 +81,7 @@ The difference is this one line:
 ~~~
 KERNEL=="uinput", SUBSYSTEM=="misc", TAG+="uaccess", OPTIONS+="static_node=uinput"
 ~~~
-At the top.
+At the top. This means **the first rule works, the second doesn't**.
 
 Both are named ```42-logitech-unify-permissions.rules``` and should be in ```/etc/udev/rules.d/```.
 
