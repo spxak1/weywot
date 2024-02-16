@@ -88,7 +88,7 @@ Both are named ```42-logitech-unify-permissions.rules``` and should be in ```/et
 I have found this to work:
 ~~~
 SUBSYSTEM=="usb", ATTRS{idVendor}=="046d", MODE="0666"
-KERNEL=="uinput", MODE="0660", GROUP="otheos", OPTIONS+="static_node=uinput"
+KERNEL=="uinput", MODE="0660", GROUP="yourusername", OPTIONS+="static_node=uinput"
 ~~~
 
 And if everything fails, ```sudo setfacl -m u:${USER}:rw /dev/uinput```.
