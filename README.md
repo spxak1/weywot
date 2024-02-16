@@ -4,6 +4,7 @@ This is a collection of notes that worked for my system at the time of writing.
 
 Feel free to use them, share them, modify them. I don't claim credit for them, so I don't ask for it either. Just be happy.
 
+* [Make Solaar work in Wayland - Fix](https://github.com/spxak1/weywot/blob/main/guides/solaar-udev.md)
 * [Mount external drives with BTRFS partition with compression](https://github.com/spxak1/weywot/blob/main/guides/btrfs_usb_compression.md)
 * [Maximum Powersavings -Work in progress](https://github.com/spxak1/weywot/blob/main/guides/Full_powersavings.md)
 * [Change the screen temperature - white balance](https://github.com/spxak1/weywot/blob/main/guides/screen_colour_temperature.md)
