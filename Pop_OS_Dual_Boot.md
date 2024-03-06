@@ -73,7 +73,7 @@ This is the simplest case. Each operating system is installed separately on its 
 
 ### 2.1 OS installation
 Install each OS to its own drive. At this point you can boot each OS by selecting the boot device from your BIOS.
-At this point Pop!_OS may **or** many **not** provide you with a **menu**. But there is one:
+At this point Pop!_OS may **or** may **not** provide you with a **menu**. But there is one:
 
 With Pop!_OS selected to boot, when your system shows the manufacturers logo (i.e. during POST), you **spam** or **hold** the **spacebar**. This will bring up the **menu**. This menu does **not** include an option for Windows (yet).
 
