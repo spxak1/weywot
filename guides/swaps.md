@@ -22,6 +22,10 @@ You can find all partitions GUID with ```sudo lsblk -o +PARTTYPE```.
 All GUIDs are listed with ```systemd-id128 show```.
 
 This means that a swap partition on the same device as the root ```/``` does **not** need to be included in ```/etc/fstab``` to be used.
+
+To disalbe auto discrovered swap partitions, you need to do that through ```systemd```, as documented in [this post](https://serverfault.com/a/684778)
+Try ```systemctl disable dev-sdXX.swap``` or ```systemctl mask dev-sdXX.swap```.
+
 My **WIP** is to identify, however, how to stop using it.
 
 As the installer picks up the swap partition and uses it anyway, it adds by defautl the ```resume=UUID=``` kernel parameter in the boot option.
