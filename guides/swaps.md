@@ -70,8 +70,10 @@ You should add the boot option:
 ~~~
 zswap.enabled=1 zswap.max_pool_percent=25 zswap.compressor=lz4hc
 ~~~
-
+Note, the value ```25``` is configurable for the percentage of RAM used.
 Note, this requires configuring grub or systemd-boot, not covered here.
+
+A **lot** more info is [here](https://docs.kernel.org/admin-guide/mm/zswap.html) and of course at the [Arch Wiki](https://wiki.archlinux.org/title/zswap).
 
 ### Disable ZRAM
 
