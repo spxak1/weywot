@@ -245,11 +245,23 @@ This solution, however, means you can hibernate using a swap file/partition smal
 
 In any event, if the swap file/partition is large, and I'm using 24GB, you don't need to do that. You can just dump the RAM on to the swap file/partition. And you don't need to compress it for that.
 
-<u>Note</u>: My understanding is limited.
+**Note:** My understanding is limited.
 
 I'm following [this arch wiki article](https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate) and its links.
 I also use [this post](https://forums.opensuse.org/t/hibernation-image-size-editing/125508/7)
 
+So, I have changed from 2/5 my RAM to **all** my RAM, which is 16GiB or 17179869184 bytes (multiply by 1024 3 times).
+To do this, create a file.
+
+~~~
+cat /etc/tmpfiles.d/hibernation_image_size.conf 
+#    Path                   Mode UID  GID  Age Argument
+w    /sys/power/image_size  -    -    -    -   17179869184
+~~~
+
+I would think this is enough to know so that no compression is used, however I also added ```hibernate=nocompress``` as a **kernel option**.
+
+Maybe it's placebo, but the system certainly goes to hibernation quicker. Resuming is still slow (after all 16GiB needs to be read from the disk). With a fast NVME PCIe 4.0 drive (I use a 990Pro, ~7GiB/s) this should take around 3 seconds. It takes a bit more, but it's fine.
 
 
 ## Finish off
