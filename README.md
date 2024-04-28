@@ -13,7 +13,7 @@ Feel free to use them, share them, modify them. I don't claim credit for them, s
 * [Make the X13 Yoga Gen3 Touchscreen identified by Gnome 45](https://github.com/spxak1/weywot/blob/main/guides/ThinkPad_X13_Yoga_Gen3_Touch.md)
 * [Add alt+shift as a keyboard layout change shortcut in gnome](https://github.com/spxak1/weywot/blob/main/guides/keyboard.md)
 * [Configure Howdy on Fedora 39 on a ThinkPad X13 Yoga Gen 3](https://github.com/spxak1/weywot/blob/main/guides/howdy_X13.md)
-* [Configure Hibernation on Fedora 39](https://github.com/spxak1/weywot/blob/main/guides/Fedora39_Hibernate.md)
+* [Configure Hibernation on Fedora 39/40](https://github.com/spxak1/weywot/blob/main/guides/Fedora39_Hibernate.md)
 * [Reuse a WD Elements enclosure when the disk connected appears empty, while it has data in it -no data loss](https://github.com/spxak1/weywot/blob/main/guides/GPT_PMBR_Size_Mismatch.md)
 * [Turn a Raspberry Pi + camera to a streaming camera device over rtsp and http](https://github.com/spxak1/weywot/blob/main/guides/pi_camera.md)
 * [Make USB to Gigabit adapters based on the ASIX AX88179 chip work!](https://github.com/spxak1/weywot/blob/main/guides/AX88179_USB.md)
