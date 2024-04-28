@@ -227,6 +227,31 @@ See this (now locked) thread [here](https://github.com/systemd/systemd/issues/25
 
 **Update** it's been reinstated, see below.
 
+## Speed to hibernate and resume
+
+Now what happens is that when the system goes to hibernation, the RAM is written on the swap. The system reserves an amount on the swap for this, typically 2/5 of the RAM. 
+
+You can check how much that is with:
+
+~~~
+cat /sys/power/image_size
+6871947674
+~~~
+
+You can do the calculation, but ```6871947674``` is 6GiB, which is 2/5 of 16GB. In order of the RAM to fit that, it needs to be compressed.
+This process adds time when going to hibernation and when resuming. I have not measured the impact, so this whole excercise may be pointless.
+
+This solution, however, means you can hibernate using a swap file/partition smaller than your RAM.
+
+In any event, if the swap file/partition is large, and I'm using 24GB, you don't need to do that. You can just dump the RAM on to the swap file/partition. And you don't need to compress it for that.
+
+<u>Note</u>: My understanding is limited.
+
+I'm following [this arch wiki article](https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate) and its links.
+I also use [this post](https://forums.opensuse.org/t/hibernation-image-size-editing/125508/7)
+
+
+
 ## Finish off
 
 [This guide](https://mitchellroe.dev/auto-hibernate.html) is better. Not that this matters anymore as the suspend-then hibernate is no longer important (see above).
