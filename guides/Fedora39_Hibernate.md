@@ -1,4 +1,4 @@
-# Hibernation on Fedora 39
+# Hibernation on Fedora 39/40
 
 This guide is mostly a copy of [the guide for Fedora 36 on the Fedora Magazine](https://fedoramagazine.org/hibernation-in-fedora-36-workstation/).
 
@@ -195,6 +195,8 @@ audit2allow -b -M systemd_sleep
 semodule -i systemd_sleep.pp
 ~~~
 
+**UPDATE** I had to do the Selinux step after I upgraded from F39 to F40
+
 Check that hibernation is working via systemctl hibernate again.
 
 ~~~
@@ -213,7 +215,7 @@ NAME       TYPE      SIZE USED PRIO
 
 All is good.
 
-## Suspend-then-hibernate: Gone!
+## Suspend-then-hibernate: Gone! -- Reinstated
 The old(er) function of ```suspend-then hibernate``` is gone.
 Previously, when selected, the system would suspend after some time of inactivity, or with the lid down, then after some time it would hibernate. A great feature that worked well.
 
@@ -222,6 +224,8 @@ However, this is no more. The systemd devs have decided this is not a good idea,
 This is completely idiotic and useless. Hybrid sleep was available to avoid data loss in case of battery drain. With Hybrid Sleep, the system would dump the RAM to disk (hibernate, aka S4) and go to suspend. If the power died, it would resume from hibernate as per normal. This is still available, but sadly ```suspend-then-hibernate``` is not.
 
 See this (now locked) thread [here](https://github.com/systemd/systemd/issues/25269). It is clear the devs (bluca) are not going to listen. Shame!
+
+**Update** it's been reinstated, see below.
 
 ## Finish off
 
@@ -236,10 +240,17 @@ Finally you can set the default behaviour when you close the lid, or set the def
 
 Edit ```/etc/systemd/sleep.conf```
 
-And change the line:
+**UPDATE**
+Since systemd 254, you need to also have 
+
+And change the line: ```SuspendEstimationSec=10min```. This overcomes the regression (and reinstatement) of sleep-then-hibernte where it only worked if the battery was under 5%. The new addition tells the system how offen to check the battery, for this new feature to work.
+
+That is, if the battery falls to 5% *before* hibernation is set to start, the system still goes to hibernation. I'll add the link later.
+
 ~~~
 [Sleep]
-HibernateDelaySec=3600
+HibernateDelaySec=3600s
+SuspendEstimationSec=10min
 ~~~
 
 This configures the time before it goes to hibernation from sleep!
