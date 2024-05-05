@@ -41,6 +41,13 @@ chmod 600 /swap/swapfile
 mkswap /swap/swapfile
 ~~~~
 
+**To keep the swap always on:** 
+Add it to your ```/etc/fstab```
+~~~
+/swap/swapfile swap swap defaults 0 0
+~~~
+Note: Only needed if you plan to move to ```zswap```.
+
 You now need the module ```resume``` in ```initramfs```.
 
 ~~~
