@@ -4,6 +4,7 @@ This is a collection of notes that worked for my system at the time of writing.
 
 Feel free to use them, share them, modify them. I don't claim credit for them, so I don't ask for it either. Just be happy.
 
+* [Install Universal Kernel on Fedora (40)](https://github.com/spxak1/weywot/blob/main/guides/fedora_uki.md)
 * [A few notes on swap, zram, zswap and hibernation (Fedora)](https://github.com/spxak1/weywot/blob/main/guides/swaps.md#a-few-notes-on-swap-zram-zswap-and-hibernation-fedora)
 * [Make Solaar work in Wayland - Fix](https://github.com/spxak1/weywot/blob/main/guides/solaar-udev.md)
 * [Mount external drives with BTRFS partition with compression](https://github.com/spxak1/weywot/blob/main/guides/btrfs_usb_compression.md)
