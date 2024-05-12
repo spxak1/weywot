@@ -193,7 +193,7 @@ I will revisit this later, as I may have missed something.
 
 ### EDK2 Works!
 
-There is more to EDK2 than its ext4 driver, but that's what we're after here.
+There is more to EDK2 than its ext4 driver. You also get the uefi shell tools with it. Not required here but I mention it anyway.
 
 Install with:
 ~~~
@@ -208,6 +208,15 @@ sudo cp /usr/share/edk2/drivers/ext4x64.efi /boot/efi/EFI/systemd/drivers/
 ~~~
 
 You only need ```ext4x64.efi``` as the other two are for other architectures.
+
+#### UEFI shell
+
+You can also copy the shell tool to have access to it from ```systemd-boot``` menu:
+~~~
+sudo cp /usr/share/edk2/ovmf/Shell.efi /boot/efi/shellx64.efi
+~~~
+
+Note it's copied in the ```/boot/efi``` folder, not ```/boot/efi/EFI```. The name change is required.
 
 
 That's it. If you reboot now, ```systemd-boot``` will preload the driver, see the loader config files and boot the kernel from ```/boot```. Success.
