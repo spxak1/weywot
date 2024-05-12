@@ -53,7 +53,7 @@ All these files (kernel, initrd, loader folder and entry configs), on a default 
 ## The fix
 
 Since ```systemd-boot``` 250, it can load EFI drivers so that it can access different partitions with different filesystems to the default FAT32.
-This is documented in the (systemd-boot github page here)[https://github.com/systemd/systemd/blob/71e5a35a5be99a1f244d38ee1dfe7db39242a977/NEWS#L3177C1-L3181C38].
+This is documented in the [systemd-boot github page here](https://github.com/systemd/systemd/blob/71e5a35a5be99a1f244d38ee1dfe7db39242a977/NEWS#L3177C1-L3181C38).
 
 Fedora uses ```ext4``` for the ```/boot``` partition, so this guide is currently limitted to ```ext4``` only. 
 
@@ -63,7 +63,7 @@ The EFI driver for the filesystem should be found in ```EFI/systemd/drivers``` f
 
 ### Check the folders GUID
 
-How dows ```systemd-boot``` know where is the ```/boot``` partition? It looks for the correct GUID. These are listed at the (updated discoverable partitions specification)[https://uapi-group.org/specifications/specs/discoverable_partitions_specification/].
+How dows ```systemd-boot``` know where is the ```/boot``` partition? It looks for the correct GUID. These are listed at the [updated discoverable partitions specification](https://uapi-group.org/specifications/specs/discoverable_partitions_specification/).
 The ```/boot``` partition is what is known system-wise as ```XBOOTLDR``` (from extended boot loader) and has a GUID of ```bc13c2ff-59e6-4262-a352-b275fd6f7172```.
 
 Check your partitions have the correct GUID's. Apparently Fedora has a bug and anacoda, during installation, may not give the correct GUIDs.
@@ -191,7 +191,7 @@ That's it. If you reboot now, ```systemd-boot``` will preload the driver, see th
 
 ## Wrap up
 
-The arch wiki suggests this:
+The arch wiki ([point 3.2 here](https://wiki.archlinux.org/title/systemd-boot)) suggests this:
 
 > As of version 250, systemd ships with systemd-boot-update.service. Enabling this service will update the bootloader upon the next boot.
 
