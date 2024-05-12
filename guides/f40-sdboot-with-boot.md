@@ -1,4 +1,17 @@
-# Convert Fedora Workstation (40) to systemd-boot (with ```/boot``` partition).
+# Convert Fedora Workstation (40) to systemd-boot (with ```/boot``` partition)
+
+## TL/DR
+
+~~~
+sudo dnf install systemd-boot
+sudo bootctl install
+sudo dnf install edk2-ext4
+sudo mkdir /boot/efi/EFI/systemd/drivers
+sudo cp /usr/share/edk2/drivers/ext4x64.efi cp /usr/share/edk2/drivers/ext4x64.efi
+sudo reboot
+~~~
+
+## Case study
 
 Fedora installs with ```grub``` out of the box. However Fedora uses loader files for grub, as it would for ```systemd-boot```.
 This is probably also why ```grub-customizer``` doesn't work with Fedora (but I have not confirmed this, so it may very well be wrong).
@@ -61,7 +74,7 @@ The EFI driver for the filesystem should be found in ```EFI/systemd/drivers``` f
 
 ## Application
 
-### Check the folders GUID
+### Check the partitions' GUID
 
 How dows ```systemd-boot``` know where is the ```/boot``` partition? It looks for the correct GUID. These are listed at the [updated discoverable partitions specification](https://uapi-group.org/specifications/specs/discoverable_partitions_specification/).
 The ```/boot``` partition is what is known system-wise as ```XBOOTLDR``` (from extended boot loader) and has a GUID of ```bc13c2ff-59e6-4262-a352-b275fd6f7172```.
@@ -86,13 +99,23 @@ There it is, ```/dev/nvme0n1p2``` in my case. While you're here, check that the 
 sudo dnf install systemd-boot-unsigned
 ~~~
 
-This should do it, but you should also install the helper application ```sdubby```. This is the replacement for ```grubby```. However ```grubby``` needs to be removed first.
-This step is not essential at this point.
+This should do it.
 
+#### A note on sdubby vs grubby
+
+On default ```systemd-boot``` installations of Fedora, the application ```sdubby``` is used as a replacement for ```grubby```. What this does is to place the kernel/initrd and loader files in the **correct** location for ```systemd-boot```, which is on the ```EFI partition```. Since your EFI partition is rather small, as is the case when you use ```grub``` by default, you may want to keep your kernel/initrd and loader files on the ```/boot``` partition. ***Keeping** ```grubby``` will do this for you.
+
+If you (have to) remove ```grubby``` and install ```sdubby```, after the first kernel upgrade, all files are moved to the EFI partition, so the EFI drivers **are no longer needed**.
+
+You could technically install Fedora, install ```systemd-boot``` and replace ```grubby``` with ```sdubby```, do a ```dnf update``` to install the new kernel, and completely save yourself from all this process mentioned here.
+
+In any event, that's how it's done, just *understand the difference*.
 ~~~
 sudo dnf remove grubby
 sudo dnf install sdubby
 ~~~
+
+#### Install systemd-boot
 
 To install the boot loader, do:
 ~~~
