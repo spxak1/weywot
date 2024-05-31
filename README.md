@@ -4,6 +4,7 @@ This is a collection of notes that worked for my system at the time of writing.
 
 Feel free to use them, share them, modify them. I don't claim credit for them, so I don't ask for it either. Just be happy.
 
+* [Post F40 - My installation - WORK IN PROGRESS](https://github.com/spxak1/weywot/blob/main/guides/install-fedora.md)
 * [Tuning (?) the write caching (for USB devices)](https://github.com/spxak1/weywot/blob/main/guides/dirty.md)
 * [Convert Fedora Workstation (40) to systemd-boot (with /boot partition)](https://github.com/spxak1/weywot/blob/main/guides/f40-sdboot-with-boot.md)
 * [Install Universal Kernel on Fedora (40)](https://github.com/spxak1/weywot/blob/main/guides/fedora_uki.md)
