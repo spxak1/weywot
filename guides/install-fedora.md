@@ -119,11 +119,12 @@ sudo dnf install dnf5 ncdu fastfetch google-chrome-stable vlc gparted gnome-twea
 flatpak install flathub com.mattjakeman.ExtensionManager com.spotify.Client ca.desrt.dconf-editor io.gitlab.adhami3310.Converter io.typora.Typora md.obsidian.Obsidian org.gnome.World.PikaBackup io.github.realmazharhussain.GdmSettings
 ~~~
 
-## Add keyboard layouts and set alt+shift to change
+## Add keyboard layouts and set alt+shift to change, Caps lock to change, two shifts for caps lock and singe to get off caps lock
 
 ~~~
 gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'gb'), ('xkb', 'gr')]"
 gsettings set org.gnome.desktop.wm.keybindings switch-input-source "['<Alt>Shift_L']"
+settings set org.gnome.desktop.input-sources xkb-options "['grp:caps_toggle', 'shift:both_capslock_cancel']"
 ~~~
 
 ## Make middle click minimize
@@ -132,11 +133,25 @@ gsettings set org.gnome.desktop.wm.keybindings switch-input-source "['<Alt>Shift
 gsettings set org.gnome.desktop.wm.preferences action-middle-click-titlebar 'minimize'
 ~~~
 
-## Configure Hibernation
+## Remove Minimize/maximize buttons
+~~~
+gsettings set org.gnome.desktop.wm.preferences button-layout :close
+~~~
+
+**Note**: reinstate with: 
+~~~
+gsettings set org.gnome.desktop.wm.preferences button-layout :minimize,maximize,close
+~~~
+
+## Note on hibernation
+
+If a swap partition is created at installation, Fedora will find it and do all steps to use it for hibernation, **except  for the ```resume``` module in initramfs with ```dracut``` which still needs to be done. 
+
+## Configure Hibernation* 
 
 Taken from [my guide](https://github.com/spxak1/weywot/blob/main/guides/Fedora39_Hibernate.md)
 
-### Create a swap file
+### Create a swap file*
 
 All commands as root:
 
@@ -161,7 +176,7 @@ For use with zswap (see later), you need to add it to your ```/etc/fstab```.
 ~~~
 
 
-**Update initramfs to support resume**
+**Update initramfs to support resume**   <------ This is still needed even if a swap partition is present
 ~~~
 cat <<-EOF | sudo tee /etc/dracut.conf.d/resume.conf
 add_dracutmodules+=" resume "
@@ -171,7 +186,7 @@ EOF
 dracut -f
 ~~~
 
-## Add the kernel options
+## Add the kernel options* 
 
 We need to find these two:
 ~~~
