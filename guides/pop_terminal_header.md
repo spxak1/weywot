@@ -9,6 +9,11 @@ Right click anywhere in the terminal still gives you access to the **Menu** and 
 3. Disable ```Use default value```
 4. Set ```Custome value``` to ```False```
 
+Or:
+~~~
+gsettings set org.gnome.Terminal.Legacy.Settings headerbar "false"
+~~~
+
 Restart the terminal.
 
 |Before|After|
