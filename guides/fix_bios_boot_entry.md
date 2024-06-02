@@ -9,37 +9,42 @@ It is frequent for some motherboards bios to lose entries to boot operatiing sys
 ### 1. Find where the EFI partition is located with ```lsblk```
 
 ~~~
-sudo lsblk -o name,size,fstype,parttype,partuuid
+lsblk -o +parttype
 ~~~
+
 
 There is some excess information here, but better have it.
 
 This is a sample output:
 
 ~~~
-NAME     SIZE FSTYPE PARTTYPE                             PARTUUID
-sda    465.8G                                             
-├─sda1     2G vfat   c12a7328-f81f-11d2-ba4b-00a0c93ec93b 697685f3-e003-4cd4-a7be-b07bbcf4497e
-├─sda2     4G vfat   ebd0a0a2-b9e5-4433-87c0-68b6b72699c7 a9fbe686-9f08-487c-9bc9-db094845b8c2
-├─sda3  88.8G ext4   0fc63daf-8483-4772-8e79-3d69d8477de4 63b38b7c-c4d9-4452-9403-127034ea8ebd
-├─sda4  92.3G ntfs   ebd0a0a2-b9e5-4433-87c0-68b6b72699c7 f4e2f022-d94d-4c43-aca2-064d4d7c9c73
-├─sda5   503M ntfs   de94bba4-06d1-4d40-a16a-bfd50179d6ac ebd981cd-0726-4340-866f-66d1cfd8d93a
-├─sda6  92.8G ext4   0fc63daf-8483-4772-8e79-3d69d8477de4 edf80ad9-2a9f-449e-b4da-5808931b6242
-├─sda7  92.8G ext4   0fc63daf-8483-4772-8e79-3d69d8477de4 27166423-7ae0-41dc-a493-8a26c68b80ff
-└─sda8  92.8G ext4   0fc63daf-8483-4772-8e79-3d69d8477de4 6e43e0bf-306d-4559-b293-440003d5c044
+otheos@brahe:~$ lsblk -o +parttype
+NAME        MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS               PARTTYPE
+sda           8:0    1  57.3G  0 disk                           
+├─sda1        8:1    1  57.2G  0 part /run/media/otheos/Ventoy  ebd0a0a2-b9e5-4433-87c0-68b6b72699c7
+└─sda2        8:2    1    32M  0 part /run/media/otheos/VTOYEFI ebd0a0a2-b9e5-4433-87c0-68b6b72699c7
+zram0       252:0    0     8G  0 disk [SWAP]                    
+nvme0n1     259:0    0 238.5G  0 disk                           
+├─nvme0n1p1 259:1    0   1.6G  0 part /boot/efi                 c12a7328-f81f-11d2-ba4b-00a0c93ec93b
+├─nvme0n1p3 259:2    0  65.1G  0 part /home                     0fc63daf-8483-4772-8e79-3d69d8477de4
+│                                     /                         
+├─nvme0n1p4 259:3    0    64G  0 part                           0fc63daf-8483-4772-8e79-3d69d8477de4
+└─nvme0n1p5 259:4    0  21.8G  0 part                           0657fd6d-a4ab-43c4-84e5-0933c84b4f4f
 ~~~
 
-The first partition, ```/dev/sda1``` is the EFI partition. 
+The first partition, ```/dev/nvme0n1p1``` is the EFI partition. 
 
-You can tell by the fact it's VFAT, and mainly because the partition type is ```c12a7328-f81f-11d2-ba4b-00a0c93ec93b``` (see [here](https://en.wikipedia.org/wiki/EFI_system_partition)).
+In  the case above you can tell as it is mounted. If you boot from USB, it won't be, so you need to identify it by its PARTTYPE
+
+The partition type (GUID) is ```c12a7328-f81f-11d2-ba4b-00a0c93ec93b``` (see [here](https://en.wikipedia.org/wiki/EFI_system_partition)).
 
 ### 2. Use efibootmgr to create the new entry
 
 ~~~
-sudo efibootmgr -c -d /dev/sda -p 1 -L PopOS -l \\EFI\\systemd\\systemd-bootx64.efi
+sudo efibootmgr -c -d /dev/nvme0n1 -p 1 -L PopOS -l \\EFI\\systemd\\systemd-bootx64.efi
 ~~~
 
-This points to the proper disk (```-d /dev/sda```) and the proper partition on that disk (```-p 1```), gives a label (```-L PopOS```) and locates the bootable stub (```-l \\EFI\\systemd\\systemd-bootx64.efi```)
+This points to the proper disk (```-d /dev/nvme0n1```) and the proper partition on that disk (```-p 1```), gives a label (```-L PopOS```) and locates the bootable stub (```-l \\EFI\\systemd\\systemd-bootx64.efi```)
 
 Things to note:
 
