@@ -2,6 +2,8 @@
 
 **TL/DR**: Remove or rename ```/boot/loader```.
 
+**Update**: See [this issue on kernel-install](https://github.com/systemd/systemd/issues/33151) for some more info and some links.
+
 This has happened on a number of occasions. Typically if:
 
 * you convert from grub to systemd-boot
@@ -86,6 +88,8 @@ else
     fi
 fi
 ~~~
+
+**NOTE**: Apparently the code below is obsolete and ```kernel-install``` is rewritten in C. I have no idea of the same algoright was used, but as per the dev, using ```/boot/efi``` rather than ```/efi``` is a problem (although most distros still do that). You can see that ```/efi``` as per [the specification for bootloaders](https://uapi-group.org/specifications/specs/boot_loader_specification/#mount-points) is indeed checked **FIRST**.
 
 The variable ```$BOOT_DIR_ABS``` in turn is assigned in the main part of the ```kernel-install``` script here:
 ~~~
