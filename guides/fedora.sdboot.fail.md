@@ -4,6 +4,8 @@
 
 **Update**: See [this issue on kernel-install](https://github.com/systemd/systemd/issues/33151) for some more info and some links.
 
+** Update 2**: I have opened [a bug report](https://bugzilla.redhat.com/show_bug.cgi?id=2290428).
+
 This has happened on a number of occasions. Typically if:
 
 * you convert from grub to systemd-boot
