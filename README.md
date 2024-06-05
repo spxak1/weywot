@@ -4,6 +4,7 @@ This is a collection of notes that worked for my system at the time of writing.
 
 Feel free to use them, share them, modify them. I don't claim credit for them, so I don't ask for it either. Just be happy.
 
+* [Add blink to your sudo](https://github.com/spxak1/weywot/blob/main/guides/groot.md)
 * [Fix Kernel upgrade failure to run dracut, no initrd](https://github.com/spxak1/weywot/blob/main/guides/fedora.sdboot.fail.md)
 * [Post F40 - My installation - WORK IN PROGRESS](https://github.com/spxak1/weywot/blob/main/guides/install-fedora.md)
 * [Tuning (?) the write caching (for USB devices)](https://github.com/spxak1/weywot/blob/main/guides/dirty.md)
