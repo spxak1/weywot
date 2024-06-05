@@ -85,7 +85,7 @@ At the top. This means **the first rule works, the second doesn't**.
 
 Both are named ```42-logitech-unify-permissions.rules``` and should be in ```/etc/udev/rules.d/```.
 
-I have found this to work:
+I have found the **first** file to work. This bellow as a file also works (change "yourusername"):
 ~~~
 SUBSYSTEM=="usb", ATTRS{idVendor}=="046d", MODE="0666"
 KERNEL=="uinput", MODE="0660", GROUP="yourusername", OPTIONS+="static_node=uinput"
