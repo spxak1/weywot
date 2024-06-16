@@ -68,6 +68,14 @@ All the work is done from within Pop.
 
 ### 4.1 Install the EFI shell
 
+Update: You can install it on Fedora with ```sudo dnf install edk2-ovmf```
+
+The files are placed in ```/usr/share/edk2/ovmf```. Move ```Shell.efi``` to ```/boot/efi/shellx64.efi```. Done
+
+A similar package exists for Ubuntu, I will update later.
+
+
+
 Download the file from [here](https://github.com/tianocore/edk2/blob/UDK2018/ShellBinPkg/UefiShell/X64/Shell.efi)
 This is a legitimate file, so if in doubt check it comes from tiancore's EDK2 project.
 
