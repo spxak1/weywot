@@ -232,3 +232,9 @@ resume=UUID=648bd14e-b0c0-46ee-b19a-57a9ba8f7082 resume_offset=9782084
 ~~~
 
 
+Update: You can install it on Fedora with sudo dnf install edk2-ovmf
+
+The files are placed in /usr/share/edk2/ovmf. Move Shell.efi to /boot/efi/shellx64.efi. Done
+
+A similar package exists for Ubuntu, I will update later.
+
