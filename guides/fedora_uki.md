@@ -1,4 +1,4 @@
-# Install Universal Kernel on Fedora (40)  
+# Install Unified Kernel on Fedora (40)  
 
 This is pretty much the info that appears on [Fedora's UKI support phase 2 page](https://fedoraproject.org/wiki/Changes/Unified_Kernel_Support_Phase_2).
 
