@@ -22,6 +22,12 @@ deltarpm=True
 defaultyes=True
 ~~~
 
+Also change:
+~~~
+installonly_limit=3
+~~~
+to **4** or **5** to keep more kernels.
+
 Then ```sudo dnf upgrade --refresh``` and reboot.
 
 
@@ -237,4 +243,5 @@ Update: You can install it on Fedora with sudo dnf install edk2-ovmf
 The files are placed in /usr/share/edk2/ovmf. Move Shell.efi to /boot/efi/shellx64.efi. Done
 
 A similar package exists for Ubuntu, I will update later.
+
 
