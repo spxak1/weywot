@@ -18,3 +18,8 @@ You can instal gnome-tweaks, open dconf-editor and view what the options do.
 
 How to have: Caps lock to change keyboard **and** turn the LED on!
 Then, shift caps to enable/disable caps lock.
+
+# Turn on overamplification
+~~~
+gsettings set org.gnome.desktop.sound allow-volume-above-100-percent true
+~~~
