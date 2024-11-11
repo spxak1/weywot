@@ -221,6 +221,15 @@ Note it's copied in the ```/boot/efi``` folder, not ```/boot/efi/EFI```. The nam
 
 That's it. If you reboot now, ```systemd-boot``` will preload the driver, see the loader config files and boot the kernel from ```/boot```. Success.
 
+Note, if you only need to install ```Shell.efi```, you can just do:
+
+~~~
+sudo dnf install edk2-ovmf-20240524-3.fc39.noarch
+~~~
+
+And you can find it in ```/usr/share/edk2/ovmf```.
+
+
 ## Wrap up
 
 The arch wiki ([point 3.2 here](https://wiki.archlinux.org/title/systemd-boot)) suggests this:
