@@ -8,7 +8,7 @@
 3. ```sudo mount /dev/sdb1 /mnt``` (you can find your drive in the first part of the os-prober's output)
 4. ```sudo cp -ax /mnt/EFI/Microsoft /boot/efi/EFI``` (you can find the folder after the word ```efi``` in os-prober's output. It's always ```Microsoft``` but you need capital ```EFI``` when copying.
 5. Reboot. Spam your spacebar for the menu. Select with arrows, add timeout with "t" or reduce with "T" (+/- also work), select default with "d". Hold "l" to boot linux after POST or "w" to boot Windows after POST without visiting the menu.
-
+6. [**In case of bitlocker encrypted drive for Windows (7/8/10/11)**](https://github.com/spxak1/weywot/edit/main/Pop_OS_Dual_Boot.md#5-in-case-of-bitlocker-encrypted-drive-for-windows-781011)
 
 **TL:DR**: Dual boot from the same drive with Windows and Pop!_OS already installed: See **4. TL:DR** at the end of this document.
 
@@ -254,3 +254,19 @@ bcdboot c:\Windows /s y:
 ~~~
 
 That's it. Windows now copied the files to the new ESP.  The best part about this method is now Windows doesn't use the old ESP ever again, so technically you can remove it. (Work in progress as this has so far worked erratically). 
+
+## 5. In case of bitlocker encrypted drive for Windows (7/8/10/11)
+
+After following the steps above, you will be prompt to enter recovery key for windows while booking into the windows.
+1. Restart into UEFI boot menu (F12 / F2 / ESC depending on manufacturer)
+
+   -> If step 1 is failing, restart into Bios and move the drive with Windows installed to top on boot device sequence. Apply changes and exit.
+
+2. Boot into Windows drive
+3. search for `bitlocker` in control panel
+4. Turn off bitlocker (mainly for `C:` drive)
+
+   -> If step 1 was failed, restart into the Bios and move POP_OS to top on boot device sequence. Apply changes and exit.
+   
+5. Restart PC and now let it restart to `systemd-boot` (Not into the UEFI boot menu) and select the Windows from systemd-boot menu.
+6. Re-encrypt the windows with bitlocker and save the key somewhere safe.
