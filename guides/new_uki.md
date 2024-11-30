@@ -47,7 +47,7 @@ You can write a boot entry into your bios nVRAM directly, to boot the UKI.
 
 I use my nvme0n1 drive and its first partition, which is mounted on ```/boot/efi```.
 
-## The post kernel intsall hook
+## The post kernel install hook
 
 All you need to get this process automatically done every time is to place a hook in ```/etc/kernel/postinst.d```.
 
@@ -62,7 +62,7 @@ I use [gdamjan's script from here](https://gist.github.com/gdamjan/ccdcda2c91119
        
 # Our kernels.
 KERNELS=()
-FIND="find /boot/efi -maxdepth 3 -name 'linux*' -type f -print0 | sort -rz"
+FIND="find /boot/efi -maxdepth 3 -name 'linux*' -type f -print0 | sort -Vrz"
 while IFS= read -r -u3 -d $'\0' LINE; do
     KERNEL=$(dirname "${LINE}")
     KERNELS+=("${KERNEL}")
