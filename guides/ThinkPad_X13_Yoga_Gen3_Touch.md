@@ -1,5 +1,10 @@
 # Make the X13 Yoga Gen3 Touchscreen identified by Gnome 45
 This was done on Fedora 39, but should work for most other Gnome based distributions.
+## UPDATE
+
+Since F41 (Gnome 47) the correct device (5284) is identified by Gnome and it appears on settings with a warnging (not recognised). The available options are the same as when you follow the guide below. 
+
+There is still no file for the 5284 in libwacom, and libwacom won't list anything without the intervention in the guide below.
 
 ## Identify the issue
 Opening Gnome Settings under "Wacom Tablet" shows "No tablet Detected".
