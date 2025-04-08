@@ -1,5 +1,7 @@
 # Boot to an OS on an NVME drive on systems that don't support booting from NVME
 
+**Update**: Read at the end.
+
 This guide is for older systems (Intel gen 6 or older CPUs) which can use NVME drives in their PCI slot but the bios won't see them and as such you can't boot from them.
 
 With information from [here](https://ntzyz.space/post/load-nvme-driver-in-uefi-shell/).
@@ -62,3 +64,39 @@ For this you need ```efibootmgr```. It's a single line command. I assume you kno
 ```sudo efibootmgr -c -d /dev/sda1 -p 1 -L NVME_Boot -l \\shellx64.efi```
 
 You can then use combinations of my other guides to boot to Windows (or replace the line with ```systemd-boot``` in the script to the Windows EFI stub.
+
+## Update
+
+OK, in theory the above works just fine. Only it doesn't. Once the bios boots to the EFI shell, the startup script runs and the nvme driver is loaded and the boot manager appears, the EFI shell cannot be loaded again, which means you cannot boot to Windows using a script.
+
+Note: You cannot boot to Windows with the automatic ```systemd-boot``` option which appears when you just copy over the EFI files of Windows to the ESP (the USB drive). So you need an EFI shell script like I explain in my method [here](https://github.com/spxak1/weywot/blob/main/guides/efishelldualboot.md).
+
+So here's the solution: You change the whole thing around:
+
+1. Boot to ```systemd-boot``` as per normal from the Bios
+2. Make a Windows option that loads the EFI shell **and** runs a script to load the driver and boot Windows
+
+This actually works pretty well as there is no delay on the screen, no text etc.
+Also, you don't need a new ```efibootmgr``` entry at all. It's atually better than the initial plan.
+
+You only need to make a *loader* file for Windows in ```/boot/efi/loader/entries```:
+~~~
+title  Windows 11
+efi     /shellx64.efi
+options -nointerrupt -noconsolein -noconsoleout windows.nsh
+~~~
+
+And then create the ```windows.nsh``` script in the **EFI root** with the following content:
+~~~
+load -nc fs0:\NvmExpressDxe.efi
+connect -r
+map -u
+FS2:\EFI\Microsoft\Boot\Bootmgfw.efi
+~~~
+
+The last line just boots Windows once the nvme driver is loaded. Done.
+
+You can modicy the ```startup.nsh``` script to remove the last line to load the boot manager. 
+
+
+
