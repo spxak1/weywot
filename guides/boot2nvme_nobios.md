@@ -57,4 +57,4 @@ Also note it's advisable to boot to the shell and play around with the commands 
 
 For this you need ```efibootmgr```. It's a single line command. I assume you know how to use it.
 
-```
+```sudo efibootmgr -c -d /dev/sda1 -p 1 -L NVME_Boot -l \\shellx64.efi```
