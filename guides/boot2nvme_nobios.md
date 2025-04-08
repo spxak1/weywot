@@ -2,6 +2,8 @@
 
 This guide is for older systems (Intel gen 6 or older CPUs) which can use NVME drives in their PCI slot but the bios won't see them and as such you can't boot from them.
 
+With information from [here](https://ntzyz.space/post/load-nvme-driver-in-uefi-shell/).
+
 ## 1.0 Prerequisites
 You need a drive to boot from. This can be a SATA drive or a USB drive. It will only hold your bootloader/manager, typically what you'd mount on ```/boot/efi```.
 I assume you can do a manual installation and configure your EFI partition (ESP) on the USB or SATA drive.
@@ -58,3 +60,5 @@ Also note it's advisable to boot to the shell and play around with the commands 
 For this you need ```efibootmgr```. It's a single line command. I assume you know how to use it.
 
 ```sudo efibootmgr -c -d /dev/sda1 -p 1 -L NVME_Boot -l \\shellx64.efi```
+
+You can then use combinations of my other guides to boot to Windows (or replace the line with ```systemd-boot``` in the script to the Windows EFI stub.
