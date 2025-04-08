@@ -4,7 +4,7 @@ This is a collection of notes that worked for my system at the time of writing.
 
 Feel free to use them, share them, modify them. I don't claim credit for them, so I don't ask for it either. Just be happy.
 
-* [Boot to an OS on an NVME drive on systems that don't support booting from NVME](https://github.com/spxak1/weywot/blob/main/guides/boot2nvme_nobios.md)
+* [Boot to an OS on an NVME drive on systems that don't support booting from NVME](https://github.com/spxak1/weywot/blob/main/guides/boot2nvme_nobios.md) This is for Windows mainly, done via linux.
 * [Unified Kernel - Automation (Fedora 40)](https://github.com/spxak1/weywot/blob/main/guides/new_uki.md)
 * [Add blink to your sudo](https://github.com/spxak1/weywot/blob/main/guides/groot.md)
 * [Fix Kernel upgrade failure to run dracut, no initrd](https://github.com/spxak1/weywot/blob/main/guides/fedora.sdboot.fail.md)
