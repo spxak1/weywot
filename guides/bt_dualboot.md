@@ -159,7 +159,6 @@ Your final product should look like this:
 [LinkKey]
 Key=5480E3E301493AE3E48C5A7418E82554
 Type=4
-147
 PINLength=0
 ~~~
 
