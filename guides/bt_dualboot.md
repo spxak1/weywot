@@ -86,7 +86,7 @@ Node has 3 subkeys and 5 values
     16  3 REG_BINARY         <104fa875c82e>
 ~~~
 
-Here you can see some connexted devices (keys) and then some Binaries. This is what we're after.
+Here you can see some connected devices (keys) and then some Binaries. This is what we're after.
 
 ## 5.0 Finding the Windows Key. Example: BT Headphones
 
