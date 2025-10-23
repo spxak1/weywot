@@ -30,7 +30,8 @@ Paste this in your ```~/.config/solaar/rules.yaml```
     - XF86_AudioLowerVolume
     - click
 ...
+~~~
 
 Or in the rule editor:
 
-![image](Screenshot From 2025-10-24 00-44-25.png)
+![image](assets/Screenshot From 2025-10-24 00-44-25.png)
