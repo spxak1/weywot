@@ -31,3 +31,6 @@ Paste this in your ```~/.config/solaar/rules.yaml```
     - click
 ...
 
+Or in the rule editor:
+
+![image](Screenshot From 2025-10-24 00-44-25.png)
