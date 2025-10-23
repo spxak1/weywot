@@ -34,4 +34,4 @@ Paste this in your ```~/.config/solaar/rules.yaml```
 
 Or in the rule editor:
 
-![image](assets/Screenshot From 2025-10-24 00-44-25.png)
+![Solaar](../assets/Screenshot From 2025-10-24 00-44-25.png)
