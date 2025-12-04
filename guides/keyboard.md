@@ -23,3 +23,8 @@ Then, shift caps to enable/disable caps lock.
 ~~~
 gsettings set org.gnome.desktop.sound allow-volume-above-100-percent true
 ~~~
+
+# Enable middle click minimise
+~~~
+gsettings set org.gnome.desktop.wm.preferences action-middle-click-titlebar 'minimize'
+~~~
