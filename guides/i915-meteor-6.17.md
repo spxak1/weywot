@@ -4,7 +4,7 @@
 
 ## Summary
 
-After upgrading to **Fedora 43 (kernel ≥ 6.17)** on Intel **Meteor Lake / Arrow Lake** graphics, the Linux kernel **defaults to the `xe` driver** instead of `i915`.
+After upgrading to **Fedora 43 (kernel ≥ 6.17)** on Intel **Meteor Lake / Arrow Lake** graphics, the Linux kernel **defaults to the `xe` driver** instead of `i915`. Note: It still needs ```xe.force_probe=7d41```, not quite a *default*. 
 
 On this system:
 - `xe` causes **hibernate resume kernel panics**
