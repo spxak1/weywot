@@ -56,7 +56,7 @@ List available devices:
 > ls
 ~~~
 
-This should give you an ouput that looks like this:
+This should give you an output that looks like this:
 
 ~~~
 (...)\Services\BTHPORT\Parameters\Keys> ls
@@ -86,7 +86,7 @@ Node has 3 subkeys and 5 values
     16  3 REG_BINARY         <104fa875c82e>
 ~~~
 
-Here you can see some connexted devices (keys) and then some Binaries. This is what we're after.
+Here you can see some connected devices (keys) and then some Binaries. This is what we're after.
 
 ## 5.0 Finding the Windows Key. Example: BT Headphones
 
@@ -117,13 +117,13 @@ Value <104fa875c82e> of type REG_BINARY (3), data length 16 [0x10]
 :00000  54 80 E3 E3 01 49 3A E3 E4 8C 5A 74 18 E8 25 54 T....I:...Zt..%T
 ~~~
  
-We have just read the key, the long string starting with **54** and endint with **54** (by coincidence). 
+We have just read the key, the long string starting with **54** and ending with **54** (by coincidence). 
 
 ## 6.0 Replacing the Linux key with the one from Windows. Example: BT Headphones
 
 In a new terminal gain root access with ```sudo su```. **Be careful, you are root, you can damage your system**
 
-Then, navigate tot the config files for your BT adapter, enter the adapter's folder, then enter's the device's folder
+Then, navigate to the config files for your BT adapter, enter the adapter's folder, then enter the device's folder
 
 ~~~
 root@weywot:/home/otheos# cd /var/lib/bluetooth/
@@ -159,7 +159,6 @@ Your final product should look like this:
 [LinkKey]
 Key=5480E3E301493AE3E48C5A7418E82554
 Type=4
-147
 PINLength=0
 ~~~
 
@@ -209,11 +208,11 @@ Node has 3 subkeys and 5 values
 
 It's the third one down. There is no **REG_BINARY** here, like for the headphones, because the mouse involves more data in its pairing. 
 
-Also note, the MAC address ends up with **8c**. This is because some mice have a rolling (changing) MAC address, and everytime you pair them anew, the MAC addres changes (the last bit anyway). 
+Also note, the MAC address ends up with **8c**. This is because some mice have a rolling (changing) MAC address, and every time you pair them anew, the MAC address changes (the last bit anyway). 
 
 So what has happened is, we paired the mouse to linux, and it used the **8B** ending MAC. Then we paired it with Windows and it changed its MAC to the one ending with **8C**. So currently the mouse is using the **8C** MAC address, the last one used.
 
-Clearly this means that Linux not only has the **wrong keys** but aslo the **wrong MAC address**. We need to fix the MAC address first.
+Clearly this means that Linux not only has the **wrong keys** but also the **wrong MAC address**. We need to fix the MAC address first.
 
 If your MAC address is the same, you don't need this step. Jump straight to section **7.2**. 
 
