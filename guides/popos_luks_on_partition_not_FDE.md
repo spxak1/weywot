@@ -82,7 +82,7 @@ Click on the first one to set it to ```/boot/efi```.
 
 ![2024-01-31_22-27_1](https://github.com/spxak1/weywot/assets/29977030/6200b70f-509c-444a-8575-dc009a358cd7)
 
-Click on the second one to set it to ```/recover```.
+Click on the second one to set it to ```/recovery```.
 
 ![2024-01-31_22-28](https://github.com/spxak1/weywot/assets/29977030/d2a2d231-de91-4c32-af08-c2a536eef88f)
 
