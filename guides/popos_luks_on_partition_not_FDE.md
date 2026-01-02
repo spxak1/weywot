@@ -179,7 +179,7 @@ Note, this is the ```UUID``` you copied from the previous step, the ```UUID``` o
 
 Here you declare that the encrypted unit ```popos``` is on the device with that ```UUID```, has ```none``` decryption files and uses ```luks```.
 
-Save and exit (if on pico/nano, CTRL+X).
+Save and exit (if on pico/nano, CTRL+X, enter).
 
 ### Chroot
 
