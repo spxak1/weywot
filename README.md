@@ -3,6 +3,7 @@
 This is a collection of notes that worked for my system at the time of writing. 
 
 Feel free to use them, share them, modify them. I don't claim credit for them, so I don't ask for it either. Just be happy.
+* [Add custom battery thresholds on Upower (and as such Gnome)](https://github.com/spxak1/weywot/blob/main/guides/custom_tp_thresholds_upower_gnome.md)
 * [Force i915 on Meteor Lake and newer after kernel 6.17 switched default to xe](https://github.com/spxak1/weywot/blob/main/guides/i915-meteor-6.17.md)
 * [Switch Howdy and fprintd on/off based on the status of the laptop's lid, for when used with a dock](https://github.com/spxak1/weywot/blob/main/guides/lid_condition_auth.md)
 * [Configure the Logitech MX Master 2S Thumb Wheel as a Volume Up/Down toggle with Solaar](https://github.com/spxak1/weywot/blob/main/guides/solaarMX2s.md)
