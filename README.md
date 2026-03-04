@@ -3,6 +3,7 @@
 This is a collection of notes that worked for my system at the time of writing. 
 
 Feel free to use them, share them, modify them. I don't claim credit for them, so I don't ask for it either. Just be happy.
+* [Add mathematical symbols to the keyboard layout using the compose key](https://github.com/spxak1/weywot/blob/main/guides/kbsymbols.md)
 * [Add custom battery thresholds on Upower (and as such Gnome)](https://github.com/spxak1/weywot/blob/main/guides/custom_tp_thresholds_upower_gnome.md)
 * [Make the scrollwheel control the volume by scrolling on the top bar of Gnome: It's an extension](https://github.com/spxak1/topbar-scroll-volume)
 * [Force i915 on Meteor Lake and newer after kernel 6.17 switched default to xe](https://github.com/spxak1/weywot/blob/main/guides/i915-meteor-6.17.md)
