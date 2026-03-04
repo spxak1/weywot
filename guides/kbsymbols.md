@@ -30,14 +30,14 @@ include "%L"
 
 It's self explanatory what you get and how. You can also see the unicode. Restart Gnome and you're good to go.
 
-So to type the square root symbol, press compose and you see a <u>.</u> blinking. Release and type the recipe, ```s``` and ```r```. When ```r``` is released you see the √.
+So to type the square root symbol, press compose and you see an underlined **.** blinking. Release and type the recipe, ```s``` and ```r```. When ```r``` is released you see the √.
 
 The full list of predefined recipes is found in ```/usr/share/X11/locale/en_US.UTF-8/Compose``` but it doesn't have all unicodes.
 
 ## The Unicode method
 
 This is an alternative way which doesn't use the compose key.
-Instead you type ```ctrl+shift+U``` and the prompt turns to <u>u</u> afte which (you release the keys and) you type the code, e.g. ```221a``` and space to see the √.
+Instead you type ```ctrl+shift+U``` and the prompt turns to an underlined **u** after which (you release the keys and) you type the code, e.g. ```221a``` and space to see the √.
 
 For a list of unicodes go to https://en.wikipedia.org/wiki/Mathematical_Operators_(Unicode_block)
 
