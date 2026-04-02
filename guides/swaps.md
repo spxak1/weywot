@@ -1,6 +1,6 @@
 # A few notes on swap, zram, zswap and hibernation (Fedora).
 
-A swap is no longer a requirement for most uses, so most intsallers don't even create one (e.g. Fedora).
+A swap is no longer a requirement for most uses, so most installers don't even create one (e.g. Fedora).
 Instead ZRAM is used by default by many distributions, Fedora and PopOS, the two I use, do that.
 
 A swap, however, is usefull if you want to hibernate. [Fedora magazine](https://fedoramagazine.org/hibernation-in-fedora-36-workstation/) offers a way to enable hibernation by adding a swap.
@@ -44,7 +44,7 @@ Evidently, [ZRAM should not be combined with ZSWAP](https://fedoraproject.org/wi
 
 So the simplest thing is to just change from ZRAM to ZSWAP. That is very simple.
 
-According to [Fedora Wiki](https://fedoraproject.org/wiki/Zsw) the steps are simple.
+According to [Fedora Wiki](https://fedoraproject.org/wiki/Zswap) the steps are simple.
 
 ### Have a swap partition that is used already. 
 
