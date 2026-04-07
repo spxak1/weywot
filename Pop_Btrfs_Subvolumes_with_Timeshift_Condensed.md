@@ -66,9 +66,9 @@ umount /mnt
 
 Each new line is a separate command to run. Remove the `ssd` option if you are not using an SSD.
 ```
-mount -o sudo mount -o defaults,subvol=@,ssd,discard,noatime,space_cache,compress=zstd,commit=120 <path to root partition> /mnt
+mount -o defaults,subvol=@,ssd,discard,noatime,space_cache,compress=zstd,commit=120 <path to root partition> /mnt
 
-for i in /dev/dev/pts/proc/sys/run; do sudo mount -B $i /mnt$i; done
+for i in dev dev/pts proc sys run; do sudo mount -B /$i /mnt/$i; done
 
 sudo cp /etc/resolv.conf /mnt/etc/
 ```
@@ -76,7 +76,7 @@ sudo cp /etc/resolv.conf /mnt/etc/
 In case you are reinstalling over a previous Btrfs partition, the first command is likely to fail. To get it to work you'll need to add the `clear_cache` parameter, as in:
 
 ```
-mount -o sudo mount -o <...other options>,clear_cache <path to root partition> /mnt
+mount -o <...other options>,clear_cache <path to root partition> /mnt
 ```
 
 At this point the terminal might warn about `/etc/resolv.conf` being a duplicate of the target; you can safely ignore the warning.
@@ -87,13 +87,18 @@ chroot /mnt
 nano /etc/fstab
 ```
 
-Make sure you have one line starting with UUID for `/` and one for `/home`. The only difference between these two lines is that one uses the `subvol=@` parameter while the other uses `subvol=@home`. (Remove the `ssd` option if you are not using an SSD). Example:
+Make sure you have one line starting with UUID for `/` and one for `/home`. The only difference between these two lines is that one uses the `subvol=@` parameter while the other uses `subvol=@home`. Example:
 
 ```
 UUID=18226258-bb30-4552-98c0-775ae3d74433  /  btrfs  defaults,subvol=@,ssd,noatime,space_cache,commit=120,compress=zstd  0  0
 
 UUID=18226258-bb30-4552-98c0-775ae3d74433  /home  btrfs  defaults,subvol=@home,ssd,noatime,space_cache,commit=120,compress=zstd  0  0
 ```
+
+NB: 
+- remove the `ssd` option if you are not using an SSD
+- some NVMe devices might need to replace `space_cache` with `space_cache=v2`.
+
 Save the file with Ctrl + O and close with Ctrl + X. Make sure you get the following result from `mount -av`:
 
 ```
@@ -112,6 +117,10 @@ kernelstub -a "rootflags=subvol=@" -l -s
 update-initramfs -c -k all
 ```
 You can now exit the terminal with `exit` (you will need to enter it twice) and reboot to the newly installed system.
+
+NB:
+- in a few cases `/home` is not properly written to disk; when this happens the current user is sent back to the login screen even though they successfully authenticated
+- if that happens to you. you can simply switch to a tty with `Ctrl + Alt + F3`, log in from the console and then run `sudo mkhomedir_helper <your_user_account>`
 
 ## Optional step: Defrag & rebalance data blocks
 
