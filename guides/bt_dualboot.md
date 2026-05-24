@@ -165,8 +165,9 @@ PINLength=0
 
 Save and exit with **ctrl+x**. 
 
-That's it. The headphones should work on both Operating systems.
+You may need to restart the bluetooth service, e.g. `sudo systemctl restart bluetooth`.
 
+That's it. The headphones should work on both Operating systems.
 
 ## 7.0 Finding the Windows Key and connecting a BT mouse (Logitech MX Anywhere 3)
 
